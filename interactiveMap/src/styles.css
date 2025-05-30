@@ -1,0 +1,239 @@
+/*
+######################
+####  Map Styles  ####
+######################
+*/
+
+#map {
+    height: 98vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+/*
+####  Popup Styles  ####
+*/
+
+  .popup-content {
+    width: 250px;
+
+  }
+  .leaflet-popup-content-wrapper{
+    background-color: seashell;
+    opacity: 1;
+  }
+
+  .leaflet-popup-content {
+    max-width: 300px; /* Default is 300px */
+    max-height: 425px; /* Default is 300px */
+  }
+  .title{
+    font-size: 20px;
+    display: block;
+  }
+  .company{
+    font-size: 16px;
+    display: block;
+  }
+  .year{
+    font-size: 16px;
+    display: block;
+  }
+  
+
+  .image1{
+    height:75px;
+    display: inline;
+    margin: auto;
+    }
+  .image2{
+    height:75px;
+    display: inline;
+    margin: auto;
+    }
+  .image3{
+    height:75px;
+    display: inline;
+    margin: auto;
+    }
+  .image4{
+    height:75px;
+    display: inline;
+    margin: auto;
+    }
+
+/*
+####  Popup Styel (Dark Mode)  ####
+*/
+
+  @media (prefers-color-scheme: dark) {
+    .leaflet-popup-content-wrapper{
+      background-color: black;
+    }
+    .comments {
+      color: seashell;
+      font-size: 1em;
+      margin-top: 5px;
+      margin-left: 10px;
+      max-height: 170px;
+      overflow: auto; 
+  
+    }
+    .time {
+      font-size: 0.7em;
+      margin-top: 5px;
+      max-height: 100px;
+      text-align: right;
+      border-bottom: 0.5px solid seashell;
+    }
+}
+
+/*
+#########################
+####   Inner HTML    ####
+#########################
+*/
+
+/* 
+***************************
+****    Base (Zoom)    ****
+***************************
+  Open up when the carsol hovers on 
+*/
+    .custom-control {
+      position: relative;
+    }
+    .custom-control label {
+      display: block;
+      margin: 3px 0;
+    } 
+    .custom-control-hover {
+      background: rgb(255, 255, 255);
+      border-radius: 4px;
+      padding: 5px;
+      font-size: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      cursor: pointer;
+      overflow: auto;
+    }
+    .custom-content {
+      display: none;
+      margin-top: 5px;
+    }
+  
+    .custom-control:hover .custom-content {
+      display: block;
+      background: rgb(177, 165, 155);
+    }
+  
+  
+/* 
+***********************************
+****    Collapsible Buttons    ****
+***********************************
+    the button that is used to open and close the collapsible content
+*/
+    
+
+    .collapsible {
+      background-color: seashell;
+      color: black;
+      cursor: pointer;
+      padding: 5px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 14px;
+    }
+    .button {
+      background-color: seashell;
+      color: black;
+      cursor: pointer;
+      padding: 5px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 14px;
+    }
+    
+    .active, .collapsible:hover, .button:hover, .list-button {
+      background-color: rgb(237, 225, 220);
+    }
+  
+    .collapsible:after {
+      content: '\25BC';
+      color: rgb(45, 70, 51);
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+    }
+    
+    .active:after {
+      content: "\25B2";
+    }
+    
+    .content {
+      padding: 0 10px;
+      max-height: 0;
+/*      max-width: 300px;
+*/      overflow: auto;
+      transition: max-height 0.2s ease-out;
+      background-color: rgba(251, 236, 225, 0.018);
+      scrollbar-width: thin;
+    }
+    .list-of-region{
+      font-size: 16px;
+      background-color: seashell;
+      padding: 0px;
+    }
+    .list-button{
+      background-color: rgb(237, 225, 220);
+      color: black;
+      padding: 2 10px;
+      width: auto;
+      border: none;
+      text-align: left;
+      outline:  none;
+      font-size: 12px;
+    }
+    .list-button:hover{
+      background-color: seashell;
+    }
+    .list-button:active{
+      background-color: rgb(245, 108, 11);
+    }
+    
+/* 
+*****************************
+****    Base (Upload)    ****
+*****************************
+  Open up when the carsol hovers on 
+*/
+    .custom-control-upload {
+      position: relative;
+    }
+    .custom-control-upload label {
+      display: block;
+      margin: 3px 0;
+    } 
+    .custom-control-upload-hover {
+      background: rgb(255, 255, 255);
+      border-radius: 4px;
+      padding: 5px;
+      font-size: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      cursor: pointer;
+      overflow: auto;
+    }
+    .custom-content-upload {
+      display: none;
+      margin-top: 5px;
+    }
+  
+    .custom-control-upload:hover .custom-content-upload {
+      display: block;
+      background: seashell;
+    }

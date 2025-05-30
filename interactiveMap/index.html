@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!--
+        Thank you for reading this source :))
+        Wanna get this code improved??
+        Contact: 
+
+        お疲れ様です！
+        ソースをご確認いただきありがとうございます！(/ω＼*)
+        問題がある部分や御意見等ございましたら、ご連絡いただければ幸いです。
+        連絡先: 
+        -->
+
+<head>
+  <title>Interactive Map Example</title>
+  <link rel="icon" href="images/mufurun.ico" type="image/x-icon">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel = "stylesheet" href = "src/styles.css" />
+  <link rel = "stylesheet" href = "terms-conditions/terms-conditions.css" />
+</head>
+<body>
+  
+<!-- Checkin Screen-->
+  <div id="entryScreen">
+    <div class="entry-box">      
+      <h1>Interactive Map Example</h1>
+      <p> This is an example of the interactive map. I do not intend this to be publicly available right now.</p>
+      <p>Take a look at codes here <a></a></p>
+      <div class = "button-wrapper">
+        <button id="enterBtn">Continue</button>
+      </div>      
+    </div>
+  </div>
+  <script src = 'terms-conditions/terms-conditions.js'></script>
+
+<!-- Main Screen-->
+<div id="map"></div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Data for sites -->
+<script src="src/data.js"></script>
+
+
+
+<script type="module">
+      
+  /*
+  #######################
+  #######################
+  ####   Main code   ####
+  #######################
+  #######################
+  */
+  
+  /*
+  #####################################
+  ######   Map initialization   #######
+  #####################################
+  
+      continuousWorld: true
+      worldCopyJump: true
+      zoomControl: custom -> later
+      maxZoom: 18
+      minZoom: 2
+  
+      attribution:  
+        https://github.com/tomchadwin/qgis2web
+        https://leafletjs.com
+        https://qgis.org
+        http://www.openstreetmap.org/copyright
+      
+      Buttons:
+        ->after the markers
+        
+  
+  
+  */
+    //map
+    const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([52, -127], 6);
+  
+    //attribution
+      map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+    
+  
+  //I don't know followings
+      //var hash = new L.Hash(map);
+      //     var bounds_group = new L.featureGroup([]);
+      // function setBounds() {
+      //     map.setMaxBounds(map.getBounds());
+      //}
+  //    var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+      
+    
+  
+  
+  /*
+  #########################
+  ######   Markers   ######
+  #########################
+  
+      Add every points on the map using createPopupContent()
+      Group them to filter
+  */
+      points.forEach(point => {
+        if(point.coords[1]){
+          const marker = L.marker(point.coords);
+          
+          marker.bindPopup(() => {
+            const popupContent = createPopupContent(point);
+            return popupContent;
+          }) 
+          marker.addTo(map);
+          //set up the scrollbar at the bottom.
+          map.on('popupopen', (e) => {
+            const popupElement = e.popup.getElement();
+            const commentsBox = popupElement.querySelector('.comments');
+            if (commentsBox) {
+              // Wait a tick to ensure it's rendered
+              setTimeout(() => {
+                commentsBox.scrollTop = commentsBox.scrollHeight;
+              }, 0);
+            }
+          });
+
+        }
+        
+       });
+  
+  
+  /*
+  ##########################################
+  ######     All Kinds of Controls     #####
+  ##########################################
+       Zoom control:
+       Current Position:
+       Layer Control:
+       Region COntrol:
+  */
+  
+  /*
+  ******************************
+  ******   zoomControl    ******
+  ******************************
+  */
+  
+      var zoomControl = L.control.zoom({
+              position: 'bottomright'
+          }).addTo(map);
+  
+       
+  
+
+  /*
+  *****************************
+  ******   Inner HTML    ******
+  *****************************
+  
+  
+  */
+       const customControl = L.Control.extend({
+        onAdd: function (map) {
+          const container = L.DomUtil.create('div', 'custom-control leaflet-bar');
+          container.innerHTML = `
+          <div class = "custom-control-hover">
+              <strong>Region Control</strong>
+              <div class="custom-content">
+                <button class = 'button' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>
+
+                <button class="collapsible" id = 'vancouverIsland'>Vancouver Island</button>
+                <div class="content">
+                    <button class="collapsible" id = 'capital'>Capital Regional District</button>
+                    <div class="content">
+                        <button class="collapsible" id = 'victoria'>Victoria</button>
+                        <div class="content">
+                            <div id = 'list_victoria'></div>
+                        </div>
+                        <button class="collapsible" id = 'viewRoyal'>View Royal</button>
+                        <div class="content">
+                            <div id = 'list_viewRoyal'></div>
+                        </div>
+                        <button class="collapsible" id = 'sooke'>Sooke</button>
+                        <div class="content">
+                            <div id = 'list_sooke'></div>
+                        </div>
+                        <div id = 'list_capital'></div>
+                    </div>
+                    <button class="collapsible" id = 'cowichanValley'>Cowichan Valley Regional District</button>
+                    <div class="content">
+                        <button class="collapsible" id = 'shawniganLake'>Shawnigan Lake</button>
+                        <div class="content">
+                            <div id = 'list_shawniganLake'></div>
+                        </div>
+                        <button class="collapsible" id = 'northCowichan'>North Cowichan</button>
+                        <div class="content">
+                            <div id = 'list_northCowichan'></div>
+                        </div>
+                        <button class="collapsible" id = 'lakeCowichan'>Lake Cowichan</button>
+                        <div class="content">
+                            <div id = 'list_lakeCowichan'></div>
+                        </div>
+                        <button class="collapsible" id = 'ladysmith'>Ladysmith</button>
+                        <div class="content">
+                            <div id = 'list_ladysmith'></div>
+                        </div>
+                        <button class="collapsible" id = 'chemainus'>Chemainus</button>
+                        <div class="content">
+                            <div id = 'list_chemainus'></div>
+                        </div>
+                        <button class="collapsible" id = 'cowichanBay'>Cowichan Bay</button>
+                        <div class="content">
+                            <div id = 'list_cowichanBay'></div>
+                        </div>
+                        <button class="collapsible" id = 'ptRenfrew'>Port Renfrew</button>
+                        <div class="content">
+                            <div id = 'list_ptRenfrew'></div>
+                        </div>
+                        <div id = 'list_cowichanValley'></div>
+                    </div>
+                    <button class="collapsible" id = 'nanaimoo'>Regional District of Nanaimo</button>
+                    <div class="content">
+                        <button class="collapsible" id = 'nanaimo'>Nanaimo</button>
+                        <div class="content">
+                            <div id = 'list_nanaimo'></div>
+                        </div>
+                        <div id = 'list_nanaimoo'></div>
+                    </div>
+                    <button class="collapsible" id = 'comoxValley'>Comox Valley Regional District</button>
+                    <div class="content">
+                        <button class="collapsible" id = 'courtenay'>Courtenay</button>
+                        <div class="content">
+                            <div id = 'list_courtenay'></div>
+                        </div>
+                        <div id = 'list_comoxValley'></div>                      
+                    </div>
+                    <button class="collapsible" id = 'alberniClayoquot'>Regional District of Alberni-Clayoquot</button>
+                    <div class="content">
+                        <button class="collapsible" id = 'ptAlberni'>Port Alberni</button>
+                        <div class="content">
+                            <div id = 'list_ptAlberni'></div>
+                        </div>
+                        <button class="collapsible" id = 'alberni'>Alberni</button>
+                        <div class="content">
+                            <div id = 'list_alberni'></div>
+                        </div>
+                        <div id = 'list_alberniClayoquot'></div>                                            
+                    </div>
+                    <button class="collapsible" id = 'strathcona'>Strathcona Regional District</button>
+                    <div class="content">
+                        <button class="collapsible" id = 'campbell'>Campbell</button>
+                        <div class="content">
+                            <div id = 'list_campbell'></div>
+                        </div>
+                        <div id = 'list_strathcona'></div>
+                    </div>
+                    <div id = 'list_vancouverIsland'></div>
+                </div>
+          
+  
+                <button class="collapsible" id = 'haida'>Haida Area</button>
+                <div class="content">
+                  <div id = 'list_haida'></div>
+                </div>
+  
+                <button class="collapsible" id = 'vancouver'>Vancouver</button>
+                <div class="content">
+                <div id = 'list_vancouver'>Vancouver</div>
+                </div>
+              </div>
+          </div>
+            `;
+  
+          // Prevent map click propagation
+          L.DomEvent.disableClickPropagation(container);
+          L.DomEvent.disableScrollPropagation(container);
+  
+
+  
+          // Delay attaching the event until the DOM is ready
+          setTimeout(() => {
+            regions.forEach(region =>{
+              const btn = document.getElementById(region.id);
+              if(btn){
+                btn.addEventListener("click", () => {
+                  map.flyTo(region.zoom,region.size);
+                });
+              }
+            })
+            
+            const collapsibles = document.querySelectorAll(".collapsible");
+            collapsibles.forEach(button => {
+              button.addEventListener("click", function () {
+                const content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                  updateChildren(content);  
+                } else {
+                this.classList.toggle("active");
+                  content.style.maxHeight = 350 + "px";
+                  updateSibling(content);  
+                  updateParentHeight(content);
+                }
+              });
+            });
+            const world = document.querySelectorAll(".button");
+            world.forEach(button => {
+              button.addEventListener("click", function () {
+                const content = this.nextElementSibling;
+                updateSibling(content);  
+                  
+              });
+            });
+
+      
+  
+            region_categories.forEach(location =>{
+                listMarkers(location);
+            });
+          }, 0);
+  
+          return container;
+        }
+      });
+  
+      map.addControl(new customControl({ position: 'topleft' }));
+  
+      
+  
+  /*
+  ###################################
+  ###################################
+  ##########  FUNCTIONS   ###########
+  ###################################
+  ###################################
+  */
+  
+  /*
+  #####################################
+  #####     Functions for Map     #####
+  #####################################
+  */
+      
+  /*
+  **********************************************
+  *******  FUNCTION createPopupContent()  ******
+  **********************************************
+  
+  Create popup content and listeners
+      Title:
+      Image: with a url if I have
+      "Comment"
+      comments:
+      input box:
+      post button: link to firebase 
+        data management
+  
+  */
+  function createPopupContent(point) {
+  
+    //div
+        const container = document.createElement('div');
+        container.className = 'popup-content';
+  
+    //title
+        const title = document.createElement('strong');
+        title.textContent = point.title;
+        title.className = 'title';
+        container.appendChild(title);
+    //company
+        const company = document.createElement('strong');
+        company.textContent = point.company;
+        company.className = 'company';
+        container.appendChild(company);
+  
+    //image 
+        const imageSection = document.createElement('span');
+        const image1 = document.createElement('img');
+        image1.src= point.image1;
+        image1.className = 'image1';
+        imageSection.appendChild(image1)
+        const image2 = document.createElement('img');
+        image2.src= point.image2;
+        image2.className = 'image2';
+        imageSection.appendChild(image2)
+        const image3 = document.createElement('img');
+        image3.src= point.image3;
+        image3.className = 'image3';
+        imageSection.appendChild(image3)
+        const image4 = document.createElement('img');
+        image4.src= point.image4;
+        image4.className = 'image4';
+        imageSection.appendChild(image4)
+
+        container.appendChild(imageSection);
+        
+    //Year
+        const year = document.createElement('i');
+        year.textContent = point.year;
+        year.className = 'year';
+        container.appendChild(year);
+  
+    //Discription
+        const discription = document.createElement('ul');
+        discription.className = 'discription';
+      //List
+        const list1 = document.createElement('li');
+        list1.className = 'list1';      
+        list1.textContent = point.list1;      
+        discription.appendChild(list1);
+        const list2 = document.createElement('li');
+        list2.className = 'list2';      
+        list2.textContent = point.list2;      
+        discription.appendChild(list2);
+        const list3 = document.createElement('li');
+        list3.className = 'list3';      
+        list3.textContent = point.list3;      
+        discription.appendChild(list3);
+
+        container.appendChild(discription);
+          return container;
+      }
+  
+  
+  /*
+  ######################################################
+  ######     Functions for Inner HTML Control     ######
+  ######################################################
+  
+      To maintain the folded sections:
+        updateParentHeight();
+        updateSibling();
+        updateChildren();
+      For the button of the list in each region
+        listMarkers()
+  */
+  
+  /*
+  *********************************************
+  ******  Function updateParentHeight()  ******
+  *********************************************
+  
+    Adjust the size of parent section of the folded content
+      when you click, the parent section open and show the content without hiding by the other section
+  */
+  
+      function updateParentHeight(element) {
+        let parent = element.parentElement;
+        while (parent) {
+          if (parent.classList.contains('content') && parent.style.maxHeight) {
+          parent.style.maxHeight = parent.scrollHeight  +" px";
+          }
+          parent = parent.parentElement;
+        }
+      }
+  
+  /*
+  ****************************************
+  ******  Function updateSibling()  ******
+  ****************************************
+  
+    Unfold the other sibling sections
+      This is necessary since the map will zoom up the region where you open the section with
+  */
+  
+      function updateSibling(element) {
+          let sibling = element.parentElement.firstElementChild;
+          while (sibling) {
+              if (sibling !== element && sibling.classList.contains("content") && sibling.style.maxHeight) {
+                  sibling.style.maxHeight = null;
+                  sibling.previousElementSibling.classList.toggle("active");
+                  updateChildren(sibling);
+              }
+              sibling = sibling.nextElementSibling;
+          }
+      }
+  /*
+  *****************************************
+  ******  Function updateChildren()  ******
+  *****************************************
+  
+    Unfold the children sections
+      This is necessary since the map will zoom up the region where you open the section with
+  */
+  
+      function updateChildren(element) {
+          let child = element.firstElementChild;
+          while (child) {
+              if (child.classList.contains("content") && child.style.maxHeight) {
+                  child.style.maxHeight = null;
+                  child.previousElementSibling.classList.toggle("active");
+                  updateChildren(child);
+              }
+              child = child.nextElementSibling;
+          }
+      }
+  
+  
+  /*
+  ***************************************
+  ******  Function listMarker()()  ******
+  ***************************************
+  
+      Make the list of sites on the map
+      Create button to direct the location
+    
+  */
+      function listMarkers(region){
+        const list = document.getElementById("list_"+region);
+        if(list){
+          list.innerHTML = "List of Places in " + region[0].toUpperCase()+ region.slice(1);
+  
+          if(region == 'hokuriku' || region == 'australia' || region == 'japan'){
+            list.innerHTML = "List of Other Places in " + region[0].toUpperCase()+ region.slice(1);
+          }
+          else if(region == 'bc'){
+            list.innerHTML = "List of Places in " + region.toUpperCase();
+          }
+          list.classList = 'list-of-region';
+          points.forEach(p =>{
+            if(p.group == region){
+              const title = document.createElement('button');
+              title.textContent = p.title + '<br>' + p.company;
+              title.classList = 'list-button';
+              title.onclick = () => {
+                map.flyTo(p.coords, 16);
+              }
+              list.appendChild(document.createElement('br'));
+              list.appendChild(title);
+            }
+          });
+        }
+      }
+  
+     
+  
+  </script>
+
+</body>
+</html>
