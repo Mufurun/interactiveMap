@@ -388,22 +388,36 @@
   
     //image 
         const imageSection = document.createElement('span');
-        const image1 = document.createElement('img');
-        image1.src= point.image1;
-        image1.className = 'image1';
-        imageSection.appendChild(image1)
-        const image2 = document.createElement('img');
-        image2.src= point.image2;
-        image2.className = 'image2';
-        imageSection.appendChild(image2)
-        const image3 = document.createElement('img');
-        image3.src= point.image3;
-        image3.className = 'image3';
-        imageSection.appendChild(image3)
-        const image4 = document.createElement('img');
-        image4.src= point.image4;
-        image4.className = 'image4';
-        imageSection.appendChild(image4)
+        if(point.image1){
+          const image1 = document.createElement('img');
+          image1.src= point.image1;
+          image1.className = 'image1';
+          imageSection.appendChild(image1)
+          if(point.image2){
+            const image2 = document.createElement('img');
+            image2.src= point.image2;
+            image2.className = 'image2';
+            imageSection.appendChild(image2)
+            if(point.image3){
+              const image3 = document.createElement('img');
+              image3.src= point.image3;
+              image3.className = 'image3';
+              imageSection.appendChild(image3)
+              if(point.image4){
+                const image4 = document.createElement('img');
+                image4.src= point.image4;
+                image4.className = 'image4';
+                imageSection.appendChild(image4)
+                if(point.image5){
+                  const image5 = document.createElement('img');
+                  image5.src= point.image5;
+                  image5.className = 'image5';
+                  imageSection.appendChild(image5)
+                }
+              }
+            }
+          }
+        }
 
         container.appendChild(imageSection);
         
