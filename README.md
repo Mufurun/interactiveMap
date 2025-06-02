@@ -3,14 +3,20 @@
 - This interactive map shows the locations of important locations of forestry industry on the coastal BC. 
 
 
+
 ## Purpose
 - This suceeds the project from 2024 summer. 
 - Everything is attributed to the BC Forest Discovery Centre
 
 ## Instructions for Staffs
+ - There are two steps to improve this project
+  1. Update Contents
+  2. Upload it to the Code
+  3. Download the Code
 
-### Update Contents
- - All numbers and contents are in the excel file (at "S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx") and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
+
+### 1 Update Contents
+ - All numbers and contents are in the excel file (at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx) and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
     - Please update as changed
  - For the data management, we want to use a few files.
  - Each row in the excel is assigned to hold all information about a site.
@@ -43,14 +49,42 @@
         -  Some statistics, such as number of workers, productions etc.
   - ### Image1 to Image5
     - The file name of images of the site
-    - **Those have to be the same as the name of the photos without extension (.png)**
-      - **Photos must be png**; The scanner would usually generate png, but otherwise, convert.
+    - <ins>***Those have to be the same as the name of the photos without extension (.png)***</ins>
+      - <ins>***Photos must be png***</ins>; The scanner would usually generate png, but otherwise, convert.
       - Preferably, photos with people working.
   - ### ImageText1 to ImageText5
     - Explanations of the image
   - ### AdditionalSources
     - Additional Source that is worth reading.
 
+## 2 Upload to Code
+ - All info must be ready on the "Sheet3"
+  - "Sheet3" is not editable.
+ - Here, the step to copy and paste those to the data.js
+   1. #### Copy all cells on the Sheet3
+   2. #### Open "interactiveMap" and open "src" folder ("\Interactive_Map_Project\interactiveMap\src\").
+   3. #### Right-click on the "data.js" file and select "Edit in Notepad"
+   4. #### Delete the section inside "points"
+     - Inside the [] of points
+     - Marked by lines
+   5. #### Paste the Excel content in the [] where you delete.
+   6. #### Save the file.
+
+   7. #### Copy the Photo Folder at "S:\Curatorial\Writing\Research\Heritage Map\HeritageMap"
+   8. #### Open "interactiveMap" and open "src" folder.
+   9. #### Right-click to paste the folder there ("\Interactive_Map_Project\interactiveMap\src\"). 
+
+## 3 Download the Code
+ - In case someone want to download the code.
+ - Here is the step to pull the files
+   1. Open bash shortcut
+   2. Type / paste "cd Desktop/Interactive_Map_Project/interactiveMap/" and enter.
+       - **Do not use Ctrl + v. This won't work**
+   3.  Type / paste "git pull" and enter. 
+
+
+
+___
 
 ## Methods
 ### Map
