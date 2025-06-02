@@ -8,6 +8,9 @@
 - This suceeds the project from 2024 summer. 
 - Everything is attributed to the BC Forest Discovery Centre
 
+___
+
+
 ## Instructions for Staffs
  - There are two steps to improve this project
   1. Update Contents
@@ -78,8 +81,8 @@
  - In case someone want to download the original codes.
  - Here is the step to pull the files
    1. Double-click the "download_original.sh" file.
-      - This will download the files
-   2. Now, you have to go through Step 2 Upload Codes
+      - This will overwrite the codes in the folder "interactiveMap"
+   2. Now, you have to go through Step 2 Upload Codes to upload the data. 
 
 ___
 
