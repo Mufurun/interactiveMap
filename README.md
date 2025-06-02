@@ -12,11 +12,10 @@ ___
 ___
 
 ## Instructions for Staffs
- - There are two steps to improve this project
-  1. Update Contents
-  2. Upload it to the Code
-  3. Download the Code
-
+ - There are basically three operations to publish info.
+  1. ### Update Contents
+  2. ### Upload it to the Code
+  3. ### Download the Code
 
 ### 1 Update Contents
  - All numbers and contents are in the excel file (at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx) and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
@@ -77,7 +76,7 @@ ___
    8. #### Open "interactiveMap" and open "src" folder.
    9. #### Right-click to paste the folder there ("\Interactive_Map_Project\interactiveMap\src\"). 
 
-## 3 Download the Code
+## 3 Download the Code (Additional)
  - In case someone want to download the original codes.
  - Here is the step to pull the files
    1. Double-click the "download_original.sh" file.
