@@ -24,5 +24,5 @@ by Nobuto Arai
 - [ ] use something like satelite imagery later, but right now I am using just a normal map
   
 # Distribution
- - This is not publicly available. 
- - The repo is private, so only those permitted are accessible. 
+ - All data are not publicly available. 
+ - The repo is public. 
