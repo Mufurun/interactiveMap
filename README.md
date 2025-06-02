@@ -57,7 +57,7 @@
   - ### AdditionalSources
     - Additional Source that is worth reading.
 
-## 2 Upload to Code
+## 2 Upload Codes
  - All info must be ready on the "Sheet3"
   - "Sheet3" is not editable.
  - Here, the step to copy and paste those to the data.js
@@ -75,14 +75,11 @@
    9. #### Right-click to paste the folder there ("\Interactive_Map_Project\interactiveMap\src\"). 
 
 ## 3 Download the Code
- - In case someone want to download the code.
+ - In case someone want to download the original codes.
  - Here is the step to pull the files
-   1. Open bash shortcut
-   2. Type / paste "cd Desktop/Interactive_Map_Project/interactiveMap/" and enter.
-       - **Do not use Ctrl + v. This won't work**
-   3.  Type / paste "git pull" and enter. 
-
-
+   1. Double-click the "download_original.sh" file.
+      - This will download the files
+   2. Now, you have to go through Step 2 Upload Codes
 
 ___
 
