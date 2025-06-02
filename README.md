@@ -1,6 +1,6 @@
 # Project Interactive Map 
 
-- This interactive map shows the locations of important locations of forestry industry on the coastal BC. 
+- This interactive map shows the important locations of forestry industry on the coastal BC. 
 
 
 
@@ -9,7 +9,7 @@
 - Everything is attributed to the BC Forest Discovery Centre
 
 ___
-
+___
 
 ## Instructions for Staffs
  - There are two steps to improve this project
@@ -84,6 +84,7 @@ ___
       - This will overwrite the codes in the folder "interactiveMap"
    2. Now, you have to go through Step 2 Upload Codes to upload the data. 
 
+___
 ___
 
 ## Methods
