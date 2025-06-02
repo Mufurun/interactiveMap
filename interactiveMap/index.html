@@ -116,10 +116,27 @@
   
       Add every points on the map using createPopupContent()
       Group them to filter
+      Store all info in an array
   */
+      //An array to store them (exclusively good points)
+      const markers = []
+ 
+      //Icon to make them visibly identifiable
+      const greenIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+
       points.forEach(point => {
-        if(point.coords[1]){
+        if(point.error != 'coords'){
           const marker = L.marker(point.coords);
+          if(point.error){
+            marker.setIcon(greenIcon);
+          }
           
           marker.bindPopup(() => {
             const popupContent = createPopupContent(point);
@@ -130,15 +147,17 @@
           map.on('popupopen', (e) => {
             const popupElement = e.popup.getElement();
             const commentsBox = popupElement.querySelector('.comments');
-            if (commentsBox) {
-              // Wait a tick to ensure it's rendered
-              setTimeout(() => {
-                commentsBox.scrollTop = commentsBox.scrollHeight;
-              }, 0);
-            }
           });
-
+          if(!point.error){
+            markers.push({
+              marker: marker,
+              category: point.category,
+              yearBegging: +point.year.slice(0,4),
+              yearEnd: +point.year.slice(5,8),
+            });
+          }
         }
+
         
        });
   
@@ -167,9 +186,9 @@
   
 
   /*
-  *****************************
-  ******   Inner HTML    ******
-  *****************************
+  ***********************************
+  ******   Regional Control    ******
+  ***********************************
   
   
   */
@@ -339,6 +358,46 @@
       map.addControl(new customControl({ position: 'topleft' }));
   
       
+
+  /*
+  *********************************
+  ******   Filter Control    ******
+  *********************************
+  
+  */
+      const filterControl = L.Control.extend({
+        onAdd: function (map) {
+          const container = L.DomUtil.create('div', 'custom-control leaflet-bar');
+          container.innerHTML = `
+          <div class = "custom-control-hover">
+            <strong>Filter  Control</strong>
+            <div class="custom-content"><div class="plain">
+              <label><input type="checkbox" id="camp" checked>Show camps</label><br>
+              <label><input type="checkbox" id="sawmill" checked>Show Sawmills</label><br>
+              <label><input type="checkbox" id="p&p" checked>Show Paper and Pulp Mills</label><br>
+              <label><input type="checkbox" id="comunity" checked>Show Comunities</label><br>
+              <label><input type="checkbox" id="ex" checked>Show Others???</label><br>
+            </div></div>
+          </div>
+            `;
+  
+          // Prevent map click propagation
+          L.DomEvent.disableClickPropagation(container);
+          L.DomEvent.disableScrollPropagation(container);
+
+          setTimeout(() => {
+
+            category_list.forEach(obj =>{
+              document.getElementById(obj).addEventListener('change', filterMarker);
+            });
+          }, 0);
+    
+          return container;
+        }
+      });
+        map.addControl(new filterControl({ position: 'topleft' }));
+
+
   
   /*
   ###################################
@@ -543,7 +602,7 @@
           else if(region == 'bc'){
             list.innerHTML = "List of Places in " + region.toUpperCase();
           }
-          list.classList = 'list-of-region';
+          list.classList = 'plain';
           points.forEach(p =>{
             if(p.group == region){
               const title = document.createElement('button');
@@ -558,7 +617,32 @@
           });
         }
       }
+  /*
+  ***************************************
+  ******  Function listMarker()()  ******
+  ***************************************
   
+      Make the list of sites on the map
+      Create button to direct the location
+    
+  */
+      function filterMarker(year = 0){
+        markers.forEach(obj =>{
+          map.removeLayer(obj.marker);
+          let boolCategory = false;
+          category_list.forEach(cate_obj => {
+            if(document.getElementById(cate_obj).checked && (obj.category == cate_obj)){boolCategory = true;}
+          });
+          if(document.getElementById('comunity').checked && (obj.category == 'comunity')){boolCategory = true;}
+          
+//          let boolYear = obj.yearBegging <= year && year <= obj.yearEnd;
+//          if (year == 0){boolYear = true;}
+          const boolYear = true;
+          if(boolCategory && boolYear){
+            obj.marker.addTo(map);
+          }
+        })
+      }
      
   
   </script>

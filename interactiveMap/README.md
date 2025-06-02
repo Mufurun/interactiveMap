@@ -5,20 +5,23 @@ by Nobuto Arai
 
 
 # Purpose
-- This suceeds the project from 2024 summer. 
-- Everything is attributed to the BC Forest Discovery Centre
+- This suceeds the project from 2024 summer at the BC Forest Discovery Centre.
+- I hope someone else continues this project to update data in the long run.
+
 
 # Methods
 ## Map
   I will do (check if they are done):
 - [ ] Data Management
-  - [ ] Organize the location
-  - [ ] Upload some photos
-  - [ ] Upload texts
-  - [ ] Titile
-  - [ ] Years (range)
+  - [x] Organize the location
+  - [x] Photos
+  - [x] Texts
+  - [x] Tittle
+  - [x] Years (range)
+  - [x] Descriptions
+  - [x] Additional Sources
 - [ ] Controls
-  - [ ] Allow users to zoom up by the region
+  - [x] Allow users to zoom up by the region
   - [ ] Allow users to filter points by the year
   - [ ] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
 - [ ] use something like satelite imagery later, but right now I am using just a normal map
