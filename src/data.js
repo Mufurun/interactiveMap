@@ -24,7 +24,6 @@ title: '',	company: 'BC Paper Manufacturing ',	year: '-',	coords: [,],	category:
         'sawmill',
         'p&p',
         'community',
-        'ex',
     ]
 
 
