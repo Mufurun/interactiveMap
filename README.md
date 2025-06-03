@@ -94,12 +94,12 @@ ___
   - [x] Organize the location
   - [x] Photos
   - [x] Texts
-  - [x] Tittle
+  - [x] Title
   - [x] Years (range)
   - [x] Descriptions
   - [x] Additional Sources
 - [ ] Data Upload
-  - [x] Tittle
+  - [x] Title
   - [x] Location
   - [x] Year
   - [x] Images
