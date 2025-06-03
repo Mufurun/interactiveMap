@@ -15,7 +15,6 @@ ___
  - There are basically three operations to publish info.
   1. ### Update Contents
   2. ### Upload it to the Code
-  3. ### Download the Code
 
 ### 1 Update Contents
  - All numbers and contents are in the excel file (at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx) and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
@@ -59,24 +58,19 @@ ___
   - ### AdditionalSources
     - Additional Source that is worth reading.
 
-## 2 Upload Codes
+### 2 Upload Codes
  - All info must be ready on the "Sheet3"
   - "Sheet3" is not editable.
- - Here, the step to copy and paste those to the data.js
-   1. #### Copy all cells on the Sheet3
-   2. #### Open "interactiveMap" and open "src" folder ("\Interactive_Map_Project\interactiveMap\src\").
-   3. #### Right-click on the "data.js" file and select "Edit in Notepad"
-   4. #### Delete the section inside "points"
-     - Inside the [] of points
-     - Marked by lines
-   5. #### Paste the Excel content in the [] where you delete.
-   6. #### Save the file.
+ - Here, the step to copy and paste the data on "Sheet3" in the excel file to the data.js
+   1. #### Copy all cells on the Sheet3 (Ctrl + A, then Ctrl + C)
+   2. #### Open "Interactive_Map_Project" and open "export" txt file  ("\Interactive_Map_Project\export.txt").
+   3. #### Replace all the lines to the content from the excel file 
+      - Delete all the lines, and Paste what you copied in the step 1 
+   4. #### Double-click "download_and_upload_codes.sh" file.
+      - This will overwrite the codes in the folder "interactiveMap" from the github 
+      - Then, it will write the content from the "export.txt" file in the proper position of "data.js"
 
-   7. #### Copy the Photo Folder at "S:\Curatorial\Writing\Research\Heritage Map\HeritageMap"
-   8. #### Open "interactiveMap" and open "src" folder.
-   9. #### Right-click to paste the folder there ("\Interactive_Map_Project\interactiveMap\src\"). 
-
-## 3 Download the Code (Additional)
+###  Manual Updating
  - In case someone want to download the original codes.
  - Here is the step to pull the files
    1. Double-click the "download_original.sh" file.
