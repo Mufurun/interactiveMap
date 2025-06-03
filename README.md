@@ -12,14 +12,13 @@ ___
 ___
 
 ## Instructions for Staffs
- - There are basically two operations to publish info.
-  1. ### Update Contents
-  2. ### Upload it to the Code
- - And Some useful info
-  3. ### ManualUpdating
-  4. ### Common Error and Debuging
+ - There are basically two operations to publish + two useful info.
+    1. #### [Update Contents](#update-contents)
+    2. #### [Upload it to the Code](#upload-codes)
+    4. #### ManualUpdating
+    5. #### Common Error and Debuging
 
-### 1 Update Contents
+### 1 Update Contents<a name="update-contents"></a>
  - All numbers and contents are in the excel file (at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx) and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
     - Please update as changed
  - For the data management, we want to use a few files.
@@ -65,7 +64,7 @@ ___
   - ### AdditionalSources
     - Additional Sources which are worth reading.
 
-### 2 Upload Codes
+### 2 Upload Codes <a name="upload-codes"></a>
  - All info must be ready on the "Sheet3" of the Excel file at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx.
     - "Sheet3" is not editable.
  - Here, the step to copy and paste the data on "Sheet3" in the excel file to the data.js
