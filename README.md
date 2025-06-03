@@ -27,42 +27,45 @@ ___
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
  - If you do not know, just blank the cells
  - Below, explanations of each colunm
-  - **Title**
-    - The name of the site.
-    - This will be the title of the popup.
-  - **Company**
-    - The name of company. This is very arbiturary, depending on the creater.
-      - We may need some createria here.  
-  - **StartingYear, EndingYear**
-    - The year of the operation/existence for community
-      - StartingYear < EndginYear 
-  - **Y-coordinate, X-coordinate**
-    - The sufficiently precise location of the site.
-      - Only need three decimals ??  
-  - **Categories**
-    - The type of the site
-      - Select one from the list: **camp, sawmill, p&p, and community (and blank)**
-  - **Location**
-    - The region of the site.
-    - It may not be accurate...
-  - **List1 to List12**
-    - Descriptions of the site
-      - Trying to add information below:
-        - write significant events in chronological order
-        -  Some statistics, such as number of workers, productions etc.
-  - **Image1 to Image5**
-    - The file name of images of the site
-    - Save up to five images in the "images" folder (at S:\Curatorial\Writing\Research\Heritage Map\images\)
-      - Preferably, photos with people working.
-      - Typically, name it as "TitleCompanyNumber.png" (eg. Camp1HillcrestLumber01.png).
-        - Have to be distinctive. 
-    - <ins>Image1-5 have to be the ***exactly*** same name as the name of the photos ***without extension (.png)*** </ins>
-      - <ins>***Photos must be png***</ins>; The scanner would usually generate png, but otherwise, convert.
-       - [ImageMagick](https://imagemagick.org/index.php) 
-  - **ImageText1 to ImageText5**
-    - Explanations of the images1-5
-  - **AdditionalSources**
-    - Additional Sources which are worth reading.
+   - **Title**
+     - The name of the site.
+     - This will be the title of the popup.
+   - **Company**
+     - The name of company.
+     - This is very arbiturary, depending on the creater.
+       - We may need some createria here.  
+   - **StartingYear, EndingYear**
+     - The year of the operation/existence for community
+       - StartingYear < EndginYear 
+   - **Y-coordinate, X-coordinate**
+     - The sufficiently precise location of the site.
+       - Only need three decimals ??  
+   - **Categories**
+     - The type of the site
+       - Select one from the list: **camp, sawmill, p&p, and community (and blank)**
+   - **Location**
+     - The region of the site.
+     - It may not be accurate...
+   - **List1 to List12**
+     - Descriptions of the site
+       - Trying to add information below:
+         - Significant events in the chronological order (ie. when it started, how it closed ...)
+         - Some statistics, such as number of workers, productions etc.
+         - Descriptions about those who worked. 
+   - **Image1 to Image5**
+     - The file name of images of the site
+     - Save up to five images in the "images" folder (at S:\Curatorial\Writing\Research\Heritage Map\images\)
+       - Preferably, photos with people working.
+       - Typically, name it as "TitleCompanyNumber.png" (eg. Camp1HillcrestLumber01.png).
+         - Just have to be distinctive. 
+     - <ins>Image1-5 have to be the ***exactly*** same name as the name of the photos ***without extension (.png)*** </ins>
+       - <ins>***Photos must be png***</ins>; The scanner would usually generate png.
+       - Otherwise, convert.
+         - [ImageMagick](https://imagemagick.org/index.php) 
+   - **ImageText1 to ImageText5**
+     - Explanations of the images1-5
+   - **AdditionalSources**
+     - Additional Sources which are worth reading.
 
 ### 2 Upload Codes <a name="upload-codes"></a>
  - All info must be ready on the "Sheet3" of the Excel file at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx.
