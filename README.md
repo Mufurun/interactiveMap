@@ -59,8 +59,9 @@ ___
        - Typically, name it as "TitleCompanyNumber.png" (eg. Camp1HillcrestLumber01.png).
          - Just have to be distinctive. 
      - <ins>Image1-5 have to be the ***exactly*** same name as the name of the photos ***without extension (.png)*** </ins>
-       - <ins>***Photos must be png***</ins>; The scanner would usually generate png.
-       - Otherwise, convert.
+       - ***Photos must be png*** right now due to the code in Excel
+       - If something else is better, modify excel column S-W in "Sheet3" 
+       - a tool to convert.
          - [ImageMagick](https://imagemagick.org/index.php) 
    - **ImageText1 to ImageText5**
      - Explanations of the images1-5
