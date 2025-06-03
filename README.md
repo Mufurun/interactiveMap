@@ -12,9 +12,12 @@ ___
 ___
 
 ## Instructions for Staffs
- - There are basically three operations to publish info.
+ - There are basically two operations to publish info.
   1. ### Update Contents
   2. ### Upload it to the Code
+ - And Some useful info
+  3. ### ManualUpdating
+  4. ### Common Error and Debuging
 
 ### 1 Update Contents
  - All numbers and contents are in the excel file (at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx) and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
@@ -50,33 +53,54 @@ ___
         -  Some statistics, such as number of workers, productions etc.
   - ### Image1 to Image5
     - The file name of images of the site
-    - <ins>***Those have to be the same as the name of the photos without extension (.png)***</ins>
-      - <ins>***Photos must be png***</ins>; The scanner would usually generate png, but otherwise, convert.
+    - Save up to five images in the "images" folder (at S:\Curatorial\Writing\Research\Heritage Map\images\)
       - Preferably, photos with people working.
+      - Typically, name it as "TitleCompanyNumber.png" (eg. Camp1HillcrestLumber01.png).
+        - Have to be distinctive. 
+    - <ins>Image1-5 have to be the ***exactly*** same name as the name of the photos ***without extension (.png)*** </ins>
+      - <ins>***Photos must be png***</ins>; The scanner would usually generate png, but otherwise, convert.
+       - [ImageMagick](https://imagemagick.org/index.php) 
   - ### ImageText1 to ImageText5
-    - Explanations of the image
+    - Explanations of the images1-5
   - ### AdditionalSources
-    - Additional Source that is worth reading.
+    - Additional Sources which are worth reading.
 
 ### 2 Upload Codes
- - All info must be ready on the "Sheet3"
-  - "Sheet3" is not editable.
+ - All info must be ready on the "Sheet3" of the Excel file at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx.
+    - "Sheet3" is not editable.
  - Here, the step to copy and paste the data on "Sheet3" in the excel file to the data.js
-   1. #### Copy all cells on the Sheet3 (Ctrl + A, then Ctrl + C)
+   1. #### Copy all the cells on the "Sheet3" (Ctrl + A, then Ctrl + C)
    2. #### Open "Interactive_Map_Project" and open "export" txt file  ("\Interactive_Map_Project\export.txt").
-   3. #### Replace all the lines to the content from the excel file 
-      - Delete all the lines, and Paste what you copied in the step 1 
+   3. #### Replace all the lines with the content from the Excel file.
+      - Delete all the lines and Paste what you copied in the step 1
+      - Check the first line starting with "{" and the last line ending with "}"
    4. #### Double-click "download_and_upload_codes.sh" file.
       - This will overwrite the codes in the folder "interactiveMap" from the github 
       - Then, it will write the content from the "export.txt" file in the proper position of "data.js"
 
-###  Manual Updating
- - In case someone want to download the original codes.
- - Here is the step to pull the files
-   1. Double-click the "download_original.sh" file.
-      - This will overwrite the codes in the folder "interactiveMap"
-   2. Now, you have to go through Step 2 Upload Codes to upload the data. 
+### 3 Manual Updating
+ - For someone wants to learn.
+ - #### Pull Files
+   1. Open git-bash program (probably have to type it in the search bar)
+   2. Go to the "**interactiveMap**" folder in the "**Interactive-Map_Project**" 
+   3. Type "git status" and "git restore" all files to be add/restore
+      - **DO NOT** Push those files since they should not be published
+   5. Type "git pull"
+     
+ - #### Edit the "data.js"
+   1. Copy all the cells on the "Sheet3" in the Excel at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx
+   2. Open interactiveMap/src/data.js
+   3. Replace the line of "//Replace This Line (and Delete)" with what you copied in the step 1
+      - ie. the point variable contains the Excel data. 
 
+### 4 Common Error and Debuging
+ - With the steps above, if you face some problem, check those followings:
+  - #### Excel Data
+    - Is there any error in Excel file, especially "Sheet3"?
+  - #### export.txt File
+    - Are all the lines starting with "{" and ending with "}," (the ending can be "}") 
+
+   
 ___
 ___
 
