@@ -72,19 +72,19 @@ ___
     - "Sheet3" is not editable.
  - Here, the step to copy and paste the data on "Sheet3" in the excel file to the data.js
    1. **Copy all the cells on the "Sheet3"** (Ctrl + A, then Ctrl + C)
-   2. **Open "Interactive_Map_Project" and open "export" txt file**  ("\Interactive_Map_Project\export.txt").
+   2. **Open "Heritage_Map_Project" and open "exp.txt" txt file**  ("\Heritage_Map_Project\exp.txt").
    3. **Replace all the lines with the content from the Excel file.**
-      - Delete all the lines and Paste what you copied in the step 1
+      - Delete all the lines in the "exp.txt" file and Paste what you copied in the step 1
       - Check the first line starting with "{" and the last line ending with "}"
-   4. **Double-click "download_and_upload_codes.sh" file.**
+   4. **Double-click "download_and_modify_codes.sh" file.**
       - This will overwrite the codes in the folder "interactiveMap" from the github 
-      - Then, it will write the content from the "export.txt" file in the proper position of "data.js"
+      - Then, it will write the content from the "exp.txt" file in the proper position of "data.js"
 
 ### 3 Manual Uploading <a name="manual-uploading"></a>
  - For someone wants to learn.
  - #### Pull Files
    1. Open git-bash program (probably have to type it in the search bar)
-   2. Go to the "**interactiveMap**" folder in the "**Interactive-Map_Project**" 
+   2. Go to the "**interactiveMap**" folder in the "**Heritage_Map_Project**" 
    3. Type "git status" and "git restore" all files to be add/restore
       - **DO NOT** Push those files since they should not be published
    5. Type "git pull"
