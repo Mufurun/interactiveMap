@@ -76,7 +76,7 @@
     .leaflet-popup-content-wrapper{
       background-color: black;
     }
-     .title{
+    .title{
       color: seashell;
     }
   .company{
@@ -85,6 +85,10 @@
   .year{
   color: seashell;
   }
+  .discription{
+  color: seashell;
+  }
+  
     
 }
 
