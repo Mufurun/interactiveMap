@@ -27,30 +27,30 @@ ___
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
  - If you do not know, just blank the cells
  - Below, explanations of each colunm
-  - #### Title
+  - **Title**
     - The name of the site.
     - This will be the title of the popup.
-  - #### Company
+  - **Company**
     - The name of company. This is very arbiturary, depending on the creater.
       - We may need some createria here.  
-  - #### StartingYear, EndingYear
+  - **StartingYear, EndingYear**
     - The year of the operation/existence for community
       - StartingYear < EndginYear 
-  - #### Y-coordinate, X-coordinate
+  - **Y-coordinate, X-coordinate**
     - The sufficiently precise location of the site.
       - Only need three decimals ??  
-  - #### Categories
+  - **Categories**
     - The type of the site
       - Select one from the list: **camp, sawmill, p&p, and community (and blank)**
-  - #### Location
+  - **Location**
     - The region of the site.
     - It may not be accurate...
-  - #### List1 to List12
+  - **List1 to List12**
     - Descriptions of the site
       - Trying to add information below:
         - write significant events in chronological order
         -  Some statistics, such as number of workers, productions etc.
-  - #### Image1 to Image5
+  - **Image1 to Image5**
     - The file name of images of the site
     - Save up to five images in the "images" folder (at S:\Curatorial\Writing\Research\Heritage Map\images\)
       - Preferably, photos with people working.
@@ -59,21 +59,21 @@ ___
     - <ins>Image1-5 have to be the ***exactly*** same name as the name of the photos ***without extension (.png)*** </ins>
       - <ins>***Photos must be png***</ins>; The scanner would usually generate png, but otherwise, convert.
        - [ImageMagick](https://imagemagick.org/index.php) 
-  - #### ImageText1 to ImageText5
+  - **ImageText1 to ImageText5**
     - Explanations of the images1-5
-  - #### AdditionalSources
+  - **AdditionalSources**
     - Additional Sources which are worth reading.
 
 ### 2 Upload Codes <a name="upload-codes"></a>
  - All info must be ready on the "Sheet3" of the Excel file at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx.
     - "Sheet3" is not editable.
  - Here, the step to copy and paste the data on "Sheet3" in the excel file to the data.js
-   1. #### Copy all the cells on the "Sheet3" (Ctrl + A, then Ctrl + C)
-   2. #### Open "Interactive_Map_Project" and open "export" txt file  ("\Interactive_Map_Project\export.txt").
-   3. #### Replace all the lines with the content from the Excel file.
+   1. **Copy all the cells on the "Sheet3"** (Ctrl + A, then Ctrl + C)
+   2. **Open "Interactive_Map_Project" and open "export" txt file**  ("\Interactive_Map_Project\export.txt").
+   3. **Replace all the lines with the content from the Excel file.**
       - Delete all the lines and Paste what you copied in the step 1
       - Check the first line starting with "{" and the last line ending with "}"
-   4. #### Double-click "download_and_upload_codes.sh" file.
+   4. **Double-click "download_and_upload_codes.sh" file.**
       - This will overwrite the codes in the folder "interactiveMap" from the github 
       - Then, it will write the content from the "export.txt" file in the proper position of "data.js"
 
@@ -94,11 +94,10 @@ ___
 
 ### 4 Common Error and Debugging <a name="common-error-and-debugging"></a>
  - With the steps above, if you face some problem, check those followings:
-  - #### Excel Data
+  - **Excel Data**
     - Is there any error in Excel file, especially "Sheet3"?
-  - #### export.txt File
+  - **export.txt File**
     - Are all the lines starting with "{" and ending with "}," (the ending can be "}") 
-
    
 ___
 ___
