@@ -1,23 +1,21 @@
 # Project Interactive Map 
 
-- This interactive map shows the locations of important locations of forestry industry on the coastal BC. 
+- This interactive map shows the important locations of forestry industry on the coastal BC. 
 
 
+# Purpose
+- This suceeds the project from 2024 summer at the BC Forest Discovery Centre.
+- I hope someone else continues this project to update data in the long run.
 
-## Purpose
-- This suceeds the project from 2024 summer. 
-- Everything is attributed to the BC Forest Discovery Centre
 
 ___
 ___
-
 
 ## Instructions for Staffs
- - There are two steps to improve this project
-  1. Update Contents
-  2. Upload it to the Code
-  3. Download the Code
-
+ - There are basically three operations to publish info.
+  1. ### Update Contents
+  2. ### Upload it to the Code
+  3. ### Download the Code
 
 ### 1 Update Contents
  - All numbers and contents are in the excel file (at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx) and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
@@ -78,7 +76,7 @@ ___
    8. #### Open "interactiveMap" and open "src" folder.
    9. #### Right-click to paste the folder there ("\Interactive_Map_Project\interactiveMap\src\"). 
 
-## 3 Download the Code
+## 3 Download the Code (Additional)
  - In case someone want to download the original codes.
  - Here is the step to pull the files
    1. Double-click the "download_original.sh" file.
@@ -91,12 +89,15 @@ ___
 ## Methods
 ### Map
   I will do (check if they are done):
+
 - [x] Data Management
   - [x] Organize the location
-  - [x] Store some photos
-  - [x] Store texts
+  - [x] Photos
+  - [x] Texts
   - [x] Tittle
   - [x] Years (range)
+  - [x] Descriptions
+  - [x] Additional Sources
 - [ ] Data Upload
   - [x] Tittle
   - [x] Location
