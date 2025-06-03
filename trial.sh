@@ -1,5 +1,6 @@
-
 #!/bin/bash
+
+##Also I want to choose which file to be pulled
 
 # Files
 target_file="interactiveMap/src/data.js"
