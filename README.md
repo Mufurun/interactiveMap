@@ -77,6 +77,19 @@ ___
       - This will overwrite the codes in the folder "interactiveMap"
    2. Now, you have to go through Step 2 Upload Codes to upload the data. 
 
+
+ 1. Open "git-bash" program (search it in the search box)
+   2. Go to "interactiveMap" in "/Desktop/Heritage_Map_Project"
+   3. Command "git status" to see what you have to restore.
+      - If you add, commit and push, you may make conflict
+      - At least may want to restore ./src/data.js
+   4. Command "git pull" to get the file from github.
+
+ - Here is the step to Modify the "./src/data.js"
+   1. Open ./src/data.js with Notepad or other program
+   2.
+
+
 ___
 ___
 
