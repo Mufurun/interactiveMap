@@ -1,9 +1,9 @@
-# Project Interactive Map 
+#Project Interactive Map 
 
 - This interactive map shows the important locations of forestry industry on the coastal BC. 
 
 
-# Purpose
+## Purpose
 - This suceeds the project from 2024 summer at the BC Forest Discovery Centre.
 - I hope someone else continues this project to update data in the long run.
 
@@ -13,10 +13,10 @@ ___
 
 ## Instructions for Staffs
  - There are basically two operations to publish + two useful info.
-    1. #### [Update Contents](#update-contents)
-    2. #### [Upload it to the Code](#upload-codes)
-    4. #### ManualUpdating
-    5. #### Common Error and Debuging
+    1. [Update Contents](#update-contents)
+    2. [Upload it to the Code](#upload-codes)
+    3. [Manual Uploading](#manual-uploading)
+    4. [Common Error and Debugging](#common-error-and-debugging)
 
 ### 1 Update Contents<a name="update-contents"></a>
  - All numbers and contents are in the excel file (at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx) and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
@@ -27,30 +27,30 @@ ___
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
  - If you do not know, just blank the cells
  - Below, explanations of each colunm
-  - ### Title
+  - #### Title
     - The name of the site.
     - This will be the title of the popup.
-  - ### Company
+  - #### Company
     - The name of company. This is very arbiturary, depending on the creater.
       - We may need some createria here.  
-  - ### StartingYear, EndingYear
+  - #### StartingYear, EndingYear
     - The year of the operation/existence for community
       - StartingYear < EndginYear 
-  - ### Y-coordinate, X-coordinate
+  - #### Y-coordinate, X-coordinate
     - The sufficiently precise location of the site.
       - Only need three decimals ??  
-  - ### Categories
+  - #### Categories
     - The type of the site
       - Select one from the list: **camp, sawmill, p&p, and community (and blank)**
-  - ### Location
+  - #### Location
     - The region of the site.
     - It may not be accurate...
-  - ### List1 to List12
+  - #### List1 to List12
     - Descriptions of the site
       - Trying to add information below:
         - write significant events in chronological order
         -  Some statistics, such as number of workers, productions etc.
-  - ### Image1 to Image5
+  - #### Image1 to Image5
     - The file name of images of the site
     - Save up to five images in the "images" folder (at S:\Curatorial\Writing\Research\Heritage Map\images\)
       - Preferably, photos with people working.
@@ -59,9 +59,9 @@ ___
     - <ins>Image1-5 have to be the ***exactly*** same name as the name of the photos ***without extension (.png)*** </ins>
       - <ins>***Photos must be png***</ins>; The scanner would usually generate png, but otherwise, convert.
        - [ImageMagick](https://imagemagick.org/index.php) 
-  - ### ImageText1 to ImageText5
+  - #### ImageText1 to ImageText5
     - Explanations of the images1-5
-  - ### AdditionalSources
+  - #### AdditionalSources
     - Additional Sources which are worth reading.
 
 ### 2 Upload Codes <a name="upload-codes"></a>
@@ -77,7 +77,7 @@ ___
       - This will overwrite the codes in the folder "interactiveMap" from the github 
       - Then, it will write the content from the "export.txt" file in the proper position of "data.js"
 
-### 3 Manual Updating
+### 3 Manual Uploading <a name="manual-uploading"></a>
  - For someone wants to learn.
  - #### Pull Files
    1. Open git-bash program (probably have to type it in the search bar)
@@ -92,7 +92,7 @@ ___
    3. Replace the line of "//Replace This Line (and Delete)" with what you copied in the step 1
       - ie. the point variable contains the Excel data. 
 
-### 4 Common Error and Debuging
+### 4 Common Error and Debugging <a name="common-error-and-debugging"></a>
  - With the steps above, if you face some problem, check those followings:
   - #### Excel Data
     - Is there any error in Excel file, especially "Sheet3"?
@@ -104,7 +104,7 @@ ___
 ___
 
 ## Methods
-### Map
+ ### Map
   I will do (check if they are done):
 
 - [x] Data Management
