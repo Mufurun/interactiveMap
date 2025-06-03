@@ -4,7 +4,7 @@
 # Files
 target_file="interactiveMap/src/data.js"
 snippet_file="ex.txt"
-placeholder="//Replace This Line"
+placeholder="//Replace This Line (and Delete)"
 
 # Create a temporary file
 tmp_file=$(mktemp)
