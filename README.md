@@ -9,6 +9,7 @@
 - Everything is attributed to the BC Forest Discovery Centre
 
 ___
+___
 
 
 ## Instructions for Staffs
@@ -84,6 +85,7 @@ ___
       - This will overwrite the codes in the folder "interactiveMap"
    2. Now, you have to go through Step 2 Upload Codes to upload the data. 
 
+___
 ___
 
 ## Methods
