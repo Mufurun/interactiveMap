@@ -79,6 +79,8 @@ ___
       - Delete all the lines in the "exp.txt" file and Paste what you copied in the step 1
       - Check the first line starting with "{" and the last line ending with "}"
    4. **Double-click "download_and_modify_codes.sh" file.**
+      - Enter "Y" or press Enter to select what files to be updated. 
+        - Typically, Only need data.js, but if you do not edit other files, enter "Y" for all.
       - This will overwrite the codes in the folder "interactiveMap" from the github 
       - Then, it will write the content from the "exp.txt" file in the proper position of "data.js"
 
@@ -97,15 +99,18 @@ ___
    3. Replace the line of "//Replace This Line (and Delete)" with what you copied in the step 1
       - ie. the point variable contains the Excel data. 
 
+
+=======
 ### 4 Common Error and Debugging <a name="common-error-and-debugging"></a>
  - With the steps above, if you face some problem, check those followings:
   - **Excel Data**
     - Is there any error in Excel file, especially "Sheet3"?
   - **export.txt File**
     - Are all the lines starting with "{" and ending with "}," (the ending can be "}") 
-   
+
 ___
 ___
+
 
 ## Methods
  ### Map
