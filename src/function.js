@@ -32,12 +32,45 @@
   
     //image 
         const imageSection = document.createElement('span');
-        const list_images = [point.image1, point.image2, point.image3, point.image4, point.image5];
-        for (let i = 0; ((i<5) && list_images[i]);i++){
+        const list_images = [{
+          image: point.image1,
+          imageText: point.imageText1,
+//          imageLink: point.imageLink1
+        }, {
+          image: point.image2,
+          imageText: point.imageText2,
+//          imageLink: point.imageLink2
+        }, {
+          image: point.image3,
+          imageText: point.imageText3,
+//          imageLink: point.imageLink3
+        }, {
+          image: point.image4,
+          imageText: point.imageText4,
+//          imageLink: point.imageLink4
+        }, {
+          image: point.image5,
+          imageText: point.imageText5,
+//          imageLink: point.imageLink5
+        }];
+
+        for (let i = 0; ((i<5) && list_images[i].image); i++){
+          const each_image_div = document.createElement('div');
+          each_image_div.className = "imageDiv";
+          const each_link = document.createElement('a');
+          each_link.target='_blank';
+          each_link.href = list_images[i].image;
+          const each_imageText = document.createElement('h6');
+          each_imageText.textContent = list_images[i].imageText;
+
+
           const each_image = document.createElement('img');
-          each_image.src= list_images[i];
+          each_image.src= list_images[i].image;
           each_image.className = 'image';
-          imageSection.appendChild(each_image)
+          each_link.appendChild(each_image);
+          each_image_div.appendChild(each_link);
+          each_image_div.appendChild(each_imageText);
+          imageSection.appendChild(each_image_div);
         }
 
         container.appendChild(imageSection);

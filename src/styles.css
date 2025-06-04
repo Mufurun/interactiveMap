@@ -40,7 +40,7 @@
   }
   .year{
     font-size: 14px;
-    display: block;
+
     margin: 0px;
     padding: 0px;
   }
@@ -55,7 +55,23 @@
     height:75px;
     display: inline;
     margin: auto;
-    }
+  }
+  .imageDiv{
+    display: inline;
+  }
+
+ 
+  h6 {
+    display: block;
+    font-size: .67em;
+    margin-top: 2.33em;
+    margin-bottom: 2.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: normal;
+  }
+
+
     /*
     
   .image2{
