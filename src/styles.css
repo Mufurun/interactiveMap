@@ -56,9 +56,33 @@
     display: inline;
     margin: auto;
   }
-  .imageDiv{
+  .image-button{
     display: inline;
   }
+
+  #popupSection {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  z-index: 1000; /* higher than Leaflet tiles */
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.large-image{
+  max-height: 75%;
+  max-width: 75%;
+  display: block;
+  margin: auto;
+}
+.large-image-close{
+  align-self:last baseline;
+}
+.popupSection {
+  background-color: rgb(4, 4, 4);
+  width: 75%;
+  height: 75%;
+}
 
  
   h5 {

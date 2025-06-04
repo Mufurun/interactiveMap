@@ -35,28 +35,42 @@
         const list_images = [{
           image: point.image1,
           imageText: point.imageText1,
-//          imageLink: point.imageLink1
+          imageLink: point.imageLink1
         }, {
           image: point.image2,
           imageText: point.imageText2,
-//          imageLink: point.imageLink2
+          imageLink: point.imageLink2
         }, {
           image: point.image3,
           imageText: point.imageText3,
-//          imageLink: point.imageLink3
+          imageLink: point.imageLink3
         }, {
           image: point.image4,
           imageText: point.imageText4,
-//          imageLink: point.imageLink4
+          imageLink: point.imageLink4
         }, {
           image: point.image5,
           imageText: point.imageText5,
-//          imageLink: point.imageLink5
+          imageLink: point.imageLink5
         }];
 
         for (let i = 0; ((i<5) && list_images[i].image); i++){
-          const each_image_div = document.createElement('div');
-          each_image_div.className = "imageDiv";
+          const each_image_button = document.createElement('button');
+          each_image_button.type = "button";
+          each_image_button.className = "image-button"
+          //each_image_button.onclick = () => image_popup(list_images[i]);
+
+          each_image_button.onclick = () => image_popup(list_images[i]);
+
+          const each_image = document.createElement('img');
+          each_image.src= list_images[i].image;
+          each_image.className = 'image';
+          each_image_button.appendChild(each_image);
+
+
+
+
+/*
           const each_link = document.createElement('a');
           each_link.target='_blank';
           each_link.href = list_images[i].image;
@@ -64,13 +78,10 @@
           each_imageText.textContent = list_images[i].imageText;
 
 
-          const each_image = document.createElement('img');
-          each_image.src= list_images[i].image;
-          each_image.className = 'image';
-          each_link.appendChild(each_image);
           each_image_div.appendChild(each_link);
           each_image_div.appendChild(each_imageText);
-          imageSection.appendChild(each_image_div);
+ */
+          imageSection.appendChild(each_image_button);
         }
 
         container.appendChild(imageSection);
@@ -113,6 +124,45 @@
         return container;
       }
 
+
+      function image_popup(image_in_list){
+        // Check if the section already exists
+        let existing = document.getElementById('popupSection');
+        if (existing) {
+          existing.style.display = 'block';
+          return;
+        }
+
+            // Create the section
+            const section = document.createElement('div');
+            section.id = 'popupSection';
+            section.className = 'popupSection';
+            section.innerHTML = `
+              <button onclick="closeSection()", class = 'large-image-close'>Close</button>
+            `;
+            const each_large_image = document.createElement('img');
+            each_large_image.src = image_in_list.image;
+            each_large_image.className = 'large-image'
+            section.appendChild(each_large_image);
+
+            const linked_text = document.createElement('a');
+            linked_text.className = 'year';
+            linked_text.target = '_blank';
+            linked_text.href = image_in_list.imageLink;
+            linked_text.textContent = image_in_list.imageText;
+            section.appendChild(linked_text);
+
+            // Append it to the map
+            const mapContainer = document.getElementById('map');
+            mapContainer.appendChild(section);
+          };
+
+          function closeSection() {
+            const section = document.getElementById('popupSection');
+            if (section) {
+              section.remove();
+            }
+          }
 
       /*
   ######################################################
