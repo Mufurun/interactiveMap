@@ -16,7 +16,7 @@
 */
 
   .popup-content {
-    width: 250px;
+    width: 284px;
 
   }
   .leaflet-popup-content-wrapper{
@@ -27,26 +27,53 @@
   .leaflet-popup-content {
     max-width: 300px; /* Default is 300px */
     max-height: 425px; /* Default is 300px */
+    overflow: auto;
+
   }
   .title{
     font-size: 20px;
     display: block;
   }
   .company{
-    font-size: 16px;
+    font-size: 18px;
     display: block;
   }
   .year{
-    font-size: 16px;
-    display: block;
-  }
-  
+    font-size: 14px;
 
-  .image1{
+    margin: 0px;
+    padding: 0px;
+  }
+  .description{
+    margin: 0 0 0 20px;
+    padding: 0 0 0 0;
+    list-style-position: inside;
+  }
+
+
+  .image{
     height:75px;
     display: inline;
     margin: auto;
-    }
+  }
+  .imageDiv{
+    display: inline;
+  }
+
+ 
+  h6 {
+    display: block;
+    font-size: .67em;
+    margin-top: 2.33em;
+    margin-bottom: 2.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: normal;
+  }
+
+
+    /*
+    
   .image2{
     height:75px;
     display: inline;
@@ -67,6 +94,7 @@
     display: inline;
     margin: auto;
     }
+*/
 
 /*
 ####  Popup Styel (Dark Mode)  ####
@@ -85,7 +113,7 @@
   .year{
   color: seashell;
   }
-  .discription{
+  .description{
   color: seashell;
   }
   
@@ -181,8 +209,7 @@
     .content {
       padding: 0 10px;
       max-height: 0;
-/*      max-width: 300px;
-*/      overflow: auto;
+      overflow: auto;
       transition: max-height 0.2s ease-out;
       background-color: rgba(251, 236, 225, 0.018);
       scrollbar-width: thin;
