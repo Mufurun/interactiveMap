@@ -56,19 +56,20 @@
         
         for (let i = 0; ((i < 12) && (list_description[i] != '')); i++) {
           const each_description = document.createElement('li');
-          each_description.textContent = list_description[i];  
+          each_description.textContent = list_description[i];
+
           description.appendChild(each_description);
         }
         container.appendChild(description);
 
     //Additional Sources
-        const addSrc = document.createElement('i');
-        addSrc.className = 'year'
+        const addSrc = document.createElement('p');
+        addSrc.className = 'year'//Reuse
         addSrc.textContent = 'Additional Sources';
         container.appendChild(addSrc);
 
         const additionalSource = document.createElement('ul');
-        additionalSource.className = 'addSrc';
+        additionalSource.className = 'description';
         const list_addSrc = [point.addSrc1, point.addSrc2, point.addSrc3, point.addSrc4, point.addSrc5, point.addSrc6, point.addSrc7];
         for (let i = 0; ((i<7)&&(list_addSrc[i] != '')); i++){
           const each_addSrc = document.createElement('li');
