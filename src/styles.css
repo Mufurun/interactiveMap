@@ -61,6 +61,16 @@
   }
 
  
+  h5 {
+    display: inline-block;
+    font-size: .67em;
+    margin-top: 2.33em;
+    margin-bottom: 2.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: normal;
+     
+  }
   h6 {
     display: block;
     font-size: .67em;
@@ -94,6 +104,7 @@
     display: inline;
     margin: auto;
     }
+
 */
 
 /*
@@ -117,6 +128,9 @@
   color: seashell;
   }
   
+  .imageDiv{
+    color: seashell;
+  }
     
 }
 
