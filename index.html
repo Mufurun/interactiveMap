@@ -488,21 +488,12 @@
         const discription = document.createElement('ul');
         discription.className = 'discription';
       //List
-      
-        const list1 = document.createElement('li');
-        list1.className = 'list1';      
-        list1.textContent = point.list1;      
-        discription.appendChild(list1);
-        const list2 = document.createElement('li');
-        list2.className = 'list2';      
-        list2.textContent = point.list2;      
-        discription.appendChild(list2);
-        const list3 = document.createElement('li');
-        list3.className = 'list3';      
-        list3.textContent = point.list3;      
-        discription.appendChild(list3);
-
-        container.appendChild(discription);
+        const list_description = [point.list1, point.list2, point.list3, point.list4, point.list5, point.list6, point.list7, point.list8, point.list9, point.list10, point.list11, point.list12];
+        for (let i = 0; i < 12; i++) {
+          const current_description = document.createElement('li');
+          current_description.textContent = list_description[i];      
+          discription.appendChild(current_description);
+        }
           return container;
       }
 
