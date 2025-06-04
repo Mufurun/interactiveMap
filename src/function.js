@@ -4,7 +4,82 @@
   #####################################
   */
       
+  /*
+  **********************************************
+  *******  FUNCTION createPopupContent()  ******
+  **********************************************
   
+  Create popup content and listeners
+      
+  
+  */
+   function createPopupContent(point) {
+  
+    //div
+        const container = document.createElement('div');
+        container.className = 'popup-content';
+  
+    //title
+        const title = document.createElement('strong');
+        title.textContent = point.title;
+        title.className = 'title';
+        container.appendChild(title);
+    //company
+        const company = document.createElement('strong');
+        company.textContent = point.company;
+        company.className = 'company';
+        container.appendChild(company);
+  
+    //image 
+        const imageSection = document.createElement('span');
+        const list_images = [point.image1, point.image2, point.image3, point.image4, point.image5];
+        for (let i = 0; ((i<5) && list_images[i]);i++){
+          const each_image = document.createElement('img');
+          each_image.src= list_images[i];
+          each_image.className = 'image';
+          imageSection.appendChild(each_image)
+        }
+
+        container.appendChild(imageSection);
+        
+    //Year
+        const year = document.createElement('i');
+        year.textContent = point.year;
+        year.className = 'year';
+        container.appendChild(year);
+  
+    //Discription
+        const description = document.createElement('ul');
+        description.className = 'description';
+      //List of Description
+        const list_description = [point.list1, point.list2, point.list3, point.list4, point.list5, point.list6, point.list7, point.list8, point.list9, point.list10, point.list11, point.list12];
+        
+        for (let i = 0; ((i < 12) && (list_description[i] != '')); i++) {
+          const each_description = document.createElement('li');
+          each_description.textContent = list_description[i];  
+          description.appendChild(each_description);
+        }
+        container.appendChild(description);
+
+    //Additional Sources
+        const addSrc = document.createElement('i');
+        addSrc.className = 'year'
+        addSrc.textContent = 'Additional Sources';
+        container.appendChild(addSrc);
+
+        const additionalSource = document.createElement('ul');
+        additionalSource.className = 'addSrc';
+        const list_addSrc = [point.addSrc1, point.addSrc2, point.addSrc3, point.addSrc4, point.addSrc5, point.addSrc6, point.addSrc7];
+        for (let i = 0; ((i<7)&&(list_addSrc[i] != '')); i++){
+          const each_addSrc = document.createElement('li');
+          each_addSrc.textContent = list_addSrc[i];
+          additionalSource.appendChild(each_addSrc);
+        }
+        container.appendChild(additionalSource);
+
+        return container;
+      }
+
 
       /*
   ######################################################
