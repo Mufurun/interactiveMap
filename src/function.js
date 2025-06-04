@@ -43,7 +43,7 @@
         container.appendChild(imageSection);
         
     //Year
-        const year = document.createElement('i');
+        const year = document.createElement('h6');
         year.textContent = point.year;
         year.className = 'year';
         container.appendChild(year);
@@ -57,13 +57,12 @@
         for (let i = 0; ((i < 12) && (list_description[i] != '')); i++) {
           const each_description = document.createElement('li');
           each_description.textContent = list_description[i];
-
           description.appendChild(each_description);
         }
         container.appendChild(description);
 
     //Additional Sources
-        const addSrc = document.createElement('p');
+        const addSrc = document.createElement('h6');
         addSrc.className = 'year'//Reuse
         addSrc.textContent = 'Additional Sources';
         container.appendChild(addSrc);

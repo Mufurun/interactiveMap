@@ -35,20 +35,21 @@
     display: block;
   }
   .company{
-    font-size: 16px;
+    font-size: 18px;
     display: block;
   }
   .year{
     font-size: 14px;
     display: block;
     margin: 0px;
+    padding: 0px;
   }
   .description{
-    margin: 0;
-    padding: 0;
-    padding-left: 10%;
+    margin: 0 0 0 20px;
+    padding: 0 0 0 0;
     list-style-position: inside;
   }
+
 
   .image{
     height:75px;
