@@ -145,12 +145,20 @@
             each_large_image.className = 'large-image'
             section.appendChild(each_large_image);
 
-            const linked_text = document.createElement('a');
-            linked_text.className = 'year';
-            linked_text.target = '_blank';
-            linked_text.href = image_in_list.imageLink;
-            linked_text.textContent = image_in_list.imageText;
-            section.appendChild(linked_text);
+            if (image_in_list.imageLink == ''){
+              const text_for_image = document.createElement('p');
+              text_for_image.textContent = image_in_list.imageText;
+              section.appendChild(text_for_image);
+            }
+            else{
+              const linked_text = document.createElement('a');
+              linked_text.className = 'year';
+              linked_text.target = '_blank';
+              linked_text.href = image_in_list.imageLink;
+              linked_text.textContent = image_in_list.imageText;
+              section.appendChild(linked_text);
+
+            }
 
             // Append it to the map
             const mapContainer = document.getElementById('map');
