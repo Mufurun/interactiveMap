@@ -171,7 +171,14 @@
   .image-popup-close{
     background-color: rgb(138, 138, 138);
   }
-    
+  .large-image-close{
+    justify-content: right;
+    background-color: rgb(138, 138, 138);
+  }
+  .large-image-close-icon{
+    background-color: rgb(138, 138, 138);
+  }
+   
 }
 
 /*
