@@ -4,7 +4,9 @@
   #####################################
   */
       
-  /*
+
+
+    /*
   **********************************************
   *******  FUNCTION createPopupContent()  ******
   **********************************************
@@ -66,21 +68,6 @@
           each_image.src= list_images[i].image;
           each_image.className = 'image';
           each_image_button.appendChild(each_image);
-
-
-
-
-/*
-          const each_link = document.createElement('a');
-          each_link.target='_blank';
-          each_link.href = list_images[i].image;
-          const each_imageText = document.createElement('h6');
-          each_imageText.textContent = list_images[i].imageText;
-
-
-          each_image_div.appendChild(each_link);
-          each_image_div.appendChild(each_imageText);
- */
           imageSection.appendChild(each_image_button);
         }
 
@@ -124,8 +111,7 @@
         return container;
       }
 
-
-      function image_popup(image_in_list){
+        function image_popup(image_in_list){
         // Check if the section already exists
         let existing = document.getElementById('popupSection');
         if (existing) {
@@ -136,19 +122,29 @@
             // Create the section
             const section = document.createElement('div');
             section.id = 'popupSection';
-            section.className = 'popupSection';
             section.innerHTML = `
-              <button onclick="closeSection()", class = 'large-image-close'>Close</button>
+              <div class = 'image-popup-close'>
+                <button onclick="closeSection()", class = 'large-image-close'><image src = './src/close.png' class ="large-image-close-icon"></button>
+              </div>
             `;
+            const section_without_close = document.createElement('div');
+            section_without_close.className = 'section-wo-close';
+            const section_without_close2 = document.createElement('div');
+            section_without_close2.className = 'section-wo-close2';
+            const large_image = document.createElement("div");
+            large_image.className = 'large-image-div';
             const each_large_image = document.createElement('img');
             each_large_image.src = image_in_list.image;
-            each_large_image.className = 'large-image'
-            section.appendChild(each_large_image);
+            each_large_image.className = 'large-image';
+            large_image.appendChild(each_large_image);
+            section_without_close2.appendChild(large_image);
+            section_without_close.appendChild(section_without_close2);
 
             if (image_in_list.imageLink == ''){
               const text_for_image = document.createElement('p');
               text_for_image.textContent = image_in_list.imageText;
-              section.appendChild(text_for_image);
+              text_for_image.className = 'year'//reuse
+              section_without_close.appendChild(text_for_image);
             }
             else{
               const linked_text = document.createElement('a');
@@ -156,21 +152,27 @@
               linked_text.target = '_blank';
               linked_text.href = image_in_list.imageLink;
               linked_text.textContent = image_in_list.imageText;
-              section.appendChild(linked_text);
+              section_without_close.appendChild(linked_text);
 
             }
+            section.appendChild(section_without_close);
 
             // Append it to the map
             const mapContainer = document.getElementById('map');
             mapContainer.appendChild(section);
-          };
+            L.DomEvent.disableClickPropagation(section);
+            L.DomEvent.disableScrollPropagation(section);
 
+          }
+
+          
           function closeSection() {
             const section = document.getElementById('popupSection');
             if (section) {
               section.remove();
             }
           }
+
 
       /*
   ######################################################

@@ -39,10 +39,10 @@
     display: block;
   }
   .year{
+    display: block;
     font-size: 14px;
-
     margin: 0px;
-    padding: 0px;
+    padding: 2%;
   }
   .description{
     margin: 0 0 0 20px;
@@ -62,12 +62,30 @@
 
   #popupSection {
   position: absolute;
-  top: 100px;
-  left: 100px;
+  top: 12%;
+  left: 12%;
+  height: 75%;
+  width: 75%;
   z-index: 1000; /* higher than Leaflet tiles */
-  background-color: white;
+  background-color: seashell;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.section-wo-close{
+  display: block;
+  justify-content: center;
+  height: 90%;
+}
+.section-wo-close2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+}
+.large-image-div{
+  display:block;
+  justify-content: center;
+  margin:auto;
 }
 .large-image{
   max-height: 75%;
@@ -75,14 +93,29 @@
   display: block;
   margin: auto;
 }
-.large-image-close{
-  align-self:last baseline;
-}
-.popupSection {
-  background-color: rgb(4, 4, 4);
-  width: 75%;
-  height: 75%;
-}
+  .image-popup-close{
+    display: flex;
+    justify-content: right; 
+    outline: none;
+    border: none;
+    height:5%;
+    background:seashell;
+  }
+  .large-image-close{
+    background-color: seashell;
+    color: black;
+    border: none;
+    outline:  none;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+  }
+  .large-image-close-icon{
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
 
  
   h5 {
@@ -105,31 +138,6 @@
     font-weight: normal;
   }
 
-
-    /*
-    
-  .image2{
-    height:75px;
-    display: inline;
-    margin: auto;
-    }
-  .image3{
-    height:75px;
-    display: inline;
-    margin: auto;
-    }
-  .image4{
-    height:75px;
-    display: inline;
-    margin: auto;
-    }
-  .image5{
-    height:75px;
-    display: inline;
-    margin: auto;
-    }
-
-*/
 
 /*
 ####  Popup Styel (Dark Mode)  ####
@@ -154,6 +162,14 @@
   
   .imageDiv{
     color: seashell;
+  }
+
+  #popupSection{
+    background-color: rgb(138, 138, 138);
+    color: seashell;
+  }
+  .image-popup-close{
+    background-color: rgb(138, 138, 138);
   }
     
 }
@@ -316,4 +332,14 @@
     .plain {
       background: seashell;
       font-size: 16 px;
+      display: block;
     }
+
+
+/* 
+******************************
+****    Filter Control    ****
+******************************
+    the button that is used to open and close the collapsible content
+*/
+
