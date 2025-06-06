@@ -157,18 +157,20 @@
 
   @media (prefers-color-scheme: dark) {
   #popupSection{
-    background-color: rgb(110, 110, 110);
+    background-color: rgba(83, 81, 81, 0.847);
     color: seashell;
   }
   .image-popup-close{
-    background-color: rgb(110, 110, 110);
+    background-color: rgba(0, 0, 0, 0.616);
   }
   .large-image-close{
-    background-color: rgb(110, 110, 110);
+    background-color: rgba(0, 0, 0, 0.616);
   }
+  .large-image-close-icon{
+    background-color: rgba(0, 0, 0, 0.616);
+  }
+   
 
-
-    
 }
 
 /*
