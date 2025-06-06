@@ -60,12 +60,13 @@
           const each_image_button = document.createElement('button');
           each_image_button.type = "button";
           each_image_button.className = "image-button"
-          //each_image_button.onclick = () => image_popup(list_images[i]);
 
+          //Image Popup
           each_image_button.onclick = () => image_popup(list_images[i]);
 
           const each_image = document.createElement('img');
           each_image.src= list_images[i].image;
+//Is this really???
           each_image.className = 'image';
           each_image_button.appendChild(each_image);
           imageSection.appendChild(each_image_button);
@@ -111,6 +112,13 @@
         return container;
       }
 
+  
+/*
+****************************
+*******  Image Popup  ******
+****************************
+*/
+ 
         function image_popup(image_in_list){
         // Check if the section already exists
         let existing = document.getElementById('popupSection');
@@ -119,27 +127,34 @@
           return;
         }
 
-            // Create the section
+          // Create the section
             const section = document.createElement('div');
             section.id = 'popupSection';
+          //Section for Close Button
             section.innerHTML = `
               <div class = 'image-popup-close'>
                 <button onclick="closeSection()", class = 'large-image-close'><image src = './src/close.png' class ="large-image-close-icon"></button>
               </div>
             `;
+          //Section without Close Button
             const section_without_close = document.createElement('div');
             section_without_close.className = 'section-wo-close';
+          //Div for the image and text alignment
             const section_without_close2 = document.createElement('div');
             section_without_close2.className = 'section-wo-close2';
+          //Div for the image alignment
             const large_image = document.createElement("div");
             large_image.className = 'large-image-div';
+          //Image
             const each_large_image = document.createElement('img');
             each_large_image.src = image_in_list.image;
             each_large_image.className = 'large-image';
+
             large_image.appendChild(each_large_image);
             section_without_close2.appendChild(large_image);
             section_without_close.appendChild(section_without_close2);
 
+          //Text with/without link
             if (image_in_list.imageLink == ''){
               const text_for_image = document.createElement('p');
               text_for_image.textContent = image_in_list.imageText;
@@ -175,9 +190,9 @@
 
 
       /*
-  ######################################################
-  ######     Functions for Inner HTML Control     ######
-  ######################################################
+  ##################################################
+  ######     Functions for Region Control     ######
+  ##################################################
   
       To maintain the folded sections:
         updateParentHeight();

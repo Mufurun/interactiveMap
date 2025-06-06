@@ -424,12 +424,6 @@
         if(list){
           list.innerHTML = "List of Places in " + region[0].toUpperCase()+ region.slice(1);
   
-          if(region == 'hokuriku' || region == 'australia' || region == 'japan'){
-            list.innerHTML = "List of Other Places in " + region[0].toUpperCase()+ region.slice(1);
-          }
-          else if(region == 'bc'){
-            list.innerHTML = "List of Places in " + region.toUpperCase();
-          }
           list.classList = 'plain';
           points.forEach(p =>{
             if(p.group == region){
