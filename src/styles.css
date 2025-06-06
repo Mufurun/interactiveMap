@@ -62,7 +62,7 @@
 
   @media (prefers-color-scheme: dark) {
     .leaflet-popup-content-wrapper{
-      background-color: rgb(87, 88, 69);
+      background-color: rgb(83, 81, 81, 0.9);
     }
     .title{
       color: seashell;
@@ -157,17 +157,18 @@
 
   @media (prefers-color-scheme: dark) {
   #popupSection{
-    background-color: rgba(83, 81, 81, 0.847);
+    background-color: rgba(83, 81, 81, 0.9);
     color: seashell;
   }
   .image-popup-close{
-    background-color: rgba(0, 0, 0, 0.616);
+    background-color: rgba(0, 0, 0, 0);
   }
   .large-image-close{
-    background-color: rgba(0, 0, 0, 0.616);
+    background-color: rgba(0, 0, 0, 0);
   }
   .large-image-close-icon{
-    background-color: rgba(0, 0, 0, 0.616);
+    filter: invert(1);
+    background-color: rgba(0, 0, 0, 0);
   }
    
 
