@@ -220,7 +220,9 @@
     the button that is used to open and close the collapsible content
 */
     
-
+    .control-button-wrapper{
+      display: flex;
+    }
     .collapsible {
       background-color: seashell;
       color: black;
@@ -232,6 +234,18 @@
       outline: none;
       font-size: 14px;
     }
+    .button-original-map {
+      background-color: seashell;
+      color: black;
+      cursor: pointer;
+      padding: 5px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 14px;
+    }
+
     .button {
       background-color: seashell;
       color: black;
@@ -252,7 +266,7 @@
       content: '\25BC';
       color: rgb(45, 70, 51);
       font-weight: bold;
-      float: right;
+      float: left;
       margin-left: 5px;
     }
     
