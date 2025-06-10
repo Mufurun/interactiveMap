@@ -73,7 +73,7 @@ const points = [
         {//Coastal BC
             id: 'coastalBC',
             zoom:[51.5, -127], 
-            size:7
+            size:6
         },{//Vancouver Island
             id: 'vancouverIsland',
             zoom:[49.57, -125.58],

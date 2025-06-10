@@ -230,7 +230,7 @@
       This is necessary since the map will zoom up the region where you open the section with
   */
   
-    //Isn't this only once?? so need while??
+
       function updateSibling(element) {
           let sibling = element.parentElement.firstElementChild;
           while (sibling) {
