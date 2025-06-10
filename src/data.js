@@ -52,7 +52,7 @@ const points = [
         'alberniClayoquot',
         
         'victoria',
-        'ViewRoyal',
+        'viewRoyal',
         'sooke',
         'ladysmith',
         'lakeCowichan',
