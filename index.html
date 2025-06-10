@@ -75,7 +75,7 @@
       worldCopyJump: true
       zoomControl: custom -> later
       maxZoom: 18
-      minZoom: 2
+      minZoom: 6
   
       attribution:  
         https://github.com/tomchadwin/qgis2web
@@ -203,85 +203,148 @@
           <div class = "custom-control-hover">
               <strong>Region Control</strong>
               <div class="custom-content">
-                <button class = 'button' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>
-
-                <button class="collapsible" id = 'vancouverIsland'>Vancouver Island</button>
+                <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>
+                
+                <div class = 'control-button-wrapper'>
+                    <button class="collapsible" >Vancouver Island</button>
+                    <button class = 'button' id = 'vancouverIsland'><i>Go</i></button>
+                </div>
                 <div class="content">
-                    <button class="collapsible" id = 'capital'>Capital Regional District</button>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Capital Regional District</button>
+                        <button class = 'button' id = 'capital'><i>Go</i></button>
+                    </div>
                     <div class="content">
-                        <button class="collapsible" id = 'victoria'>Victoria</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Victoria</button>
+                            <button class = 'button' id = 'victoria'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_victoria'></div>
                         </div>
-                        <button class="collapsible" id = 'viewRoyal'>View Royal</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >View Royal</button>
+                            <button class = 'button' id = 'viewRoyal'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_viewRoyal'></div>
                         </div>
-                        <button class="collapsible" id = 'sooke'>Sooke</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Sooke</button>
+                            <button class = 'button' id = 'sooke'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_sooke'></div>
                         </div>
                         <div id = 'list_capital'></div>
                     </div>
-                    <button class="collapsible" id = 'cowichanValley'>Cowichan Valley Regional District</button>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Cowichan Valley Regional District</button>
+                        <button class = 'button' id = 'cowichanValley'><i>Go</i></button>
+                    </div>
                     <div class="content">
-                        <button class="collapsible" id = 'ladysmith'>Ladysmith</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Ladysmith</button>
+                            <button class = 'button' id = 'ladysmith'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_ladysmith'></div>
                         </div>
-                        <button class="collapsible" id = 'lakeCowichan'>Lake Cowichan</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Lake Cowichan</button>
+                            <button class = 'button' id = 'lakeCowichan'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_lakeCowichan'></div>
                         </div>
-                        <button class="collapsible" id = 'northCowichan'>North Cowichan</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >North Cowichan</button>
+                            <button class = 'button' id = 'northCowichan'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_northCowichan'></div>
                         </div>
-                        <button class="collapsible" id = 'chemainus'>Chemainus</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Chemainus</button>
+                            <button class = 'button' id = 'chemainus'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_chemainus'></div>
                         </div>
-                        <button class="collapsible" id = 'cowichanBay'>Cowichan Bay</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Cowichan Bay</button>
+                            <button class = 'button' id = 'cowichanBay'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_cowichanBay'></div>
                         </div>
-                        <button class="collapsible" id = 'shawniganLake'>Shawnigan Lake</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Shawnigan Lake</button>
+                            <button class = 'button'id = 'shawniganLake' ><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_shawniganLake'></div>
                         </div>
-                        <button class="collapsible" id = 'ptRenfrew'>Port Renfrew</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Port Renfrew</button>
+                            <button class = 'button' id = 'ptRenfrew'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_ptRenfrew'></div>
                         </div>
                         <div id = 'list_cowichanValley'></div>
                     </div>
-                    <button class="collapsible" id = 'nanaimoo'>Regional District of Nanaimo</button>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Regional District of Nanaimo</button>
+                        <button class = 'button' id = 'nanaimoo'><i>Go</i></button>
+                    </div>
                     <div class="content">
-                        <button class="collapsible" id = 'nanaimo'>Nanaimo</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Nanaimo</button>
+                            <button class = 'button' id = 'nanaimo'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_nanaimo'></div>
                         </div>
                         <div id = 'list_nanaimoo'></div>
                     </div>
-                    <button class="collapsible" id = 'comoxValley'>Comox Valley Regional District</button>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Comox Valley Regional District</button>
+                        <button class = 'button' id = 'comoxValley'><i>Go</i></button>
+                    </div>
                     <div class="content">
-                        <button class="collapsible" id = 'courtenay'>Courtenay</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Courtenay</button>
+                            <button class = 'button' id = 'courtenay'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_courtenay'></div>
                         </div>
                         <div id = 'list_comoxValley'></div>                      
                     </div>
-                    <button class="collapsible" id = 'alberniClayoquot'>Regional District of Alberni-Clayoquot</button>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Regional District of Alberni-Clayoquot</button>
+                        <button class = 'button' id = 'alberniClayoquot'><i>Go</i></button>
+                    </div>
                     <div class="content">
-                        <button class="collapsible" id = 'alberni'>Port Alberni</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Port Alberni</button>
+                            <button class = 'button' id = 'alberni'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_alberni'></div>
                         </div>
                         <div id = 'list_alberniClayoquot'></div>                                            
                     </div>
-                    <button class="collapsible" id = 'strathcona'>Strathcona Regional District</button>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Strathcona Regional District</button>
+                        <button class = 'button' id = 'strathcona'><i>Go</i></button>
+                    </div>
                     <div class="content">
-                        <button class="collapsible" id = 'campbell'>Campbell</button>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Campbell</button>
+                            <button class = 'button' id = 'campbell'><i>Go</i></button>
+                        </div>
                         <div class="content">
                             <div id = 'list_campbell'></div>
                         </div>
@@ -291,12 +354,18 @@
                 </div>
           
   
-                <button class="collapsible" id = 'haida'>Haida Area</button>
+                <div class = 'control-button-wrapper'>
+                    <button class="collapsible" >Haida Area</button>
+                    <button class = 'button' id = 'haida'><i>Go</i></button>
+                </div>
                 <div class="content">
                   <div id = 'list_haida'></div>
                 </div>
   
-                <button class="collapsible" id = 'vancouver'>Vancouver</button>
+                <div class = 'control-button-wrapper'>
+                    <button class="collapsible" >Vancouver</button>
+                    <button class = 'button' id = 'vancouver'><i>Go</i></button>
+                </div>
                 <div class="content">
                 <div id = 'list_vancouver'>Vancouver</div>
                 </div>
@@ -324,7 +393,7 @@
             const collapsibles = document.querySelectorAll(".collapsible");
             collapsibles.forEach(button => {
               button.addEventListener("click", function () {
-                const content = this.nextElementSibling;
+                const content = this.parentElement.nextElementSibling;
                 if (content.style.maxHeight) {
                   updateChildren(content);  
                 } else {
@@ -335,7 +404,7 @@
                 }
               });
             });
-            const world = document.querySelectorAll(".button");
+            const world = document.querySelectorAll(".button-original-map");
             world.forEach(button => {
               button.addEventListener("click", function () {
                 const content = this.nextElementSibling;

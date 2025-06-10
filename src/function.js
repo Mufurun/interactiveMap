@@ -212,7 +212,7 @@
   */
   
       function updateParentHeight(element) {
-        let parent = element.parentElement;
+        let parent = element.parentElement.parentElement;
         while (parent) {
           if (parent.classList.contains('content') && parent.style.maxHeight) {
           parent.style.maxHeight = parent.scrollHeight  +" px";
@@ -230,12 +230,13 @@
       This is necessary since the map will zoom up the region where you open the section with
   */
   
+    //Isn't this only once?? so need while??
       function updateSibling(element) {
           let sibling = element.parentElement.firstElementChild;
           while (sibling) {
               if (sibling !== element && sibling.classList.contains("content") && sibling.style.maxHeight) {
                   sibling.style.maxHeight = null;
-                  sibling.previousElementSibling.classList.toggle("active");
+                  sibling.previousElementSibling.firstElementChild.classList.toggle("active");
                   updateChildren(sibling);
               }
               sibling = sibling.nextElementSibling;
@@ -255,7 +256,7 @@
           while (child) {
               if (child.classList.contains("content") && child.style.maxHeight) {
                   child.style.maxHeight = null;
-                  child.previousElementSibling.classList.toggle("active");
+                  child.previousElementSibling.firstElementChild.classList.toggle("active");
                   updateChildren(child);
               }
               child = child.nextElementSibling;
