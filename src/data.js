@@ -41,7 +41,7 @@ const points = [
     const region_categories = [ 
         'coastalBC', 
         'vancouverIsland',
-        'haida',
+        'haidaGwaii',
         'vancouver',
 
 

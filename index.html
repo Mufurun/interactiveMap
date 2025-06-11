@@ -355,11 +355,11 @@
           
   
                 <div class = 'control-button-wrapper'>
-                    <button class="collapsible" >Haida Area</button>
-                    <button class = 'button' id = 'haida'></button>
+                    <button class="collapsible" >Haida Gwaii</button>
+                    <button class = 'button' id = 'haidaGwaii'></button>
                 </div>
                 <div class="content">
-                  <div id = 'list_haida'></div>
+                  <div id = 'list_haidaGwaii'></div>
                 </div>
   
                 <div class = 'control-button-wrapper'>
@@ -541,7 +541,34 @@
             }
           });
         if(counter){
-          list.innerHTML = "List of Sites in " + region[0].toUpperCase()+ region.slice(1);
+          if(region == 'coastalBC'){
+            list.innerHTML = "List of Other Sites on Coastal BC";
+          }else if(region =='vancouverIsland'){
+            list.innerHTML = "List of Other Sites on Vancouver Island";
+          }else if(region == 'cowichanValley'){
+            list.innerHTML = "List of Other Sites in Cowichan Valley District";
+          }else if(region == 'nanaimoo'){
+            list.innerHTML = "List of Other Sites in Nanaimo District";
+          }else if(region == 'comoxValley'){
+            list.innerHTML = "List of Other Sites in Comox Valley";
+          }else if(region == 'alberniClayoquot'){
+            list.innerHTML = "List of Other Sites in Alberni-Clayoquot District";
+          }
+          else if(region == 'viewRoyal'){
+            list.innerHTML = "List of Sites in View Royal";
+          }else if(region == 'lakeCowichan'){
+            list.innerHTML = "List of Sites in Lake Cowichan";
+          }else if(region == 'northCowichan'){
+            list.innerHTML = "List of Sites in North Cowichan";
+          }else if(region == 'cowichanBay'){
+            list.innerHTML = "List of Sites in Cowichan Bay";
+          }else if(region == 'shawniganLake'){
+            list.innerHTML = "List of Sites in Shawnigan Lake";
+          }else if(region == 'ptRenfrew'){
+            list.innerHTML = "List of Sites in Port Renfrew";
+          }else{
+            list.innerHTML = "List of Sites in " + region[0].toUpperCase()+ region.slice(1);
+          }
           list.classList = 'plain';
           list.appendChild(buttons);
 
