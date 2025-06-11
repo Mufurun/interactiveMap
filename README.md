@@ -144,7 +144,12 @@ ___
     - [ ] Show the regional district   
   - [ ] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
-- [ ] use something like satelite imagery or topographic map
+- [ ] Map Setting
+  - [ ] Satelite imagery
+  - [ ] Topographic Map 
+- [ ] Succession
+  - [ ] Make instruction
+  - [x] Shell to make it easier to update
   
 ## Distribution
  - All data should not be publicly available since those may include private information before revision. 
