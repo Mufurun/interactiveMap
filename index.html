@@ -154,8 +154,8 @@
             markers.push({
               marker: marker,
               category: point.category,
-              yearBegging: +point.year.slice(0,4),
-              yearEnd: +point.year.slice(5,8),
+              yearStart: +point.year.slice(0,4),
+              yearEnd: +point.year.slice(5,9),
               name: point.title + '(' + point.company + ')',
               area: point.area,
             });
@@ -367,10 +367,11 @@
                     <button class = 'button' id = 'vancouver'></button>
                 </div>
                     <div class="content">
-                    <div id = 'list_vancouver'>Vancouver</div>
+                    <div id = 'list_vancouver'></div>
                 </div>
+                <div id = 'list_coastalBC'></div>
                 <div class = 'rg-con-foot'>
-                    <div>Click Plus Sign to Zoom In</div>
+                    <divS class='rg-zoom-ex'>Click Plus Sign to Zoom In</div>
                 </div>
               </div>
           </div>
@@ -441,28 +442,55 @@
   */
       const filterControl = L.Control.extend({
         onAdd: function (map) {
-          const container = L.DomUtil.create('div', 'custom-control leaflet-bar');
+          const container = L.DomUtil.create('div', 'filter-control leaflet-bar');
           container.innerHTML = `
-          <div class = "custom-control-hover">
+          <div class = "filter-control-hover">
             <strong>Filter  Control</strong>
-            <div class="custom-content"><div class="plain">
+            <div class="filter-content"><div class="plain">
               <label><input type="checkbox" id="camp" checked>Show camps</label><br>
               <label><input type="checkbox" id="sawmill" checked>Show Sawmills</label><br>
               <label><input type="checkbox" id="p&p" checked>Show Paper and Pulp Mills</label><br>
               <label><input type="checkbox" id="community" checked>Show Comunities</label><br>
+              <button id='allTime'>Show All Time</button><br>
+              <input type = 'range' id = 'filterYear' min="1699" max="2025" value="2025"> <br>
+              Year: <input type='text' id = 'showFilterYear' value = 'All Time' >
             </div></div>
           </div>
             `;
+
   
           // Prevent map click propagation
           L.DomEvent.disableClickPropagation(container);
           L.DomEvent.disableScrollPropagation(container);
 
           setTimeout(() => {
-
             category_list.forEach(obj =>{
-              document.getElementById(obj).addEventListener('change', filterMarker);
+              document.getElementById(obj).addEventListener('change', function(){
+                let bool = false;
+                if (document.getElementById('showFilterYear').value == 'All Time'){
+                  bool = true;
+                }
+                filterMarker(bool);
+              });
             });
+            document.getElementById('filterYear').addEventListener('input',function(){
+              filterMarker();
+            });
+            document.getElementById('filterYear').addEventListener('input',function(){
+              document.getElementById('showFilterYear').value = this.value;
+            });
+            document.getElementById('allTime').addEventListener('click',function(){
+              filterMarker(true);
+              document.getElementById('showFilterYear').value = 'All Time';
+            });
+            document.getElementById('showFilterYear').addEventListener("input", function () {
+              this.value = this.value.replace(/\D/g, "");
+              document.getElementById('filterYear').value = this.value;
+              if(1700 <= +this.value && +this.value <= 2025){
+                filterMarker();
+              }
+            });
+
           }, 0);
     
           return container;
@@ -494,10 +522,8 @@
       function listMarkers(region){
         const list = document.getElementById("list_"+region);
         if(list){
-          list.innerHTML = "List of Places in " + region[0].toUpperCase()+ region.slice(1);
-  
-          list.classList = 'plain';
           let counter = 0;
+          const buttons = document.createElement('div');
           markers.forEach(p =>{  
             if(p.area == region){
               const title = document.createElement('button');
@@ -505,21 +531,21 @@
               title.classList = 'list-button';
               title.onclick = () => {
                 map.flyTo([p.marker.getLatLng().lat+0.005,p.marker.getLatLng().lng], 15);
+                filterMarker(true, true);
+                document.getElementById('showFilterYear').value = 'All Time';
                 p.marker.openPopup();
               }
-              list.appendChild(document.createElement('br'));
-              list.appendChild(title);
+              buttons.appendChild(title);
+              buttons.appendChild(document.createElement('br'));
               counter++;
             }
           });
-        if(!counter){
-          const no_location = document.createElement('i');
-          no_location.textContent = "There is nothing in this list...";
-          no_location.classList = 'no-loc';
-          list.appendChild(document.createElement('br'));
-          list.appendChild(no_location);
-        }
+        if(counter){
+          list.innerHTML = "List of Sites in " + region[0].toUpperCase()+ region.slice(1);
+          list.classList = 'plain';
+          list.appendChild(buttons);
 
+        }
         }
       }
   /*
@@ -531,17 +557,20 @@
       Create button to direct the location
     
   */
-      function filterMarker(year = 0){
+      function filterMarker(allTime = false, allSite = false){
         markers.forEach(obj =>{
           map.removeLayer(obj.marker);
           let boolCategory = false;
           category_list.forEach(cate_obj => {
             if(document.getElementById(cate_obj).checked && (obj.category == cate_obj)){boolCategory = true;}
           });
+          if(allSite){boolCategory = true;}
           
-//          let boolYear = obj.yearBegging <= year && year <= obj.yearEnd;
-//          if (year == 0){boolYear = true;}
-          const boolYear = true;
+          const year = +document.getElementById('filterYear').value;
+          let boolYear = obj.yearStart <= year && year <= obj.yearEnd;
+//          if (year<1700||2025<year){boolYear = true;}
+          if (allTime){boolYear = true;}
+
           if(boolCategory && boolYear){
             obj.marker.addTo(map);
           }
