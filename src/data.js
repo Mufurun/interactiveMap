@@ -19,16 +19,7 @@ const points = [
 ###################################
 */
 
-
-{
-title: 'BCFDC',	company: 'Company Name',	year: "1999-2025",	coords: [48.802, -123.715],	category:"community",	area: 'northCowichan',	list1: "discription 1", list2: "discription 2", list3: "discription 3", list4: "discription 4", list5: "discription 5", list6: "discription 6",list7: "discription 7", list8: "discription 8", list9: "discription 9",list10: "discription 10", list11: "discription 11", list12: "discription 12",	image1: "./src/images/image1.webp", image2:"./src/images/image2.webp", image3: "./src/images/image3.webp", image4: "./src/images/image4.webp",	image5: null,	imageText1: 'text1',	imageText2: 'text2',	imageText3: 'text3',	imageText4: 'text4',	imageText5: '', imageLink1: '', imageLink2: '', imageLink3: '', imageLink4: '',	imageLink5: '', addSrc1: 'src1',	addSrc2: 'src2',	addSrc3: 'src3',	addSrc4: 'src4',	addSrc5: 'src5',	addSrc6: 'src6',	addSrc7: 'src7',	error: null,	},{
-title: 'Camp 1',	company: 'Company A',	year: '-',	coords: [49.232,-124.79],	category: 'camp',	area: 'alberni',	list1: '',	list2: '',	list3: '',	list4: '',	list5: '',	list6: '',	list7: '',	list8: '',	list9: '',	list10: '',	list11: '',	list12: '',	image1: null,	image2: null,	image3: null,	image4: null,	image5: null,	imageText1: '',	imageText2: '',	imageText3: '',	imageText4: '',	imageText5: '', imageLink1: '', imageLink2: '', imageLink3: '', imageLink4: '',	imageLink5: '',	addSrc1: '',	addSrc2: '',	addSrc3: '',	addSrc4: '',	addSrc5: '',	addSrc6: '',	addSrc7: '',	error: 'year',	},{
-title: 'Camp 2',	company: 'Company B',	year: '-',	coords: [49.247,-124.738],	category: 'camp',	area: 'alberni',	list1: '',	list2: '',	list3: '',	list4: '',	list5: '',	list6: '',	list7: '',	list8: '',	list9: '',	list10: '',	list11: '',	list12: '',	image1: null,	image2: null,	image3: null,	image4: null,	image5: null,	imageText1: '',	imageText2: '',	imageText3: '',	imageText4: '',	imageText5: '', imageLink1: '', imageLink2: '', imageLink3: '', imageLink4: '',	imageLink5: '',	addSrc1: '',	addSrc2: '',	addSrc3: '',	addSrc4: '',	addSrc5: '',	addSrc6: '',	addSrc7: '',	error: 'year',	},{
-title: 'Camp 3',	company: 'Company A',	year: '1928-1934',	coords: [49.188,-124.71],	category: 'camp',	area: 'alberni',	list1: "discription 1", list2: "discription 2", list3: "discription 3", list4: "discription 4", list5: "discription 5", list6: "discription 6", list7: '',	list8: '',	list9: '',	list10: '',	list11: '',	list12: '',	image1: './img/Camp.png',	image2: './img/Camp.png',	image3: './img/Camp.png',	image4: './img/Camp.png',	image5: null,	imageText1: 'text1',	imageText2: 'text2',	imageText3: 'Atext3',	imageText4: 'text4',	imageText5: '',	imageLink1: '', imageLink2: '', imageLink3: '', imageLink4: '',	imageLink5: '', addSrc1: 'src1',	addSrc2: 'src2',	addSrc3: '',	addSrc4: '',	addSrc5: '',	addSrc6: '',	addSrc7: '',	error: null,	},{
-title: 'Sawmill 1',	company: 'Company C',	year: '1904-',	coords: [,],	category: 'sawmill',	area: 'alberni',	list1: '',	list2: '',	list3: '',	list4: '',	list5: '',	list6: '',	list7: '',	list8: '',	list9: '',	list10: '',	list11: '',	list12: '',	image1: './img/.png',	image2: './img/.png',	image3: './img/.png',	image4: './img/.png',	image5: './img/.png',	imageText1: '',	imageText2: '',	imageText3: '',	imageText4: '',	imageText5: '', imageLink1: '', imageLink2: '', imageLink3: '', imageLink4: '',	imageLink5: '',	addSrc1: '',	addSrc2: '',	addSrc3: '',	addSrc4: '',	addSrc5: '',	addSrc6: '',	addSrc7: '',	error: 'coords',	},{
-title: 'Sawmill 2',	company: 'Company B',	year: '1861-1864',	coords: [49.235,-124.815],	category: 'sawmill',	area: 'alberni',	list1: "discription 1", list2: "discription 2", list3: "discription 3", list4: "discription 4", list5: "discription 5", list6: "discription 6",	list7: 'description 7 ',	list8: '',	list9: '',	list10: '',	list11: '',	list12: '',	image1: './img/mill.png',	image2: './img/mill.png',	image3: './img/aa.png',	image4: './img/mill.png',	image5: null,	imageText1: 'text1',	imageText2: 'text2',	imageText3: 'text3',	imageText4: 'text4',	imageText5: '', imageLink1: '', imageLink2: '', imageLink3: '', imageLink4: '',	imageLink5: '',	addSrc1: 'src1.',	addSrc2: '',	addSrc3: '',	addSrc4: '',	addSrc5: '',	addSrc6: '',	addSrc7: '',	error: null,	},{
-title: 'Community 3',	company: 'Company A',	year: '1917-1927',	coords: [49.328,-124.85],	category: 'community',	area: 'alberni',	list1: "discription 1", list2: "discription 2", list3: "discription 3", list4: "discription 4", list5: "discription 5", list6: "discription 6",	list7: '',	list8: '',	list9: '',	list10: '',	list11: '',	list12: '',	image1: './img/com.png',	image2: './img/com.png',	image3: './img/community.png',	image4: './img/community.png',	image5: './img/com.png',	imageText1: 'text1',	imageText2: 'text2',	imageText3: 'text3',	imageText4: 'text4',	imageText5: 'image text 5', imageLink1: '', imageLink2: '', imageLink3: '', imageLink4: '',	imageLink5: '',	addSrc1: 'McKnight, George. A. Sawlogs on Steel Rails. Eniorsâ€™ History Committee. 1995.',	addSrc2: 'Alberni District Historical Society. https://www.facebook.com/100064373756763/posts/352221780050081/',	addSrc3: 'City of Vancouver Archives. https://searcharchives.vancouver.ca/canadian-pacific-train-load-of-bainbridge-lumber-b-c-toothpicks',	addSrc4: '',	addSrc5: '',	addSrc6: '',	addSrc7: '',	error: null,	},{
-title: '',	company: 'Company C ',	year: '-',	coords: [,],	category: 'p&p',	area: 'alberni',	list1: '',	list2: '',	list3: '',	list4: '',	list5: '',	list6: '',	list7: '',	list8: '',	list9: '',	list10: '',	list11: '',	list12: '',	image1: null,	image2: null,	image3: null,	image4: null,	image5: null,	imageText1: '',	imageText2: '',	imageText3: '',	imageText4: '',	imageText5: '',	imageLink1: '', imageLink2: '', imageLink3: '', imageLink4: '',	imageLink5: '', addSrc1: '',	addSrc2: '',	addSrc3: '',	addSrc4: '',	addSrc5: '',	addSrc6: '',	addSrc7: '',	error: 'coords',	}
+//Replace This Line (and Delete)
 
 
 /*
@@ -50,7 +41,7 @@ title: '',	company: 'Company C ',	year: '-',	coords: [,],	category: 'p&p',	area:
     const region_categories = [ 
         'coastalBC', 
         'vancouverIsland',
-        'haida',
+        'haidaGwaii',
         'vancouver',
 
 
@@ -61,7 +52,7 @@ title: '',	company: 'Company C ',	year: '-',	coords: [,],	category: 'p&p',	area:
         'alberniClayoquot',
         
         'victoria',
-        'ViewRoyal',
+        'viewRoyal',
         'sooke',
         'ladysmith',
         'lakeCowichan',
@@ -81,7 +72,7 @@ title: '',	company: 'Company C ',	year: '-',	coords: [,],	category: 'p&p',	area:
     const regions = [
         {//Coastal BC
             id: 'coastalBC',
-            zoom:[52, -127], 
+            zoom:[51.5, -127], 
             size:6
         },{//Vancouver Island
             id: 'vancouverIsland',
@@ -158,7 +149,7 @@ title: '',	company: 'Company C ',	year: '-',	coords: [,],	category: 'p&p',	area:
             zoom:[49.70, -125],
             size:12
         },{//Alberni
-            id:'Alberni',
+            id:'alberni',
             zoom:[49.22, -124.76],
             size:12
         },{//Port Renfrew

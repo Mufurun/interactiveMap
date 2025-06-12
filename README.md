@@ -1,15 +1,15 @@
 # Project Interactive Map 
 
-- This interactive map shows the important locations of forestry industry on the coastal BC. 
+- This interactive map shows important locations in the forestry industry on the coastal BC. 
 
 
 ## Purpose
-- This suceeds the project from 2024 summer at the BC Forest Discovery Centre.
+- This suceeds the project from the 2024 summer at the BC Forest Discovery Centre.
 - I hope someone else continues this project to update data in the long run.
 
+___
+___
 
-___
-___
 
 ## Instructions for Staffs
  - There are basically two operations to publish + two useful info.
@@ -20,7 +20,7 @@ ___
 
 ### 1 Update Contents<a name="update-contents"></a>
  - All numbers and contents are in the excel file (at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx) and photos are in the HeritageMap folder ("S:\Curatorial\Writing\Research\Heritage Map\HeritageMap").
-    - Please update as changed
+    - Please update path as changed
  - For the data management, we want to use a few files.
  - Each row in the excel is assigned to hold all information about a site.
  - We want to edit the content in the "Sheet2" (click the bar at the bottom of the sheet).
@@ -49,9 +49,9 @@ ___
    - **List1 to List12**
      - Descriptions of the site
        - Trying to add information below:
-         - Significant events in the chronological order (ie. when it started, how it closed ...)
-         - Some statistics, such as number of workers, productions etc.
-         - Descriptions about those who worked. 
+         - <ins>Significant events in the chronological order (ie. when it started, how it closed ...)</ins>
+         - <ins>Some statistics, such as number of workers, productions etc.</ins>
+         - <ins>Descriptions about those who worked. </ins>
    - **Image1 to Image5**
      - The file name of images of the site
      - Save up to five images in the "images" folder (at S:\Curatorial\Writing\Research\Heritage Map\images\)
@@ -66,13 +66,18 @@ ___
          - [ImageMagick](https://imagemagick.org/index.php) 
    - **ImageText1 to ImageText5**
      - Explanations of the images1-5
+   - **ImageLink1 to ImageLink5**
+     - If there is link which you retrieve the image from, put here.
+     - Otherwise, ignore.
    - **AdditionalSources**
      - Additional Sources which are worth reading.
 
 ### 2 Upload Codes <a name="upload-codes"></a>
  - All info must be ready on the "Sheet3" of the Excel file at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx.
     - "Sheet3" is not editable.
- - Here, the step to copy and paste the data on "Sheet3" in the excel file to the data.js
+ - **Because excel file is still developing, I believe it should not be store in public repository.**
+   - Therefore, you have to upload data by yourself. 
+ - Here, the step to copy and paste the data on "Sheet3" (the excel file) to the data.js
    1. **Copy all the cells on the "Sheet3"** (Ctrl + A, then Ctrl + C)
    2. **Open "Heritage_Map_Project" and open "exp.txt" txt file**  ("\Heritage_Map_Project\exp.txt").
    3. **Replace all the lines with the content from the Excel file.**
@@ -80,7 +85,7 @@ ___
       - Check the first line starting with "{" and the last line ending with "}"
    4. **Double-click "download_and_modify_codes.sh" file.**
       - Enter "Y" or press Enter to select what files to be updated. 
-        - Typically, Only need data.js, but if you do not edit other files, enter "Y" for all.
+        - Typically, you only need data.js to be updated, but if you have not editted other files, enter "Y" for all.
       - This will overwrite the codes in the folder "interactiveMap" from the github 
       - Then, it will write the content from the "exp.txt" file in the proper position of "data.js"
 
@@ -129,14 +134,22 @@ ___
   - [x] Location
   - [x] Year
   - [x] Images
-  - [ ] Texts
-  - [ ] Additional Sources 
+    - [x] Explanation
+    - [x] Link
+  - [x] Texts
+  - [x] Additional Sources
+    - [ ] Link 
 - [ ] Controls
   - [x] Allow users to zoom up by the region
     - [ ] Show the regional district   
   - [ ] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
-- [ ] use something like satelite imagery later, but right now I am using just a normal map
+- [ ] Map Setting
+  - [ ] Satelite imagery
+  - [ ] Topographic Map 
+- [ ] Succession
+  - [ ] Make instruction
+  - [x] Shell to make it easier to update
   
 ## Distribution
  - All data should not be publicly available since those may include private information before revision. 
