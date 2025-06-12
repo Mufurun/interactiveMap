@@ -149,7 +149,7 @@ const points = [
             zoom:[49.70, -125],
             size:12
         },{//Alberni
-            id:'Alberni',
+            id:'alberni',
             zoom:[49.22, -124.76],
             size:12
         },{//Port Renfrew
