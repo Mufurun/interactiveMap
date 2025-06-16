@@ -26,6 +26,9 @@ ___
  - We want to edit the content in the "Sheet2" (click the bar at the bottom of the sheet).
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
  - If you do not know, just blank the cells
+ - **##IMPORTANT##**
+   - When you use a quotation mark (') in any of the fields (such as Mann's Lumber Company ), **PUT a back slush ('\') behind it** so that the program recognize it as a string. 
+
  - Below, explanations of each colunm
    - **Title**
      - The name of the site.
@@ -71,6 +74,7 @@ ___
      - Otherwise, ignore.
    - **AdditionalSources**
      - Additional Sources which are worth reading.
+   
 
 ### 2 Upload Codes <a name="upload-codes"></a>
  - All info must be ready on the "Sheet3" of the Excel file at S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx.
