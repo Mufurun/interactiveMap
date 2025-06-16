@@ -34,6 +34,7 @@ const points = [
         'sawmill',
         'p&p',
         'community',
+        'BCFS'
     ]
 
 
