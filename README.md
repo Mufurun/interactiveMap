@@ -27,7 +27,7 @@ ___
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
  - If you do not know, just blank the cells
  - **##IMPORTANT##**
-   - When you use a quotation mark (') in any of the fields (such as Mann's Lumber Company ), **PUT a back slush ('\') behind it** so that the program recognize it as a string. 
+   - When you use a quotation mark (') in any of the fields (such as Mann's Lumber Company ), **PUT a backslash ('\') behind it** so that the program recognize it as a string. 
 
  - Below, explanations of each colunm
    - **Title**
