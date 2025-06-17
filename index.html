@@ -133,6 +133,8 @@
         shadowSize: [41, 41]
       });
 
+
+    try{
       points.forEach(point => {
         if(point.error != 'coords'){
           const marker = L.marker(point.coords);
@@ -164,6 +166,7 @@
 
         
        });
+    }catch(error){alert("Seems to have at least an error in data.js. \nPlease check data entry, especially single quotation mark (') without backslash (\\) behind it");}
   
   
   /*
