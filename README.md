@@ -27,7 +27,8 @@ ___
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
  - If you do not know, just blank the cells
  - **##IMPORTANT##**
-   - When you use a quotation mark (') in any of the fields (such as Mann's Lumber Company ), **PUT a backslash ('\') behind it** so that the program recognize it as a string. 
+   - When you use a quotation mark (') in any of the fields, **PUT a backslash ('\') behind it** so that the program recognize it as a string.
+     - Such as) Mann's Lumber Company --> Mann\'s Lumber Company 
 
  - Below, explanations of each colunm
    - **Title**
@@ -146,7 +147,7 @@ ___
 - [ ] Controls
   - [x] Allow users to zoom up by the region
     - [ ] Show the regional district   
-  - [ ] Allow users to filter points by the year
+  - [x] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
 - [ ] Map Setting
   - [ ] Satelite imagery
