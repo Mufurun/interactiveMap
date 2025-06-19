@@ -89,8 +89,7 @@ ___
       - Delete all the lines in the "exp.txt" file and Paste what you copied in the step 1
       - Check the first line starting with "{" and the last line ending with "}"
    4. **Double-click "download_and_modify_codes.sh" file.**
-      - Enter "Y" or press Enter to select what files to be updated. 
-        - Typically, you only need data.js to be updated, but if you have not editted other files, enter "Y" for all.
+      - Press Enter or "N" to select if you want the perfect map to publish or draft map to see all sites. 
       - This will overwrite the codes in the folder "interactiveMap" from the github 
       - Then, it will write the content from the "exp.txt" file in the proper position of "data.js"
 
