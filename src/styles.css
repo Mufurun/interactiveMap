@@ -28,6 +28,7 @@
     max-width: 300px; /* Default is 300px */
     max-height: 425px; /* Default is 300px */
     overflow: auto;
+    overflow-x: hidden;
 
   }
   .title{
