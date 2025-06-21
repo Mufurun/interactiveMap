@@ -124,7 +124,7 @@
 
     try{
       points.forEach(point => {
-        if(!point.error){
+        if(point.error != 'coords'){
           const marker = L.marker(point.coords);
           if(point.error){
             marker.setIcon(greenIcon);
@@ -140,6 +140,7 @@
             const popupElement = e.popup.getElement();
             const commentsBox = popupElement.querySelector('.comments');
           });
+          if(!point.error){
             markers.push({
               marker: marker,
               category: point.category,
@@ -148,6 +149,7 @@
               name: point.title + '(' + point.company + ')',
               area: point.area,
             });
+          }
         }
 
         
