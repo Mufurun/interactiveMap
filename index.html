@@ -124,7 +124,7 @@
 
     try{
       points.forEach(point => {
-        if(!point.error){
+        if(!point.error){//This is Publish
           const marker = L.marker(point.coords);
           if(point.error){
             marker.setIcon(greenIcon);
