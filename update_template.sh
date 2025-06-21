@@ -1,12 +1,13 @@
 #!/bin/bash
 
+git restore ./src/data.js
 counter=0
 
 while IFS= read -r line; do
      # Process the line here
     if [[ "$line" =~ .+:\ \'[^\\\']+\'[^\\\']+\',.* ]]; then 
-        printf "There is at least an error in the line $counter of template.txt file. \n\nThe error is because of the single quote (') in a string, which supposed to have backslash (\) before the single qupte('). \nPlease fix the row #$counter in the template file and try again/\n\n\nThis message will disappear in 1 minute"
-        time sleep 1m
+        printf "There is at least an error in the line $counter of template.txt file. \n\nThe error is because of the single quote (') in a string, which supposed to have backslash (\) before the single qupte('). \nPlease fix the row #$counter in the template file and try again/\n\n\nThis message will disappear in 30 seconds \n (You can close the window while the program is running)"
+        time sleep 30
         exit
 
 
