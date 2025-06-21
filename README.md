@@ -90,7 +90,7 @@ ___
      - If you think content has error/do not want publish due to any reason, put somwthing here.
      - Otherwise, Clear the cell.
     
-    - **DO NOT FORGET TO SAVE WHEN YOU UPDATE THE FILE**
+ - **DO NOT FORGET TO SAVE WHEN YOU UPDATE THE FILE**
    
 
 ### 2 Upload Codes <a name="upload-codes"></a>
