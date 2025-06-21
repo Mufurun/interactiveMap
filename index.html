@@ -26,18 +26,6 @@
 </head>
 <body>
   
-<!-- Checkin Screen-->
-  <div id="entryScreen">
-    <div class="entry-box">      
-      <h1>Interactive Map Example</h1>
-      <p> This is an example of the interactive map. I do not intend this to be publicly available right now.</p>
-      <p>Take a look at codes here <a></a></p>
-      <div class = "button-wrapper">
-        <button id="enterBtn">Continue</button>
-      </div>      
-    </div>
-  </div>
-  <script src = 'terms-conditions/terms-conditions.js'></script>
 
 <!-- Main Screen-->
 <div id="map"></div>
@@ -135,8 +123,8 @@
 
 
     try{
-      points.forEach(point => {
-        if(!point.error){
+      points.forEach(point => {//This is Main
+        if(point.error != 'coords'){
           const marker = L.marker(point.coords);
           if(point.error){
             marker.setIcon(greenIcon);
@@ -152,6 +140,7 @@
             const popupElement = e.popup.getElement();
             const commentsBox = popupElement.querySelector('.comments');
           });
+          if(!point.error){
             markers.push({
               marker: marker,
               category: point.category,
@@ -160,6 +149,7 @@
               name: point.title + '(' + point.company + ')',
               area: point.area,
             });
+          }
         }
 
         
