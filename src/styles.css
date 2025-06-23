@@ -55,9 +55,19 @@
     padding: 2%;
   }
   .description{
-    margin: 0 0 0 20px;
+    margin: 0 0 0 0;
     padding: 0 0 0 0;
     list-style-position: inside;
+  }
+  .each_discrpt{
+    font-size: 12.5px;
+    margin: 0 0 0 0px;
+    padding: 0 0 0 0;
+  }
+  .each_discrpt_li{
+    font-size: 12.5px;
+    margin: 0 0 0 22px;
+    padding: 0 0 0 0;
   }
 
 
