@@ -15,7 +15,7 @@ points stores all the datapoints on the map
 const points = [
 /*
 ###################################
-####   CHANGE THE Line BELOW   ####
+####   CHANGE THE LINES BELOW   ####
 ###################################
 */
 
@@ -24,7 +24,7 @@ const points = [
 
 /*
 ####################################
-####   CHANGE THE LINE ABOVE    ####
+####   CHANGE THE LINES ABOVE    ####
 ####################################
 */
 ];
