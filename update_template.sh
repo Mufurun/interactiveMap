@@ -1,7 +1,7 @@
 #!/bin/bash
 
 git restore ./src/data.js
-counter=0
+counter=1
 
 while IFS= read -r line; do
      # Process the line here
