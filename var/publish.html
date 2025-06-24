@@ -26,18 +26,7 @@
 </head>
 <body>
   
-<!-- Checkin Screen-->
-  <div id="entryScreen">
-    <div class="entry-box">      
-      <h1>Interactive Map Project Draft</h1>
-      <p> This is a draft of the interactive map. This program should not be publicly available at this time. See the intructions to get codes to be published</p>
-      <p>Take a look at codes here <a style = "color: greenyellow" href="http://github.com/Mufurun/interactiveMap">My github page</a></p>
-      <div class = "button-wrapper">
-        <button id="enterBtn">Continue</button>
-      </div>      
-    </div>
-  </div>
-  <script src = 'terms-conditions/terms-conditions.js'></script>
+
 
 <!-- Main Screen-->
 <div id="map"></div>
@@ -135,8 +124,9 @@
 
 
     try{
-      points.forEach(point => {//This is Main
-        if(point.error != 'coords'){
+
+      points.forEach(point => {
+        if(!point.error){//This is Publish
           const marker = L.marker(point.coords);
           if(point.error){
             marker.setIcon(greenIcon);

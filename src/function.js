@@ -87,9 +87,18 @@
         const list_description = [point.list1, point.list2, point.list3, point.list4, point.list5, point.list6, point.list7, point.list8, point.list9, point.list10, point.list11, point.list12];
         
         for (let i = 0; ((i < 12) && (list_description[i] != '')); i++) {
-          const each_description = document.createElement('li');
-          each_description.textContent = list_description[i];
-          description.appendChild(each_description);
+          const regex = /^\d{3}/;
+          if (regex.test(list_description[i].slice(0,4))){
+            const each_description = document.createElement('h6');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = list_description[i].slice(0,4) + ' - ' + list_description[i].slice(6)
+            description.appendChild(each_description);
+          }else{
+            const each_description = document.createElement('li');
+            each_description.textContent = list_description[i];
+            each_description.className = 'each_discrpt_li';
+            description.appendChild(each_description);
+          }
         }
         container.appendChild(description);
 
@@ -102,9 +111,21 @@
         const additionalSource = document.createElement('ul');
         additionalSource.className = 'description';
         const list_addSrc = [point.addSrc1, point.addSrc2, point.addSrc3, point.addSrc4, point.addSrc5, point.addSrc6, point.addSrc7];
+        const list_addSrcLink = [point.addSrcLink1, point.addSrcLink2, point.addSrcLink3, point.addSrcLink4, point.addSrcLink5, point.addSrcLink6, point.addSrcLink7];
         for (let i = 0; ((i<7)&&(list_addSrc[i] != '')); i++){
           const each_addSrc = document.createElement('li');
-          each_addSrc.textContent = list_addSrc[i];
+          each_addSrc.className = 'each_discrpt_li';
+
+          if(list_addSrcLink[i]==''){
+            each_addSrc.textContent = list_addSrc[i];
+
+          }else{
+            const linked_text = document.createElement('a');
+            linked_text.target = '_blank';
+            linked_text.href = list_addSrcLink[i];
+            linked_text.textContent = list_addSrc[i];
+            each_addSrc.appendChild(linked_text);
+          }
           additionalSource.appendChild(each_addSrc);
         }
         container.appendChild(additionalSource);
