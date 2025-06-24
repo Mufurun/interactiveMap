@@ -105,11 +105,14 @@ ___
    3. **Replace all the lines with the content from the Excel file and Save.**
       - Delete all the lines in the "exp.txt" file and Paste what you copied in the step 1.
       - **DO NOT FORGET TO SAVE THE FILE** (Ctr + S)
-   4. **Double-click "download_and_modify_codes.sh" file.**
+   4. **Double-click "modify_codes.bat" file.**
       - Follow the Instruction on the console.
-        - Press Enter or "N" to select if you want the perfect map to publish or draft map to see all sites. 
+        - The console shows a bit of mess because I'm not familiar with batch file, so be aptient for a few seconds to follow the instruction.
+        - Enter "Y" or "N" to select if you want the perfect map to publish or draft map to see all sites. 
         - This rewrites the codes in the folder "interactiveMap" from the github 
         - Then, it reads the content from the "exp.txt" file and pastes them in the proper position of "data.js"
+      - If you have installed git bash, then you might use **download_and_modify_codes.sh**
+        - A lot faster and easy. 
 
 
 ### Manual Uploading <a name="manual-uploading"></a>
@@ -178,7 +181,8 @@ ___
 - [ ] Succession
   - [ ] Make instruction
   - [x] Shell to make it easier to update
-  
+  - [x] Need a batch file for windows
+        
 ## Distribution
  - All data should not be publicly available since those may include private information before revision. 
  - The repo and its codes are public.
