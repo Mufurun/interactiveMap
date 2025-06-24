@@ -108,8 +108,8 @@ echo:
 echo:
 setlocal enabledelayedexpansion
 
-set "main_file=var\all_markers.html"
-set "publish_file=var\publish.html"
+set "main_file=var\all_markers.txt"
+set "publish_file=var\publish.txt"
 set "index_file=index.html"
 
 set /p bool=A Question: would you like map with all markers ^(y^) or just some to be piblished ^(n^)
