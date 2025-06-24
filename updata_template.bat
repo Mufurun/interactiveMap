@@ -12,6 +12,10 @@ set /a counter=1
 echo ###   PROGRAM LOG   ###
 echo:
 echo:
+echo:
+echo:
+echo _______________________________________________________________
+
 
 for /f "usebackq delims=" %%A in ("%snippet_file%") do (
     set "line=%%A"
@@ -22,18 +26,21 @@ for /f "usebackq delims=" %%A in ("%snippet_file%") do (
     if !errorlevel! neq 1 (
         echo _______________________________________________________________
         echo Ignore above. Those are because special characters ^(i.e. '^&', '^|'^) is in the line
+        echo _______________________________________________________________
+
         echo:
         echo:
         echo There is an error in line !counter! of template.txt.
         echo Please escape single quotes with a backslash like: '\'
         echo This message will close in 30 seconds.
-        timeout /t 30 >nul
+        timeout 30
         exit /b 1
     )
     set /a counter+=1
 )
 echo _______________________________________________________________
 echo Ignore above. Those are because special characters ^(i.e. '^&', '^|'^) are in the line
+echo _______________________________________________________________
 
 echo:
 echo:
@@ -43,8 +50,8 @@ echo:
 echo _______________________________________________________________
 
 REM Markers (adjust if needed)
-set "start_marker=####################################*/"
-set "end_marker=/*###################################"
+set "start_marker=*************************************/"
+set "end_marker=/************************************"
 
 REM Start clean
 set "in_block=0"
@@ -55,30 +62,33 @@ REM Create a new file
         set "line=%%A"
         setlocal enabledelayedexpansion
         echo !line! | findstr /C:"%start_marker%" >nul
-        if !errorlevel! equ 1 (
-            if !in_block! equ 0 (
-                echo !line! >> "%tmp_file%"
-                endlocal
-            )
-            if !in_block! equ 1 (
-                echo !line! | findstr /C:"%start_marker%" >nul
-                if !errorlevel! neq 1 (
-                    echo !line! >> "%tmp_file%"
-                    set "in_block=0"
-                    endlocal
-                )
-            )
-            
-        )
+
+    
         if !errorlevel! neq 1 (
-            setlocal enabledelayedexpansion
+            echo find start
             echo !line! >> "%tmp_file%"
-            set "in_block=1"
+            
             REM Insert the new content
             for /f "usebackq delims=" %%B in ("%snippet_file%") do (
                 echo %%B >> "%tmp_file%"
             )
             endlocal
+            set "in_block=1"
+        )
+        if !errorlevel! equ 1 (            
+            if !in_block! neq 1 (
+                echo !line! >> "%tmp_file%"
+                endlocal
+            )
+            if !in_block! equ 1 (
+                echo !line! | findstr /C:"%end_marker%" >nul
+                if !errorlevel! neq 1 (
+                    echo find end 
+                    echo !line! >> "%tmp_file%"
+                    endlocal
+                    set "in_block=2"
+                )
+            )            
         )
     )
 
@@ -91,5 +101,5 @@ echo:
 echo:
 echo Anyway, Replacement complete!
 echo This message will close in 30 seconds.
-timeout /t 30 >nul
-exit /b 1
+timeout 30 
+exit
