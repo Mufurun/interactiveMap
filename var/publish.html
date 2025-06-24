@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!--
+        Thank you for reading this source :))
+        Wanna get this code improved??
+        Contact: 
+
+        お疲れ様です！
+        ソースをご確認いただきありがとうございます！(/ω＼*)
+        問題がある部分や御意見等ございましたら、ご連絡いただければ幸いです。
+        連絡先: 
+        -->
+
+<head>
+  <title>Interactive Map Example</title>
+  <link rel="icon" href="images/mufurun.ico" type="image/x-icon">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel = "stylesheet" href = "src/styles.css" />
+  <link rel = "stylesheet" href = "terms-conditions/terms-conditions.css" />
+</head>
+<body>
+  
+
+
+<!-- Main Screen-->
+<div id="map"></div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Data for sites -->
+<script src="src/data.js"></script>
+
+<!-- Functions for sites -->
+<script src="src/function.js"></script>
+
+
+<script type="module">
+  
+  /*
+  #######################
+  #######################
+  ####   Main code   ####
+  #######################
+  #######################
+  */
+  
+  /*
+  #####################################
+  ######   Map initialization   #######
+  #####################################
+  
+      continuousWorld: true
+      worldCopyJump: true
+      zoomControl: custom -> later
+      maxZoom: 18
+      minZoom: 6
+  
+      attribution:  
+        https://github.com/tomchadwin/qgis2web
+        https://leafletjs.com
+        https://qgis.org
+        http://www.openstreetmap.org/copyright
+      
+      Buttons:
+        ->after the markers
+        
+  
+  
+  */
+    //map
+    const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([51.5, -127], 6);
+  
+    //attribution
+      map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+    
+  
+  //I don't know followings
+      //var hash = new L.Hash(map);
+      //     var bounds_group = new L.featureGroup([]);
+      // function setBounds() {
+      //     map.setMaxBounds(map.getBounds());
+      //}
+  //    var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+      
+    
+  
+  
+  /*
+  #########################
+  ######   Markers   ######
+  #########################
+  
+      Add every points on the map using createPopupContent()
+      Group them to filter
+      Store all info in an array
+  */
+      //An array to store them (exclusively good points)
+      let markers = []
+ 
+      //Icon to make them visibly identifiable
+      const greenIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+
+
+    try{
+
+      points.forEach(point => {
+        if(!point.error){//This is Publish
+          const marker = L.marker(point.coords);
+          if(point.error){
+            marker.setIcon(greenIcon);
+          }
+          
+          marker.bindPopup(() => {
+            const popupContent = createPopupContent(point);
+            return popupContent;
+          }) 
+          marker.addTo(map);
+          //set up the scrollbar at the bottom.
+          map.on('popupopen', (e) => {
+            const popupElement = e.popup.getElement();
+            const commentsBox = popupElement.querySelector('.comments');
+          });
+          if(!point.error){
+            markers.push({
+              marker: marker,
+              category: point.category,
+              yearStart: +point.year.slice(0,4),
+              yearEnd: +point.year.slice(5,9),
+              name: point.title + '(' + point.company + ')',
+              area: point.area,
+            });
+          }
+        }
+
+        
+       });
+    }catch(error){alert("Seems to have at least an error. \nPlease check data entry. and try again");}
+  
+  
+  /*
+  ##########################################
+  ######     All Kinds of Controls     #####
+  ##########################################
+       Zoom control:
+       Current Position:
+       Layer Control:
+       Region COntrol:
+  */
+  
+  /*
+  ******************************
+  ******   zoomControl    ******
+  ******************************
+  */
+  
+      var zoomControl = L.control.zoom({
+              position: 'bottomright'
+          }).addTo(map);
+  
+       
+  
+
+  /*
+  ***********************************
+  ******   Regional Control    ******
+  ***********************************
+  
+  
+  */
+       const customControl = L.Control.extend({
+        onAdd: function (map) {
+          const container = L.DomUtil.create('div', 'custom-control leaflet-bar');
+          container.innerHTML = `
+          <div class = "custom-control-hover">
+              <strong>Region Control</strong>
+              <div class="custom-content">
+                <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>
+                
+                <div class = 'control-button-wrapper'>
+                    <button class="collapsible" >Vancouver Island</button>
+                    <button class = 'button' id = 'vancouverIsland'></button>
+                </div>
+                <div class="content">
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Capital Regional District</button>
+                        <button class = 'button' id = 'capital'></button>
+                    </div>
+                    <div class="content">
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Victoria</button>
+                            <button class = 'button' id = 'victoria'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_victoria'></div>
+                        </div>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >View Royal</button>
+                            <button class = 'button' id = 'viewRoyal'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_viewRoyal'></div>
+                        </div>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Sooke</button>
+                            <button class = 'button' id = 'sooke'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_sooke'></div>
+                        </div>
+                        <div id = 'list_capital'></div>
+                    </div>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Cowichan Valley Regional District</button>
+                        <button class = 'button' id = 'cowichanValley'></button>
+                    </div>
+                    <div class="content">
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Ladysmith</button>
+                            <button class = 'button' id = 'ladysmith'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_ladysmith'></div>
+                        </div>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Lake Cowichan</button>
+                            <button class = 'button' id = 'lakeCowichan'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_lakeCowichan'></div>
+                        </div>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >North Cowichan</button>
+                            <button class = 'button' id = 'northCowichan'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_northCowichan'></div>
+                        </div>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Chemainus</button>
+                            <button class = 'button' id = 'chemainus'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_chemainus'></div>
+                        </div>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Cowichan Bay</button>
+                            <button class = 'button' id = 'cowichanBay'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_cowichanBay'></div>
+                        </div>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Shawnigan Lake</button>
+                            <button class = 'button'id = 'shawniganLake' ></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_shawniganLake'></div>
+                        </div>
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Port Renfrew</button>
+                            <button class = 'button' id = 'ptRenfrew'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_ptRenfrew'></div>
+                        </div>
+                        <div id = 'list_cowichanValley'></div>
+                    </div>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Regional District of Nanaimo</button>
+                        <button class = 'button' id = 'nanaimoo'></button>
+                    </div>
+                    <div class="content">
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Nanaimo</button>
+                            <button class = 'button' id = 'nanaimo'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_nanaimo'></div>
+                        </div>
+                        <div id = 'list_nanaimoo'></div>
+                    </div>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Comox Valley Regional District</button>
+                        <button class = 'button' id = 'comoxValley'></button>
+                    </div>
+                    <div class="content">
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Courtenay</button>
+                            <button class = 'button' id = 'courtenay'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_courtenay'></div>
+                        </div>
+                        <div id = 'list_comoxValley'></div>                      
+                    </div>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Regional District of Alberni-Clayoquot</button>
+                        <button class = 'button' id = 'alberniClayoquot'></button>
+                    </div>
+                    <div class="content">
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Port Alberni</button>
+                            <button class = 'button' id = 'alberni'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_alberni'></div>
+                        </div>
+                        <div id = 'list_alberniClayoquot'></div>                                            
+                    </div>
+                    <div class = 'control-button-wrapper'>
+                        <button class="collapsible" >Strathcona Regional District</button>
+                        <button class = 'button' id = 'strathcona'></button>
+                    </div>
+                    <div class="content">
+                        <div class = 'control-button-wrapper'>
+                            <button class="collapsible" >Campbell</button>
+                            <button class = 'button' id = 'campbell'></button>
+                        </div>
+                        <div class="content">
+                            <div id = 'list_campbell'></div>
+                        </div>
+                        <div id = 'list_strathcona'></div>
+                    </div>
+                    <div id = 'list_vancouverIsland'></div>
+                </div>
+          
+  
+                <div class = 'control-button-wrapper'>
+                    <button class="collapsible" >Haida Gwaii</button>
+                    <button class = 'button' id = 'haidaGwaii'></button>
+                </div>
+                <div class="content">
+                  <div id = 'list_haidaGwaii'></div>
+                </div>
+  
+                <div class = 'control-button-wrapper'>
+                    <button class="collapsible" >Vancouver</button>
+                    <button class = 'button' id = 'vancouver'></button>
+                </div>
+                    <div class="content">
+                    <div id = 'list_vancouver'></div>
+                </div>
+                <div id = 'list_coastalBC'></div>
+                <div class = 'rg-con-foot'>
+                    <divS class='rg-zoom-ex'>Click Plus Sign to Zoom In</div>
+                </div>
+              </div>
+          </div>
+            `;
+  
+          // Prevent map click propagation
+          L.DomEvent.disableClickPropagation(container);
+          L.DomEvent.disableScrollPropagation(container);
+  
+
+  
+          // Delay attaching the event until the DOM is ready
+          setTimeout(() => {
+            //Zoom into the area
+            regions.forEach(region =>{
+              const btn = document.getElementById(region.id);
+              if(btn){
+                btn.addEventListener("click", () => {
+                  map.flyTo(region.zoom,region.size);
+                });
+              }
+            })
+            
+
+            const collapsibles = document.querySelectorAll(".collapsible");
+            collapsibles.forEach(button => {
+              button.addEventListener("click", function () {
+                const content = this.parentElement.nextElementSibling;
+                if (content.style.maxHeight) {
+                  updateChildren(content);  
+                } else {
+                this.classList.toggle("active");
+                  content.style.maxHeight = 350 + "px";
+                  updateSibling(content);  
+                  updateParentHeight(content);
+                }
+              });
+            });
+            const world = document.querySelectorAll(".button-original-map");
+            world.forEach(button => {
+              button.addEventListener("click", function () {
+                const content = this.nextElementSibling;
+                updateSibling(content);  
+                  
+              });
+            });
+
+      
+  
+            region_categories.forEach(location =>{
+                listMarkers(location);
+            });
+          }, 0);
+  
+          return container;
+        }
+      });
+  
+      map.addControl(new customControl({ position: 'topleft' }));
+  
+      
+
+  /*
+  *********************************
+  ******   Filter Control    ******
+  *********************************
+  
+  */
+      const filterControl = L.Control.extend({
+        onAdd: function (map) {
+          const container = L.DomUtil.create('div', 'filter-control leaflet-bar');
+          container.innerHTML = `
+          <div class = "filter-control-hover">
+            <strong>Filter  Control</strong>
+            <div class="filter-content"><div class="plain">
+              <label><input type="checkbox" id="camp" checked>Show camps</label><br>
+              <label><input type="checkbox" id="sawmill" checked>Show Sawmills</label><br>
+              <label><input type="checkbox" id="p&p" checked>Show Paper and Pulp Mills</label><br>
+              <label><input type="checkbox" id="community" checked>Show Comunities</label><br>
+              <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
+              <button id='allTime'>Show All Time</button><br>
+              <input type = 'range' id = 'filterYear' min="1699" max="2025" value="2025"> <br>
+              Year: <input type='text' id = 'showFilterYear' value = 'All Time' >
+            </div></div>
+          </div>
+            `;
+
+  
+          // Prevent map click propagation
+          L.DomEvent.disableClickPropagation(container);
+          L.DomEvent.disableScrollPropagation(container);
+
+          setTimeout(() => {
+            category_list.forEach(obj =>{
+              document.getElementById(obj).addEventListener('change', function(){
+                let bool = false;
+                if (document.getElementById('showFilterYear').value == 'All Time'){
+                  bool = true;
+                }
+                filterMarker(bool);
+              });
+            });
+            document.getElementById('filterYear').addEventListener('input',function(){
+              filterMarker();
+            });
+            document.getElementById('filterYear').addEventListener('input',function(){
+              document.getElementById('showFilterYear').value = this.value;
+            });
+            document.getElementById('allTime').addEventListener('click',function(){
+              filterMarker(true);
+              document.getElementById('showFilterYear').value = 'All Time';
+            });
+            document.getElementById('showFilterYear').addEventListener("input", function () {
+              this.value = this.value.replace(/\D/g, "");
+              document.getElementById('filterYear').value = this.value;
+              if(1700 <= +this.value && +this.value <= 2025){
+                filterMarker();
+              }
+            });
+
+          }, 0);
+    
+          return container;
+        }
+      });
+        map.addControl(new filterControl({ position: 'topright' }));
+
+
+  
+  /*
+  ###################################
+  ###################################
+  ##########  FUNCTIONS   ###########
+  ###################################
+  ###################################
+  */
+  
+
+  
+  /*
+  ***************************************
+  ******  Function listMarker()()  ******
+  ***************************************
+  
+      Make the list of sites on the map
+      Create button to direct the location
+    
+  */
+      function listMarkers(region){
+        const list = document.getElementById("list_"+region);
+        if(list){
+          let counter = 0;
+          const buttons = document.createElement('div');
+          markers.forEach(p =>{  
+            if(p.area == region){
+              const title = document.createElement('button');
+              title.textContent = p.name;
+              title.classList = 'list-button';
+              title.onclick = () => {
+                map.flyTo([p.marker.getLatLng().lat+0.005,p.marker.getLatLng().lng], 15);
+                filterMarker(true, true);
+                document.getElementById('showFilterYear').value = 'All Time';
+                p.marker.openPopup();
+              }
+              buttons.appendChild(title);
+              buttons.appendChild(document.createElement('br'));
+              counter++;
+            }
+          });
+        if(counter){
+          if(region == 'coastalBC'){
+            list.innerHTML = "List of Other Sites on Coastal BC";
+          }else if(region =='vancouverIsland'){
+            list.innerHTML = "List of Other Sites on Vancouver Island";
+          }else if(region == 'cowichanValley'){
+            list.innerHTML = "List of Other Sites in Cowichan Valley District";
+          }else if(region == 'nanaimoo'){
+            list.innerHTML = "List of Other Sites in Nanaimo District";
+          }else if(region == 'comoxValley'){
+            list.innerHTML = "List of Other Sites in Comox Valley";
+          }else if(region == 'alberniClayoquot'){
+            list.innerHTML = "List of Other Sites in Alberni-Clayoquot District";
+          }
+          else if(region == 'viewRoyal'){
+            list.innerHTML = "List of Sites in View Royal";
+          }else if(region == 'lakeCowichan'){
+            list.innerHTML = "List of Sites in Lake Cowichan";
+          }else if(region == 'northCowichan'){
+            list.innerHTML = "List of Sites in North Cowichan";
+          }else if(region == 'cowichanBay'){
+            list.innerHTML = "List of Sites in Cowichan Bay";
+          }else if(region == 'shawniganLake'){
+            list.innerHTML = "List of Sites in Shawnigan Lake";
+          }else if(region == 'ptRenfrew'){
+            list.innerHTML = "List of Sites in Port Renfrew";
+          }else{
+            list.innerHTML = "List of Sites in " + region[0].toUpperCase()+ region.slice(1);
+          }
+          list.classList = 'plain';
+          list.appendChild(buttons);
+
+        }
+        }
+      }
+  /*
+  ***************************************
+  ******  Function filterMarker()  ******
+  ***************************************
+  
+      Make the list of sites on the map
+      Create button to direct the location
+    
+  */
+      function filterMarker(allTime = false, allSite = false){
+        markers.forEach(obj =>{
+          map.removeLayer(obj.marker);
+          let boolCategory = false;
+          category_list.forEach(cate_obj => {
+            if(document.getElementById(cate_obj).checked && (obj.category == cate_obj)){boolCategory = true;}
+          });
+          if(allSite){boolCategory = true;}
+          
+          const year = +document.getElementById('filterYear').value;
+          let boolYear = obj.yearStart <= year && year <= obj.yearEnd;
+//          if (year<1700||2025<year){boolYear = true;}
+          if (allTime){boolYear = true;}
+
+          if(boolCategory && boolYear){
+            obj.marker.addTo(map);
+          }
+        })
+      }
+     
+  
+  </script>
+
+</body>
+</html>
