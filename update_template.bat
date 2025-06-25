@@ -66,7 +66,7 @@ set "in_block=0"
 
 
 REM Create a new file
-(    for /f "usebackq delims=" %%A in ("%target_file%") do (
+    for /f "usebackq delims=" %%A in ("%target_file%") do (
         set "line=%%A"
         
         set "line=!line:&=^&!"
@@ -79,17 +79,17 @@ REM Create a new file
     
         if !errorlevel! neq 1 (
             echo find start
-            echo !line!    
+            echo !line! >> "%tmp_file%"
             REM Insert the new content
             for /f "usebackq delims=" %%B in ("%snippet_file%") do (
-                echo %%B 
+                echo %%B >> "%tmp_file%"
             )
             
             set "in_block=1"
         )
         if !errorlevel! equ 1 (            
             if !in_block! neq 1 (
-                echo !line!
+                echo !line! >> "%tmp_file%"
                 
                 
             )
@@ -100,14 +100,13 @@ REM Create a new file
                     echo:
                     echo This may take a while. Let's have a coffee break:^)
                     echo:
-                    echo !line! 
+                    echo !line! >> "%tmp_file%"
                     
                     set "in_block=2"
                 )
             )            
         )
     )
-) > "%tmp_file%"
 
 move /y "%tmp_file%" "%target_file%" >nul
 
