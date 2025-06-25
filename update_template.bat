@@ -78,7 +78,6 @@ REM Create a new file
 
     
         if !errorlevel! neq 1 (
-            echo find start
             echo !line! >> "%tmp_file%"
             REM Insert the new content
             for /f "usebackq delims=" %%B in ("%snippet_file%") do (
@@ -96,7 +95,6 @@ REM Create a new file
             if !in_block! equ 1 (
                 echo !line! | findstr /C:"%end_marker%" >nul
                 if !errorlevel! neq 1 (
-                    echo find end 
                     echo:
                     echo This may take a while. Let's have a coffee break:^)
                     echo:
