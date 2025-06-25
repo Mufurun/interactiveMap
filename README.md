@@ -11,6 +11,17 @@ ___
 ___
 
 
+# Template Tutorial
+ - Double-click upload_template.sh or uploade_template.bat and follow the instruction to learn how to modify the codes.
+ - shell file works fast and clean whereas batch file is slow and messy
+   - Because I'm not familiar with batch file...
+   - Let me improve the program
+ 
+
+___
+___
+
+
 # Instructions for Staffs
  - There are basically two operations to publish
     1. [Update Contents](#update-contents)
@@ -20,19 +31,20 @@ ___
     - [Common Error and Debugging](#common-error-and-debugging)
 
 ## Publish 
- - Everything is in the Heritage_Map_Project folder (S:\Curatorial\Writing\Heritage_Map_Project)
- - Below Heritage_Map_Project folder refers to S:\Curatorial\Writing\Heritage_Map_Project
+ - Because excel file is still developing, I believe it should not be stored in public repository.
+   - Everything is in the Heritage_Map_Project folder (S:\Curatorial\Writing\Heritage_Map_Project)
+   - Below Heritage_Map_Project folder refers to S:\Curatorial\Writing\Heritage_Map_Project
 ### 1 Update Contents<a name="update-contents"></a>
  - All numbers and contents are in the excel file (at Heritage_Map_Project\HeritageMap.xlsx) and photos are in the HeritageMap folder ("Heritage_Map_Project\HeritageMap").
     - Please update path as changed
- - For the data management, we want to use a few files.
+ - For the data management, we want to use a few integrated files.
  - Each row in the excel is assigned to hold all information about a site.
  - We want to edit the content in the "Sheet2" (click the bar at the bottom of the sheet).
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
  - If you do not know, just blank the cells
  - **##IMPORTANT##**
-   - When you use a quotation mark (') in any of the fields, **PUT a backslash ('\') behind it** so that the excel recognizes it as a single string.
-     - Such as) Mann's Lumber Company --> Mann\'s Lumber Company 
+   - When you use a single quotation mark (') in any of the fields, **PUT a backslash ('\\') behind it** so that the excel recognizes it as a single string.
+     - Such as) Mann's Lumber Company --> Mann\\'s Lumber Company 
 
  - Below, explanations of each colunm
    - **Title**
@@ -97,7 +109,7 @@ ___
  - All info must be ready on the "Sheet3" of the Excel file at Heritage_Map_Project\HeritageMap.xlsx.
     - "Sheet3" is not editable.
     - Backup: S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx
- - **Because excel file is still developing, I believe it should not be store in public repository.**
+ - **Because excel file is still developing, I believe it should not be stored in public repository.**
    - Therefore, you have to upload data by yourself. 
  - Here, the step to copy and paste the data on "Sheet3" (the excel file) to the data.js of the program. 
    1. **Copy all the cells on the "Sheet3"** (Ctrl + A, then Ctrl + C)
@@ -105,11 +117,15 @@ ___
    3. **Replace all the lines with the content from the Excel file and Save.**
       - Delete all the lines in the "exp.txt" file and Paste what you copied in the step 1.
       - **DO NOT FORGET TO SAVE THE FILE** (Ctr + S)
-   4. **Double-click "download_and_modify_codes.sh" file.**
+   4. **Double-click "modify_codes.bat" file.**
       - Follow the Instruction on the console.
-        - Press Enter or "N" to select if you want the perfect map to publish or draft map to see all sites. 
+        - The console shows a bit of mess because I'm not familiar with batch file, so be aptient for a few seconds to follow the instruction.
+        - Enter "Y" or "N" to select if you want the perfect map to publish or draft map to see all sites. 
         - This rewrites the codes in the folder "interactiveMap" from the github 
         - Then, it reads the content from the "exp.txt" file and pastes them in the proper position of "data.js"
+      - If you have installed git bash, then you might use **download_and_modify_codes.sh**
+        - A lot faster and easy.
+        - Also it download the newest version of program.
 
 
 ### Manual Uploading <a name="manual-uploading"></a>
@@ -166,19 +182,22 @@ ___
     - [x] Link
   - [x] Texts
   - [x] Additional Sources
-    - [ ] Link 
+    - [x] Link 
 - [ ] Controls
   - [x] Allow users to zoom up by the region
     - [ ] Show the regional district   
   - [x] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
 - [ ] Map Setting
+  - [x] Show complete sites and draft sites (blue and orange respectively)
   - [ ] Satelite imagery
   - [ ] Topographic Map 
 - [ ] Succession
   - [ ] Make instruction
   - [x] Shell to make it easier to update
-  
+  - [x] Need a batch file for windows
+  - [x] Allow programmer to select if they want coplete map or draft map. 
+        
 ## Distribution
  - All data should not be publicly available since those may include private information before revision. 
  - The repo and its codes are public.
