@@ -31,13 +31,13 @@ ___
     - [Common Error and Debugging](#common-error-and-debugging)
 
 ## Publish 
- - Because excel file is still developing, I believe it should not be store in public repository.
- - Everything is in the Heritage_Map_Project folder (S:\Curatorial\Writing\Heritage_Map_Project)
- - Below Heritage_Map_Project folder refers to S:\Curatorial\Writing\Heritage_Map_Project
+ - Because excel file is still developing, I believe it should not be stored in public repository.
+   - Everything is in the Heritage_Map_Project folder (S:\Curatorial\Writing\Heritage_Map_Project)
+   - Below Heritage_Map_Project folder refers to S:\Curatorial\Writing\Heritage_Map_Project
 ### 1 Update Contents<a name="update-contents"></a>
  - All numbers and contents are in the excel file (at Heritage_Map_Project\HeritageMap.xlsx) and photos are in the HeritageMap folder ("Heritage_Map_Project\HeritageMap").
     - Please update path as changed
- - For the data management, we want to use a few files.
+ - For the data management, we want to use a few integrated files.
  - Each row in the excel is assigned to hold all information about a site.
  - We want to edit the content in the "Sheet2" (click the bar at the bottom of the sheet).
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
@@ -109,7 +109,7 @@ ___
  - All info must be ready on the "Sheet3" of the Excel file at Heritage_Map_Project\HeritageMap.xlsx.
     - "Sheet3" is not editable.
     - Backup: S:\Curatorial\Writing\Research\Heritage Map\HeritageMap.xlsx
- - **Because excel file is still developing, I believe it should not be store in public repository.**
+ - **Because excel file is still developing, I believe it should not be stored in public repository.**
    - Therefore, you have to upload data by yourself. 
  - Here, the step to copy and paste the data on "Sheet3" (the excel file) to the data.js of the program. 
    1. **Copy all the cells on the "Sheet3"** (Ctrl + A, then Ctrl + C)
@@ -124,7 +124,8 @@ ___
         - This rewrites the codes in the folder "interactiveMap" from the github 
         - Then, it reads the content from the "exp.txt" file and pastes them in the proper position of "data.js"
       - If you have installed git bash, then you might use **download_and_modify_codes.sh**
-        - A lot faster and easy. 
+        - A lot faster and easy.
+        - Also it download the newest version of program.
 
 
 ### Manual Uploading <a name="manual-uploading"></a>
