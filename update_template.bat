@@ -21,12 +21,19 @@ for /f "usebackq delims=" %%A in ("%snippet_file%") do (
     set "line=%%A"
     call set "line=%%line%%"
 
+    
     REM Look for a single quote (') not preceded by a backslash (\)
-    echo !line! | findstr /r /c:": '[^\\\']*'[^\\\']*'," >nul
+    set "line=!line:&=^&!"
+    set "line=!line:|=^|!"
+    set "line=!line:>=^>!"
+    set "line=!line:<=^<!"
+    set "line=!line:^^=^!"
+    
+    echo(!line! | findstr /r /c:": '[^\\\']*'[^\\\']*'," >nul
     if !errorlevel! neq 1 (
-        echo _______________________________________________________________
-        echo Ignore above. Those are because special characters ^(i.e. '^&', '^|'^) is in the line
-        echo _______________________________________________________________
+        REM _______________________________________________________________
+        REM Ignore above. Those are because special characters ^(i.e. '^&', '^|'^) is in the line
+        REM _______________________________________________________________
 
         echo:
         echo:
@@ -36,11 +43,12 @@ for /f "usebackq delims=" %%A in ("%snippet_file%") do (
         timeout 30
         exit /b 1
     )
+    
     set /a counter+=1
 )
-echo _______________________________________________________________
-echo Ignore above. Those are because special characters ^(i.e. '^&', '^|'^) are in the line
-echo _______________________________________________________________
+REM _______________________________________________________________
+REM Ignore above. Those are because special characters ^(i.e. '^&', '^|'^) are in the line
+REM _______________________________________________________________
 
 echo:
 echo:
@@ -58,47 +66,55 @@ set "in_block=0"
 
 
 REM Create a new file
-    for /f "usebackq delims=" %%A in ("%target_file%") do (
+(    for /f "usebackq delims=" %%A in ("%target_file%") do (
         set "line=%%A"
-        setlocal enabledelayedexpansion
+        
+        set "line=!line:&=^&!"
+        set "line=!line:|=^|!"
+        set "line=!line:>=^>!"
+        set "line=!line:<=^<!"
+        set "line=!line:^^=^!"
         echo !line! | findstr /C:"%start_marker%" >nul
 
     
         if !errorlevel! neq 1 (
             echo find start
-            echo !line! >> "%tmp_file%"    
+            echo !line!    
             REM Insert the new content
             for /f "usebackq delims=" %%B in ("%snippet_file%") do (
-                echo %%B >> "%tmp_file%"
+                echo %%B 
             )
-            endlocal
+            
             set "in_block=1"
         )
         if !errorlevel! equ 1 (            
             if !in_block! neq 1 (
-                echo !line! >> "%tmp_file%"
+                echo !line!
                 
-                endlocal
+                
             )
             if !in_block! equ 1 (
                 echo !line! | findstr /C:"%end_marker%" >nul
                 if !errorlevel! neq 1 (
-                    echo find end     
-                    echo !line! >> "%tmp_file%"
-                    endlocal
+                    echo find end 
+                    echo:
+                    echo This may take a while. Let's have a coffee break:^)
+                    echo:
+                    echo !line! 
+                    
                     set "in_block=2"
                 )
             )            
         )
     )
-
+) > "%tmp_file%"
 
 move /y "%tmp_file%" "%target_file%" >nul
 
 endlocal
-echo _______________________________________________________________
-echo Ignore above. Those are because special characters ^(i.e. '^&', '^|'^) are in the line
-echo _______________________________________________________________
+REM _______________________________________________________________
+REM Ignore above. Those are because special characters ^(i.e. '^&', '^|'^) are in the line
+REM _______________________________________________________________
 
 echo:
 echo:
