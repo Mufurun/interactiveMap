@@ -11,6 +11,17 @@ ___
 ___
 
 
+# Template Tutorial
+ - Double-click upload_template.sh or uploade_template.bat and follow the instruction to learn how to modify the codes.
+ - shell file works fast and clean whereas batch file is slow and messy
+   - Because I'm not familiar with batch file...
+   - Let me improve the program
+ 
+
+___
+___
+
+
 # Instructions for Staffs
  - There are basically two operations to publish
     1. [Update Contents](#update-contents)
