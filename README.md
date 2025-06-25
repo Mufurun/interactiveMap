@@ -31,6 +31,7 @@ ___
     - [Common Error and Debugging](#common-error-and-debugging)
 
 ## Publish 
+ - Because excel file is still developing, I believe it should not be store in public repository.
  - Everything is in the Heritage_Map_Project folder (S:\Curatorial\Writing\Heritage_Map_Project)
  - Below Heritage_Map_Project folder refers to S:\Curatorial\Writing\Heritage_Map_Project
 ### 1 Update Contents<a name="update-contents"></a>
@@ -42,8 +43,8 @@ ___
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
  - If you do not know, just blank the cells
  - **##IMPORTANT##**
-   - When you use a quotation mark (') in any of the fields, **PUT a backslash ('\') behind it** so that the excel recognizes it as a single string.
-     - Such as) Mann's Lumber Company --> Mann\'s Lumber Company 
+   - When you use a single quotation mark (') in any of the fields, **PUT a backslash ('\\') behind it** so that the excel recognizes it as a single string.
+     - Such as) Mann's Lumber Company --> Mann\\'s Lumber Company 
 
  - Below, explanations of each colunm
    - **Title**
