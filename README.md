@@ -180,19 +180,21 @@ ___
     - [x] Link
   - [x] Texts
   - [x] Additional Sources
-    - [ ] Link 
+    - [x] Link 
 - [ ] Controls
   - [x] Allow users to zoom up by the region
     - [ ] Show the regional district   
   - [x] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
 - [ ] Map Setting
+  - [x] Show complete sites and draft sites (blue and orange respectively)
   - [ ] Satelite imagery
   - [ ] Topographic Map 
 - [ ] Succession
   - [ ] Make instruction
   - [x] Shell to make it easier to update
   - [x] Need a batch file for windows
+  - [x] Allow programmer to select if they want coplete map or draft map. 
         
 ## Distribution
  - All data should not be publicly available since those may include private information before revision. 
