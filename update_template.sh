@@ -23,8 +23,8 @@ echo "Valid template.txt"
 target_file="src/data.js"
 snippet_file="template.txt"
 placeholder="//Replace This Line (and Delete)"
-start_marker="*************************************/"
-end_marker="/************************************"
+start_marker="*************************************/ "
+end_marker="/************************************ "
 
 # Create a temporary file
 tmp_file=$(mktemp)

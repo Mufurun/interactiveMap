@@ -58,52 +58,66 @@ echo:
 echo _______________________________________________________________
 
 REM Markers (adjust if needed)
-set "start_marker=*************************************/"
-set "end_marker=/************************************"
+set "start_marker=*************************************/ "
+set "end_marker=/************************************ "
 
 REM Start clean
 set "in_block=0"
+
+del "%tmp_file%"
 
 
 REM Create a new file
     for /f "usebackq delims=" %%A in ("%target_file%") do (
         set "line=%%A"
-        
+
         set "line=!line:&=^&!"
         set "line=!line:|=^|!"
         set "line=!line:>=^>!"
         set "line=!line:<=^<!"
         set "line=!line:^^=^!"
-        echo !line! | findstr /C:"%start_marker%" >nul
+        @REM echo !line! | findstr /C:"%start_marker%" >nul 
 
     
-        if !errorlevel! neq 1 (
-            echo !line! >> "%tmp_file%"
+        @REM if !errorlevel! neq 1 (
+        if "!line!"=="%start_marker%" (
+            echo(*************************************/ >> "%tmp_file%"
             REM Insert the new content
             for /f "usebackq delims=" %%B in ("%snippet_file%") do (
-                echo %%B >> "%tmp_file%"
+                @REM if not %%B=="" (
+                    echo %%B >> "%tmp_file%"
+                @REM ) else (
+                @REM     echo. >> "%tmp_file%"
+                @REM )    
             )
             
             set "in_block=1"
-        )
-        if !errorlevel! equ 1 (            
+        ) else (
+        @REM if !errorlevel! equ 1 (            
             if !in_block! neq 1 (
-                echo !line! >> "%tmp_file%"
-                
-                
+                @REM if not !line!=="" (
+                    echo(!line! >> "%tmp_file%"
+                @REM ) else (
+                @REM     echo. >> "%tmp_file%"
+                @REM )                    
             )
             if !in_block! equ 1 (
-                echo !line! | findstr /C:"%end_marker%" >nul
-                if !errorlevel! neq 1 (
+                @REM echo !line! | findstr /C:"%end_marker%" >nul
+                @REM if !errorlevel! neq 1 (
+                if "!line!"=="%end_marker%" (
                     echo:
                     echo This may take a while. Let's have a coffee break:^)
                     echo:
-                    echo !line! >> "%tmp_file%"
-                    
+                    @REM if not !line!=="" (
+                        echo(/************************************ >> "%tmp_file%"
+                    @REM ) else (
+                    @REM     echo. >> "%tmp_file%"
+                    @REM )    
                     set "in_block=2"
                 )
             )            
         )
+        
     )
 
 move /y "%tmp_file%" "%target_file%" >nul
