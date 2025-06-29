@@ -141,13 +141,15 @@
   height: 90%;
 }
 .large-image-div{
-  display:block;
+  display:flex;
   justify-content: center;
   margin:auto;
+  align-items: center;
+  height: 100%;
 }
 .large-image{
-  max-height: 75%;
-  max-width: 75%;
+  max-height: 100%;
+  max-width: 100%;
   display: block;
   margin: auto;
 }
