@@ -32,7 +32,7 @@ const points = [
     const category_list = [        
         'camp',        
         'sawmill',        
-        'p^&p',        
+        'p&p',        
         'community',        
         'BCFS'        
     ]        
