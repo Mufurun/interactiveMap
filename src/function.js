@@ -15,11 +15,19 @@
       
   
   */
-   function createPopupContent(point) {
+   function createPopupContent(point, rowNum = 0) {
   
     //div
         const container = document.createElement('div');
         container.className = 'popup-content';
+    
+    //Row Number
+        if (rowNum>0){
+          const row = document.createElement('h6');
+          row.textContent = "#"+ rowNum + " in the data.js/the data file";
+          row.className = 'year';
+          container.appendChild(row);
+        }
   
     //title
         const title = document.createElement('strong');
