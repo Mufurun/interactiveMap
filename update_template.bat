@@ -70,14 +70,6 @@ del "%tmp_file%"
 REM Create a new file
     for /f "usebackq delims=" %%A in ("%target_file%") do (
         set "line=%%A"
-
-        set "line=!line:&=^&!"
-        set "line=!line:|=^|!"
-        set "line=!line:>=^>!"
-        set "line=!line:<=^<!"
-        set "line=!line:^^=^!"
-        @REM echo !line! | findstr /C:"%start_marker%" >nul 
-
     
         @REM if !errorlevel! neq 1 (
         if "!line!"=="%start_marker%" (

@@ -22,6 +22,9 @@
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel = "stylesheet" href = "src/styles.css" />
+  <link rel = "stylesheet" href = "src/filcon_styles.css" />
+  <link rel = "stylesheet" href = "src/regcon_styles.css" />
+  <link rel = "stylesheet" href = "src/image_styles.css" />
   <link rel = "stylesheet" href = "terms-conditions/terms-conditions.css" />
 </head>
 <body>
@@ -135,6 +138,7 @@
 
 
     try{
+      let rowNum = 0;
       points.forEach(point => {//This is Main
         if(point.error != 'coords'){
           const marker = L.marker(point.coords);
@@ -143,7 +147,8 @@
           }
           
           marker.bindPopup(() => {
-            const popupContent = createPopupContent(point);
+            rowNum++;
+            const popupContent = createPopupContent(point, rowNum);
             return popupContent;
           }) 
           marker.addTo(map);
