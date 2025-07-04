@@ -137,6 +137,7 @@
       });
 
 
+    let count_area = {'all':1};
     try{
       let rowNum = 0;
       points.forEach(point => {//This is Main
@@ -174,7 +175,7 @@
     }catch(error){alert("Seems to have at least an error. \nPlease check data entry. and try again");}
   
   
-  /*
+/*
   ##########################################
   ######     All Kinds of Controls     #####
   ##########################################
@@ -207,7 +208,7 @@
        const customControl = L.Control.extend({
         onAdd: function (map) {
           const container = L.DomUtil.create('div', 'custom-control leaflet-bar');
-          container.innerHTML = customControlhtml();
+          container.innerHTML = customControlhtml(count_area);
   
           // Prevent map click propagation
           L.DomEvent.disableClickPropagation(container);

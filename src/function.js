@@ -296,68 +296,144 @@
   ################################################
   ######     Functions for Control HTML     ######
   ################################################
-  
+  const region_categories = [          
+        'coastalBC',          
+        'vancouverIsland',         
+        'haidaGwaii',         
+        'vancouver', 
+//        
+        'capital',         
+        'cowichanValley',         
+        'nanaimoo',         
+        'comoxValley',         
+        'alberniClayoquot',         
+//       
+        'victoria',         
+        'viewRoyal',         
+        'sooke',         
+        'ladysmith',         
+        'lakeCowichan',         
+        'northCowichan',         
+        'chemainus',         
+        'cowichanBay',         
+        'shawniganLake',         
+        'ptRenfrew',         
+        'nanaimo',         
+        'courtenay',         
+        'alberni',         
+        'strathcona',         
+        'campbell',         
+    ];        
     
   */
-      function customControlhtml(){
+      function customControlhtml(count_area){
+        //check the region
+        
+        
+        if(count_area.hasOwnProperty('victoria')){count_area['capital'] = 1;}
+        if(count_area.hasOwnProperty('viewRoyal')){count_area['capital'] = 1;}
+        if(count_area.hasOwnProperty('sooke')){count_area['capital'] = 1;}
+        if(count_area.hasOwnProperty('ladysmith')){count_area['cowichanValley'] = 1;}
+        if(count_area.hasOwnProperty('lakeCowichan')){count_area['cowichanValley'] = 1;}
+        if(count_area.hasOwnProperty('northCowichan')){count_area['cowichanValley'] = 1;}
+        if(count_area.hasOwnProperty('chemainus')){count_area['cowichanValley'] = 1;}
+        if(count_area.hasOwnProperty('cowichanBay')){count_area['cowichanValley'] = 1;}
+        if(count_area.hasOwnProperty('shawniganLake')){count_area['cowichanValley'] = 1;}
+        if(count_area.hasOwnProperty('ptRenfrew')){count_area['cowichanValley'] = 1;}
+        if(count_area.hasOwnProperty('nanaimo')){count_area['nanaimoo'] = 1;}
+        if(count_area.hasOwnProperty('courtenay')){count_area['comoxValley'] = 1;}
+        if(count_area.hasOwnProperty('alberni')){count_area['alberniClayoquot'] = 1;}
+        if(count_area.hasOwnProperty('campbell')){count_area['strathcona'] = 1;}
+        if(count_area.hasOwnProperty('capital')){count_area['vancouverIsland'] = 1;}
+        if(count_area.hasOwnProperty('cowichanValley')){count_area['vancouverIsland'] = 1;}
+        if(count_area.hasOwnProperty('nanaimoo')){count_area['vancouverIsland'] = 1;}
+        if(count_area.hasOwnProperty('comoxValley')){count_area['vancouverIsland'] = 1;}
+        if(count_area.hasOwnProperty('alberniClayoquot')){count_area['vancouverIsland'] = 1;}
+        if(count_area.hasOwnProperty('strathcona')){count_area['vancouverIsland'] = 1;}
+
         let container = `
           <div class = "custom-control-hover">
               <strong>Region Control</strong>
               <div class="custom-content">
-                <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>
-                
+                <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>`;
+              if(count_area.hasOwnProperty('vancouverIsland')||count_area.hasOwnProperty('all')){
+                container +=`
                 <div class = 'control-button-wrapper'>
                     <button class="collapsible" >Vancouver Island</button>
                     <button class = 'button' id = 'vancouverIsland'></button>
                 </div>
-                <div class="content">
+                <div class="content">`;
+                if(count_area.hasOwnProperty('capital')||count_area.hasOwnProperty('all')){
+                    container += `
                     <div class = 'control-button-wrapper'>
                         <button class="collapsible" >Capital Regional District</button>
                         <button class = 'button' id = 'capital'></button>
                     </div>
-                    <div class="content">
+                    <div class="content">`;
+                    if(count_area.hasOwnProperty('victoria')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Victoria</button>
                             <button class = 'button' id = 'victoria'></button>
                         </div>
                         <div class="content">
                             <div id = 'list_victoria'></div>
-                        </div>
+                        </div>`;
+
+                    }
+                    if(count_area.hasOwnProperty('viewRoyal')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >View Royal</button>
                             <button class = 'button' id = 'viewRoyal'></button>
                         </div>
                         <div class="content">
                             <div id = 'list_viewRoyal'></div>
-                        </div>
+                        </div>`;
+                    }
+                    if(count_area.hasOwnProperty('sooke')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Sooke</button>
                             <button class = 'button' id = 'sooke'></button>
                         </div>
                         <div class="content">
                             <div id = 'list_sooke'></div>
-                        </div>
-                        <div id = 'list_capital'></div>
-                    </div>
+                        </div>`;
+                    }
+                    container += `
+                      <div id = 'list_capital'></div>
+                    </div>`;
+            }
+            if(count_area.hasOwnProperty('cowichanValley')||count_area.hasOwnProperty('all')){
+              container +=`
                     <div class = 'control-button-wrapper'>
                         <button class="collapsible" >Cowichan Valley Regional District</button>
                         <button class = 'button' id = 'cowichanValley'></button>
                     </div>
-                    <div class="content">
+                    <div class="content">`;
+                    if(count_area.hasOwnProperty('ladysmith')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Ladysmith</button>
                             <button class = 'button' id = 'ladysmith'></button>
                         </div>
                         <div class="content">
                             <div id = 'list_ladysmith'></div>
-                        </div>
+                        </div>`;
+                    }
+                    if(count_area.hasOwnProperty('lakeCowichan')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Lake Cowichan</button>
                             <button class = 'button' id = 'lakeCowichan'></button>
                         </div>
                         <div class="content">
                             <div id = 'list_lakeCowichan'></div>
-                        </div>
+                        </div>`;
+                    }
+                    if(count_area.hasOwnProperty('northCowichan')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >North Cowichan</button>
                             <button class = 'button' id = 'northCowichan'></button>
@@ -365,6 +441,11 @@
                         <div class="content">
                             <div id = 'list_northCowichan'></div>
                         </div>
+                      `;
+
+                    }
+                    if(count_area.hasOwnProperty('chemainus')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Chemainus</button>
                             <button class = 'button' id = 'chemainus'></button>
@@ -372,6 +453,10 @@
                         <div class="content">
                             <div id = 'list_chemainus'></div>
                         </div>
+                      `;
+                    }
+                    if(count_area.hasOwnProperty('cowichanBay')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Cowichan Bay</button>
                             <button class = 'button' id = 'cowichanBay'></button>
@@ -379,6 +464,10 @@
                         <div class="content">
                             <div id = 'list_cowichanBay'></div>
                         </div>
+                      `;
+                    }
+                    if(count_area.hasOwnProperty('shawniganLake')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Shawnigan Lake</button>
                             <button class = 'button'id = 'shawniganLake' ></button>
@@ -386,6 +475,10 @@
                         <div class="content">
                             <div id = 'list_shawniganLake'></div>
                         </div>
+                      `;
+                    }
+                    if(count_area.hasOwnProperty('ptRenfrew')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Port Renfrew</button>
                             <button class = 'button' id = 'ptRenfrew'></button>
@@ -393,13 +486,23 @@
                         <div class="content">
                             <div id = 'list_ptRenfrew'></div>
                         </div>
+                      `;
+                    }
+                    container += `
                         <div id = 'list_cowichanValley'></div>
                     </div>
+                    `;
+            }
+            if(count_area.hasOwnProperty('nanaimoo')||count_area.hasOwnProperty('all')){
+              container +=`
                     <div class = 'control-button-wrapper'>
                         <button class="collapsible" >Regional District of Nanaimo</button>
                         <button class = 'button' id = 'nanaimoo'></button>
                     </div>
                     <div class="content">
+              `;
+                    if(count_area.hasOwnProperty('nanaimo')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Nanaimo</button>
                             <button class = 'button' id = 'nanaimo'></button>
@@ -407,13 +510,23 @@
                         <div class="content">
                             <div id = 'list_nanaimo'></div>
                         </div>
+                      `;
+                    }
+                    container += `
                         <div id = 'list_nanaimoo'></div>
                     </div>
+                    `;
+            }
+            if(count_area.hasOwnProperty('comoxValley')||count_area.hasOwnProperty('all')){
+              container += `
                     <div class = 'control-button-wrapper'>
                         <button class="collapsible" >Comox Valley Regional District</button>
                         <button class = 'button' id = 'comoxValley'></button>
                     </div>
                     <div class="content">
+              `;
+                    if(count_area.hasOwnProperty('courtenay')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Courtenay</button>
                             <button class = 'button' id = 'courtenay'></button>
@@ -421,13 +534,23 @@
                         <div class="content">
                             <div id = 'list_courtenay'></div>
                         </div>
+                      `;
+                      }
+                      container += `
                         <div id = 'list_comoxValley'></div>                      
                     </div>
+                      `;
+            }
+            if(count_area.hasOwnProperty('alberniClayoquot')||count_area.hasOwnProperty('all')){
+              container += `
                     <div class = 'control-button-wrapper'>
                         <button class="collapsible" >Regional District of Alberni-Clayoquot</button>
                         <button class = 'button' id = 'alberniClayoquot'></button>
                     </div>
                     <div class="content">
+              `;
+                    if(count_area.hasOwnProperty('alberni')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Port Alberni</button>
                             <button class = 'button' id = 'alberni'></button>
@@ -435,13 +558,23 @@
                         <div class="content">
                             <div id = 'list_alberni'></div>
                         </div>
+                      `;
+                    }
+                    container += `
                         <div id = 'list_alberniClayoquot'></div>                                            
                     </div>
+                    `;
+            }
+            if(count_area.hasOwnProperty('strathcona')||count_area.hasOwnProperty('all')){
+              container += `
                     <div class = 'control-button-wrapper'>
                         <button class="collapsible" >Strathcona Regional District</button>
                         <button class = 'button' id = 'strathcona'></button>
                     </div>
                     <div class="content">
+              `;
+                    if(count_area.hasOwnProperty('campbell')||count_area.hasOwnProperty('all')){
+                      container += `
                         <div class = 'control-button-wrapper'>
                             <button class="collapsible" >Campbell</button>
                             <button class = 'button' id = 'campbell'></button>
@@ -449,28 +582,37 @@
                         <div class="content">
                             <div id = 'list_campbell'></div>
                         </div>
+                      `;
+                    }
+                    container += `
                         <div id = 'list_strathcona'></div>
                     </div>
-                    <div id = 'list_vancouverIsland'></div>
-                </div>
-          
-  
+                    `;
+            }
+          container += `
+                  <div id = 'list_vancouverIsland'></div>
+                </div>`;
+        }
+        if(count_area.hasOwnProperty('haidaGwaii')||count_area.hasOwnProperty('all')){
+          container += `
                 <div class = 'control-button-wrapper'>
                     <button class="collapsible" >Haida Gwaii</button>
                     <button class = 'button' id = 'haidaGwaii'></button>
                 </div>
                 <div class="content">
                   <div id = 'list_haidaGwaii'></div>
-                </div>
-  
-                <div class = 'control-button-wrapper'>
+                </div>`;
+        }
+        if(count_area.hasOwnProperty('vancouver')||count_area.hasOwnProperty('all')){
+          container += `<div class = 'control-button-wrapper'>
                     <button class="collapsible" >Vancouver</button>
                     <button class = 'button' id = 'vancouver'></button>
                 </div>
-                    <div class="content">
+                <div class="content">
                     <div id = 'list_vancouver'></div>
-                </div>
-                <div id = 'list_coastalBC'></div>
+                </div>`;
+        }                
+                container += `<div id = 'list_coastalBC'></div>
                 <div class = 'rg-con-foot'>
                     <divS class='rg-zoom-ex'>Click Plus Sign to Zoom In</div>
                 </div>

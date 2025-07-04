@@ -125,7 +125,7 @@
         shadowSize: [41, 41]
       });
 
-
+      let count_area = {};
     try{
 
       points.forEach(point => {
@@ -146,6 +146,11 @@
             const commentsBox = popupElement.querySelector('.comments');
           });
           if(!point.error){
+            if (!count_area.hasOwnProperty(point.area)) {
+              count_area[point.area] = 1;
+            } else{
+              count_area[point.area]  = count_area[point.area] + 1;
+            }
             markers.push({
               marker: marker,
               category: point.category,
@@ -159,9 +164,11 @@
 
         
        });
-    }catch(error){alert("Seems to have at least an error. \nPlease check data entry. and try again");}
-  
-  
+    }catch(error){console.log(error);
+      alert("Seems to have at least an error. \nPlease check data entry. and try again");}
+
+
+
  /*
   ##########################################
   ######     All Kinds of Controls     #####
@@ -195,7 +202,7 @@
        const customControl = L.Control.extend({
         onAdd: function (map) {
           const container = L.DomUtil.create('div', 'custom-control leaflet-bar');
-          container.innerHTML = customControlhtml();
+          container.innerHTML = customControlhtml(count_area);
   
           // Prevent map click propagation
           L.DomEvent.disableClickPropagation(container);

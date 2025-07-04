@@ -1,112 +1,45 @@
-    .rg-con-foot{
-      align-content: end;
-      background: seashell;
-      height:75%;
-    }
-    .rg-zoom-ex{
-      font-size: 12px;
-    }
-    
-  
-  
-/* 
 
-    the button that is used to open and close the collapsible content
+/*
+**************************
+****  Filter Control  ****
+**************************
 */
-    
-    .control-button-wrapper{
-      display: flex;
-    }
-    .collapsible {
-      background-color: seashell;
-      color: black;
-      cursor: pointer;
-      padding: 5px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 14px;
-    }
-    .button-original-map {
-      background-color: seashell;
-      color: black;
-      cursor: pointer;
-      padding: 5px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 14px;
-    }
 
-    .button {
-      background-color: seashell;
-      color: black;
-      cursor: pointer;
+    .filter-control {
+      position: relative;
+    }
+    .filter-control label {
+      display: block;
+      margin: 3px 0;
+    } 
+    .filter-control-hover {
+      background: rgb(255, 255, 255);
+      border-radius: 4px;
       padding: 5px;
-      width: 40px;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 14px;
+      font-size: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      cursor: pointer;
+      overflow: auto;
     }
-    .button::after{
-      content: "\2795";
-      font-size: 15px;
-      margin-left: 4px;
-    }
-    
-    .active, .collapsible:hover, .button:hover, .list-button {
-      background-color: rgb(237, 225, 220);
+    .filter-content {
+      display: none;
+      margin-top: 5px;
     }
   
-    .collapsible:after {
-      content: '\25BC';
-      color: rgb(45, 70, 51);
-      font-weight: bold;
-      float: left;
-      margin-left: 5px;
-    }
-    
-    .active:after {
-      content: "\25B2";
-    }
-    
-    .content {
-      padding: 0 10px;
-      max-height: 0;
-      overflow: auto;
-      transition: max-height 0.2s ease-out;
-      background-color: rgba(251, 236, 225, 0.018);
-      scrollbar-width: thin;
-    }
-    .plain{
-      font-size: 16px;
-      background-color: seashell;
-      padding: 0px;
+    .filter-control:hover .filter-content {
       display: block;
+      background: rgb(177, 165, 155);
     }
-    .list-button{
-      background-color: rgb(237, 225, 220);
-      color: black;
-      padding: 2 10px;
-      width: auto;
-      border: none;
-      text-align: left;
-      outline:  none;
-      font-size: 12px;
-    }
-    .list-button:hover{
-      background-color: seashell;
-    }
-    .list-button:active{
-      background-color: rgb(245, 108, 11);
-    }
-    .no-loc{
-      font-size: 11px;
-      background-color: seashell;
-    }
-    
 
+    #camp{
+      margin-top: 10%;
+    }
+    #showFilterYear{
+      width:50px;
+      text-align: center;
 
+    }
+    #filterYear{
+      width: 100%;
+    }
+  
