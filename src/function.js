@@ -614,7 +614,6 @@
         }                
                 container += `<div id = 'list_coastalBC'></div>
                 <div class = 'rg-con-foot'>
-                    <div class='rg-zoom-ex'>Click Plus Sign to Zoom In</div>
                 </div>
               </div>
           </div>
