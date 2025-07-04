@@ -185,7 +185,8 @@ ___
     - [x] Link 
 - [ ] Controls
   - [x] Allow users to zoom up by the region
-    - [ ] Show the regional district   
+    - [ ] Show the regional district
+    - [ ] Only the area to be shown 
   - [x] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
 - [ ] Map Setting
@@ -193,7 +194,7 @@ ___
   - [ ] Satelite imagery
   - [ ] Topographic Map 
 - [ ] Succession
-  - [ ] Make instruction
+  - [ ] Make instructions
   - [x] Shell to make it easier to update
   - [x] Need a batch file for windows
   - [x] Allow programmer to select if they want coplete map or draft map. 
