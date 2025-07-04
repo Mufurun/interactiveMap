@@ -140,7 +140,7 @@
     let count_area = {'all':1};
     try{
       let rowNum = 0;
-      points.forEach(point => {//This is Main
+      points.forEach(point => {//This is All Markers
         if(point.error != 'coords'){
           const marker = L.marker(point.coords);
           if(point.error){
@@ -255,8 +255,13 @@
                   
               });
             });
+            const regconbutton = document.getElementById('regcon');
+            if(regconbutton){
+                regconbutton.addEventListener("click", () => {
+                  alert("Click Plus Sign to Zoom In");
+                });
+            }
 
-      
   
             region_categories.forEach(location =>{
                 listMarkers(location);
@@ -314,6 +319,13 @@
                 filterMarker();
               }
             });
+
+            const filconbutton = document.getElementById('filcon');
+            if(filconbutton){
+                filconbutton.addEventListener("click", () => {
+                  alert("How to use this");
+                });
+            }
 
           }, 0);
     

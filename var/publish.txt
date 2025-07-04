@@ -125,7 +125,7 @@
         shadowSize: [41, 41]
       });
 
-    let count_area = {};
+    let count_area = {};//Disctionary donesn't need if statement
 
     try{
 
@@ -250,8 +250,13 @@
                   
               });
             });
+            const regconbutton = document.getElementById('regcon');
+            if(regconbutton){
+                regconbutton.addEventListener("click", () => {
+                  alert("Click Plus Sign to Zoom In");
+                });
+            }
 
-      
   
             region_categories.forEach(location =>{
                 listMarkers(location);
@@ -309,6 +314,13 @@
                 filterMarker();
               }
             });
+
+            const filconbutton = document.getElementById('filcon');
+            if(filconbutton){
+                filconbutton.addEventListener("click", () => {
+                  alert("How to use this");
+                });
+            }
 
           }, 0);
     

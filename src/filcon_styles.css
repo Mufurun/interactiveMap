@@ -12,15 +12,6 @@
       display: block;
       margin: 3px 0;
     } 
-    .filter-control-hover {
-      background: rgb(255, 255, 255);
-      border-radius: 4px;
-      padding: 5px;
-      font-size: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-      cursor: pointer;
-      overflow: auto;
-    }
     .filter-content {
       display: none;
       margin-top: 5px;

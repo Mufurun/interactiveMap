@@ -353,7 +353,7 @@
 
         let container = `
           <div class = "custom-control-hover">
-              <strong>Region Control</strong>
+              <strong>Region Control  </strong><button class = 'question' id = 'regcon'></button>
               <div class="custom-content">
                 <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>`;
               if(count_area.hasOwnProperty('vancouverIsland')||count_area.hasOwnProperty('all')){
@@ -614,7 +614,7 @@
         }                
                 container += `<div id = 'list_coastalBC'></div>
                 <div class = 'rg-con-foot'>
-                    <divS class='rg-zoom-ex'>Click Plus Sign to Zoom In</div>
+                    <div class='rg-zoom-ex'>Click Plus Sign to Zoom In</div>
                 </div>
               </div>
           </div>
@@ -624,8 +624,8 @@
 
       function filterControlhtml(){
         return `
-          <div class = "filter-control-hover">
-            <strong>Filter  Control</strong>
+          <div class = "custom-control-hover">
+            <strong>Filter  Control</strong> <button class = 'question' id = 'filcon'></button>
             <div class="filter-content"><div class="plain">
               <label><input type="checkbox" id="camp" checked>Show camps</label><br>
               <label><input type="checkbox" id="sawmill" checked>Show Sawmills</label><br>

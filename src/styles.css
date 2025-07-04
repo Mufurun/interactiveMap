@@ -125,20 +125,36 @@
       padding: 5px;
       font-size: 10px;
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
-      cursor: pointer;
+      cursor:auto;
       overflow: auto;
+      font-size: 15px;
+
     }
     .custom-content {
       display: none;
-      overflow:hidden;
+      overflow: hidden;
       margin-top: 5px;
-      height: 465px
+      height: 465px;
     }
   
     .custom-control:hover .custom-content {
       display: block;
       background: rgb(177, 165, 155);
     }
+
+    .question {
+      background-color: rgba(248, 246, 245, 0);
+      color: black;
+      cursor: pointer;
+      border: none;
+      width: 40px;
+    }
+    .question::after{
+      content: "\1F4A1";
+      font-size: 15px;
+      margin-left: 4px;
+    }
+
 
 
 
