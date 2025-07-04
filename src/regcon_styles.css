@@ -1,10 +1,15 @@
     .rg-con-foot{
       align-content: end;
       background: seashell;
-      height:75%;
+      height:100%;
+      width: 338px;
+      border: none;
+
     }
     .rg-zoom-ex{
       font-size: 12px;
+      border: none;
+
     }
     
   
@@ -16,6 +21,8 @@
     
     .control-button-wrapper{
       display: flex;
+      border: none;
+
     }
     .collapsible {
       background-color: seashell;
@@ -80,12 +87,15 @@
       transition: max-height 0.2s ease-out;
       background-color: rgba(251, 236, 225, 0.018);
       scrollbar-width: thin;
+      border: none;
+
     }
     .plain{
       font-size: 16px;
       background-color: seashell;
       padding: 0px;
       display: block;
+      border: none;
     }
     .list-button{
       background-color: rgb(237, 225, 220);
@@ -106,6 +116,8 @@
     .no-loc{
       font-size: 11px;
       background-color: seashell;
+      border: none;
+
     }
     
 
