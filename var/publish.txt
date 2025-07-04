@@ -125,7 +125,8 @@
         shadowSize: [41, 41]
       });
 
-      let count_area = {};
+    let count_area = {};
+
     try{
 
       points.forEach(point => {
@@ -164,6 +165,10 @@
 
         
        });
+      if (points.length == 0){
+        alert("Seems you have not updated the data.js file \n Read instructions here (https://github.com/Mufurun/interactiveMap)");
+      }
+
     }catch(error){console.log(error);
       alert("Seems to have at least an error. \nPlease check data entry. and try again");}
 

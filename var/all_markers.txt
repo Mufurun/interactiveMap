@@ -140,7 +140,7 @@
     let count_area = {'all':1};
     try{
       let rowNum = 0;
-      points.forEach(point => {//This is Main
+      points.forEach(point => {//This is All Markers
         if(point.error != 'coords'){
           const marker = L.marker(point.coords);
           if(point.error){
@@ -172,6 +172,10 @@
 
         
        });
+    if (points.length == 0){
+      alert("Seems you have not updated the data.js file \n read instructions here (https://github.com/Mufurun/interactiveMap)");
+    }
+
     }catch(error){alert("Seems to have at least an error. \nPlease check data entry. and try again");}
   
   
