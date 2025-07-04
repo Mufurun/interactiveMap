@@ -125,7 +125,7 @@
         shadowSize: [41, 41]
       });
 
-
+      let count_area = {};
     try{
 
       points.forEach(point => {
@@ -146,6 +146,11 @@
             const commentsBox = popupElement.querySelector('.comments');
           });
           if(!point.error){
+            if (!count_area.hasOwnProperty(point.area)) {
+              count_area[point.area] = 1;
+            } else{
+              count_area[point.area]  = count_area[point.area] + 1;
+            }
             markers.push({
               marker: marker,
               category: point.category,
@@ -159,10 +164,12 @@
 
         
        });
-    }catch(error){alert("Seems to have at least an error. \nPlease check data entry. and try again");}
-  
-  
-  /*
+    }catch(error){console.log(error);
+      alert("Seems to have at least an error. \nPlease check data entry. and try again");}
+
+
+
+ /*
   ##########################################
   ######     All Kinds of Controls     #####
   ##########################################
@@ -195,183 +202,7 @@
        const customControl = L.Control.extend({
         onAdd: function (map) {
           const container = L.DomUtil.create('div', 'custom-control leaflet-bar');
-          container.innerHTML = `
-          <div class = "custom-control-hover">
-              <strong>Region Control</strong>
-              <div class="custom-content">
-                <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>
-                
-                <div class = 'control-button-wrapper'>
-                    <button class="collapsible" >Vancouver Island</button>
-                    <button class = 'button' id = 'vancouverIsland'></button>
-                </div>
-                <div class="content">
-                    <div class = 'control-button-wrapper'>
-                        <button class="collapsible" >Capital Regional District</button>
-                        <button class = 'button' id = 'capital'></button>
-                    </div>
-                    <div class="content">
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Victoria</button>
-                            <button class = 'button' id = 'victoria'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_victoria'></div>
-                        </div>
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >View Royal</button>
-                            <button class = 'button' id = 'viewRoyal'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_viewRoyal'></div>
-                        </div>
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Sooke</button>
-                            <button class = 'button' id = 'sooke'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_sooke'></div>
-                        </div>
-                        <div id = 'list_capital'></div>
-                    </div>
-                    <div class = 'control-button-wrapper'>
-                        <button class="collapsible" >Cowichan Valley Regional District</button>
-                        <button class = 'button' id = 'cowichanValley'></button>
-                    </div>
-                    <div class="content">
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Ladysmith</button>
-                            <button class = 'button' id = 'ladysmith'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_ladysmith'></div>
-                        </div>
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Lake Cowichan</button>
-                            <button class = 'button' id = 'lakeCowichan'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_lakeCowichan'></div>
-                        </div>
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >North Cowichan</button>
-                            <button class = 'button' id = 'northCowichan'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_northCowichan'></div>
-                        </div>
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Chemainus</button>
-                            <button class = 'button' id = 'chemainus'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_chemainus'></div>
-                        </div>
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Cowichan Bay</button>
-                            <button class = 'button' id = 'cowichanBay'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_cowichanBay'></div>
-                        </div>
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Shawnigan Lake</button>
-                            <button class = 'button'id = 'shawniganLake' ></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_shawniganLake'></div>
-                        </div>
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Port Renfrew</button>
-                            <button class = 'button' id = 'ptRenfrew'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_ptRenfrew'></div>
-                        </div>
-                        <div id = 'list_cowichanValley'></div>
-                    </div>
-                    <div class = 'control-button-wrapper'>
-                        <button class="collapsible" >Regional District of Nanaimo</button>
-                        <button class = 'button' id = 'nanaimoo'></button>
-                    </div>
-                    <div class="content">
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Nanaimo</button>
-                            <button class = 'button' id = 'nanaimo'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_nanaimo'></div>
-                        </div>
-                        <div id = 'list_nanaimoo'></div>
-                    </div>
-                    <div class = 'control-button-wrapper'>
-                        <button class="collapsible" >Comox Valley Regional District</button>
-                        <button class = 'button' id = 'comoxValley'></button>
-                    </div>
-                    <div class="content">
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Courtenay</button>
-                            <button class = 'button' id = 'courtenay'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_courtenay'></div>
-                        </div>
-                        <div id = 'list_comoxValley'></div>                      
-                    </div>
-                    <div class = 'control-button-wrapper'>
-                        <button class="collapsible" >Regional District of Alberni-Clayoquot</button>
-                        <button class = 'button' id = 'alberniClayoquot'></button>
-                    </div>
-                    <div class="content">
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Port Alberni</button>
-                            <button class = 'button' id = 'alberni'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_alberni'></div>
-                        </div>
-                        <div id = 'list_alberniClayoquot'></div>                                            
-                    </div>
-                    <div class = 'control-button-wrapper'>
-                        <button class="collapsible" >Strathcona Regional District</button>
-                        <button class = 'button' id = 'strathcona'></button>
-                    </div>
-                    <div class="content">
-                        <div class = 'control-button-wrapper'>
-                            <button class="collapsible" >Campbell</button>
-                            <button class = 'button' id = 'campbell'></button>
-                        </div>
-                        <div class="content">
-                            <div id = 'list_campbell'></div>
-                        </div>
-                        <div id = 'list_strathcona'></div>
-                    </div>
-                    <div id = 'list_vancouverIsland'></div>
-                </div>
-          
-  
-                <div class = 'control-button-wrapper'>
-                    <button class="collapsible" >Haida Gwaii</button>
-                    <button class = 'button' id = 'haidaGwaii'></button>
-                </div>
-                <div class="content">
-                  <div id = 'list_haidaGwaii'></div>
-                </div>
-  
-                <div class = 'control-button-wrapper'>
-                    <button class="collapsible" >Vancouver</button>
-                    <button class = 'button' id = 'vancouver'></button>
-                </div>
-                    <div class="content">
-                    <div id = 'list_vancouver'></div>
-                </div>
-                <div id = 'list_coastalBC'></div>
-                <div class = 'rg-con-foot'>
-                    <divS class='rg-zoom-ex'>Click Plus Sign to Zoom In</div>
-                </div>
-              </div>
-          </div>
-            `;
+          container.innerHTML = customControlhtml(count_area);
   
           // Prevent map click propagation
           L.DomEvent.disableClickPropagation(container);
@@ -439,21 +270,7 @@
       const filterControl = L.Control.extend({
         onAdd: function (map) {
           const container = L.DomUtil.create('div', 'filter-control leaflet-bar');
-          container.innerHTML = `
-          <div class = "filter-control-hover">
-            <strong>Filter  Control</strong>
-            <div class="filter-content"><div class="plain">
-              <label><input type="checkbox" id="camp" checked>Show camps</label><br>
-              <label><input type="checkbox" id="sawmill" checked>Show Sawmills</label><br>
-              <label><input type="checkbox" id="p&p" checked>Show Paper and Pulp Mills</label><br>
-              <label><input type="checkbox" id="community" checked>Show Comunities</label><br>
-              <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
-              <button id='allTime'>Show All Time</button><br>
-              <input type = 'range' id = 'filterYear' min="1699" max="2025" value="2025"> <br>
-              Year: <input type='text' id = 'showFilterYear' value = 'All Time' >
-            </div></div>
-          </div>
-            `;
+          container.innerHTML = filterControlhtml()
 
   
           // Prevent map click propagation
