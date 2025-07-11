@@ -1,3 +1,47 @@
+ 
+      //Icon to make them visibly identifiable
+      const greenIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+
+      const sawmill_icon = L.icon({
+        iconUrl: './icon/saw.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const camp_icon = L.icon({
+        iconUrl: './icon/camp.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const paper_icon = L.icon({
+        iconUrl: './icon/paper.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const community_icon = L.icon({
+        iconUrl: './icon/community.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+
 /*
   #####################################
   #####     Functions for Map     #####
@@ -162,7 +206,7 @@
           //Section for Close Button
             section.innerHTML = `
               <div class = 'image-popup-close'>
-                <button onclick="closeSection()", class = 'large-image-close'><image src = './src/close.png' class ="large-image-close-icon"></button>
+                <button onclick="closeSection()", class = 'large-image-close'><image src = './icon/close.png' class ="large-image-close-icon"></button>
               </div>
             `;
           //Section without Close Button
