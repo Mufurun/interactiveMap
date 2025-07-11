@@ -338,7 +338,51 @@
         map.addControl(new filterControl({ position: 'topright' }));
 
 
+  /*
+  ********************************
+  ******   Layer Control    ******
+  ********************************
+  */
+      const layerControl = L.Control.extend({
+        onAdd: function (map) {
+          const container = L.DomUtil.create('div', 'filter-control leaflet-bar');
+          container.innerHTML = layerControlhtml()
+
   
+          // Prevent map click propagation
+          L.DomEvent.disableClickPropagation(container);
+          L.DomEvent.disableScrollPropagation(container);
+
+          setTimeout(() => {
+            document.getElementById('layer').addEventListener('change', function(){
+              if (document.getElementById('layer').value == 'default'){
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  maxZoom: 20,
+                  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+              }
+              else if (document.getElementById('layer').value == 'topo1'){
+                L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/WMTS/tile/1.0.0/USGSTopo/default/default028mm/{z}/{y}/{x}.png', {
+                  maxZoom: 20,
+                }).addTo(map);
+              }
+              else if (document.getElementById('layer').value == 'topo2'){
+                L.tileLayer('https://tile.opentopomap.org/{z}/{x}/{y}.png', {
+                  maxZoom: 20,
+                }).addTo(map);
+              }
+              
+
+            }); 
+          }, 0);
+    
+          return container;
+        }
+      });
+        map.addControl(new layerControl({ position: 'bottomleft' }));
+
+
+
   /*
   ###################################
   ###################################
