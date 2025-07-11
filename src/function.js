@@ -682,3 +682,18 @@
           </div>
             `;
       }
+
+      function layerControlhtml(){
+        return `
+          <div class = "custom-control-hover">
+            <strong>Layer  Control</strong> <button class = 'question' id = 'filcon'></button>
+            <div class="filter-content"><div class="plain">
+              <select id="layer">
+                <option value="default">Default</option>
+                <option value="topo1">Topo1</option>
+                <option value="topo2">Topo2</option>
+              </select>
+            </div></div>
+          </div>
+            `;
+      }
