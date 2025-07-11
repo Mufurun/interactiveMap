@@ -85,7 +85,7 @@
     const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([51.5, -127], 6);
   
     //attribution
-      map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
