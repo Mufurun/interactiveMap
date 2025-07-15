@@ -331,7 +331,30 @@
         map.addControl(new filterControl({ position: 'topright' }));
 
 
+  /*
+  ********************************
+  ******   Layer Control    ******
+  ********************************
+  */
+      const layerControl = L.Control.extend({
+        onAdd: function (map) {
+          const container = L.DomUtil.create('div');
+          container.innerHTML = layerControlhtml()
+          layerFunctions(map);
+
   
+          // Prevent map click propagation
+          L.DomEvent.disableClickPropagation(container);
+          L.DomEvent.disableScrollPropagation(container);
+
+    
+          return container;
+        }
+      });
+        map.addControl(new layerControl({ position: 'bottomleft' }));
+
+
+
   /*
   ###################################
   ###################################
@@ -441,3 +464,4 @@
 
 </body>
 </html>
+

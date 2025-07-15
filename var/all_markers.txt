@@ -96,10 +96,10 @@
     const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([51.5, -127], 6);
   
     //attribution
-      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps" target="_blank">Leaflet</a>');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
       }).addTo(map);
     
   
@@ -290,6 +290,7 @@
           const container = L.DomUtil.create('div', 'filter-control leaflet-bar');
           container.innerHTML = filterControlhtml()
 
+
   
           // Prevent map click propagation
           L.DomEvent.disableClickPropagation(container);
@@ -338,7 +339,30 @@
         map.addControl(new filterControl({ position: 'topright' }));
 
 
+  /*
+  ********************************
+  ******   Layer Control    ******
+  ********************************
+  */
+      const layerControl = L.Control.extend({
+        onAdd: function (map) {
+          const container = L.DomUtil.create('div');
+          container.innerHTML = layerControlhtml()
+          layerFunctions(map);
+
   
+          // Prevent map click propagation
+          L.DomEvent.disableClickPropagation(container);
+          L.DomEvent.disableScrollPropagation(container);
+
+    
+          return container;
+        }
+      });
+        map.addControl(new layerControl({ position: 'bottomleft' }));
+
+
+
   /*
   ###################################
   ###################################
