@@ -191,8 +191,9 @@ ___
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
 - [ ] Map Setting
   - [x] Show complete sites and draft sites (blue and orange respectively)
-  - [ ] Satelite imagery
-  - [ ] Topographic Map 
+  - [x] Satelite imagery
+    - [ ] Attribution 
+  - [x] Topographic Map 
 - [ ] Succession
   - [ ] Make instructions
   - [x] Shell to make it easier to update
