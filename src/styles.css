@@ -147,6 +147,7 @@
       color: black;
       cursor: pointer;
       border: none;
+      text-decoration:none;
       width: 40px;
     }
     .question::after{

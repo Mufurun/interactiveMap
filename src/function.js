@@ -9,7 +9,7 @@
         shadowSize: [41, 41]
       });
 
-      const sawmill_icon = L.icon({
+      const sawmill_icon1 = L.icon({
         iconUrl: './icon/saw.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
@@ -17,7 +17,7 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-      const camp_icon = L.icon({
+      const camp_icon1 = L.icon({
         iconUrl: './icon/camp.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
@@ -25,7 +25,7 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-      const paper_icon = L.icon({
+      const paper_icon1 = L.icon({
         iconUrl: './icon/paper.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
@@ -33,7 +33,7 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-      const community_icon = L.icon({
+      const community_icon1 = L.icon({
         iconUrl: './icon/community.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
@@ -41,6 +41,43 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
+      const sawmill_icon2 = L.icon({
+        iconUrl: './icon/saw.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const camp_icon2 = L.icon({
+        iconUrl: './icon/camp.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const paper_icon2 = L.icon({
+        iconUrl: './icon/paper.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const community_icon2 = L.icon({
+        iconUrl: './icon/community.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const sawmill_icon = sawmill_icon1;
+      const camp_icon = camp_icon1;
+      const paper_icon = paper_icon1;
+      const community_icon = community_icon1;
+
 
 /*
   #####################################
@@ -370,6 +407,9 @@
     ];        
     
   */
+
+
+    
       function customControlhtml(count_area){
         //check the region
         
@@ -397,7 +437,7 @@
 
         let container = `
           <div class = "custom-control-hover">
-              <strong>Region Control  </strong><button class = 'question' id = 'regcon'></button>
+              <strong>Region Control  </strong><abbr class = 'question' id = 'regcon' title="Click Plus Sign to Zoom In"></abbr>
               <div class="custom-content">
                 <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>`;
               if(count_area.hasOwnProperty('vancouverIsland')||count_area.hasOwnProperty('all')){
@@ -701,6 +741,7 @@
             `;
       }
       function layerFunctions(map){
+
                   setTimeout(() => {
             document.getElementById('layer').addEventListener('change', function(){
               if (document.getElementById('layer').value == 'osm'){
@@ -739,9 +780,11 @@
                   attribution: 'Map data: &copy; <a href="http://opentopomap.org/" target="_blank"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)'
                 }).addTo(map);
               }
-              
+
 
             }); 
           }, 0);
 
+
       }
+
