@@ -12,6 +12,8 @@
   background-color: rgba(255, 245, 238, 0.9);
   padding: 20px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  cursor:auto;
+
 }
 /*Close Section*/
 .image-popup-close{
@@ -80,6 +82,5 @@
   .large-image-close-icon{
     filter: invert(1);
     background-color: rgba(0, 0, 0, 0);
-  }
-  
+  }  
 }
