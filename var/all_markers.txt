@@ -319,7 +319,7 @@
             document.getElementById('showFilterYear').addEventListener("input", function () {
               this.value = this.value.replace(/\D/g, "");
               document.getElementById('filterYear').value = this.value;
-              if(1700 <= +this.value && +this.value <= 2025){
+              if(1848 <= +this.value && +this.value <= 2025){
                 filterMarker();
               }
             });
@@ -458,7 +458,7 @@
           
           const year = +document.getElementById('filterYear').value;
           let boolYear = obj.yearStart <= year && year <= obj.yearEnd;
-//          if (year<1700||2025<year){boolYear = true;}
+//          if (year<1848||2025<year){boolYear = true;}
           if (allTime){boolYear = true;}
 
           if(boolCategory && boolYear){
