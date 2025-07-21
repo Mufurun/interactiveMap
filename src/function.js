@@ -184,61 +184,61 @@
           const regexUntilS = /^-\d{4}s/;
           if ((regex.test(list_description[i].slice(0,4)))&&(regexWithS.test(list_description[i].slice(5,10)))){
     //YYYY-YYYYs
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = list_description[i].slice(0,4) + '   - ' + list_description[i].slice(5,9) + 's  ' + list_description[i].slice(11);
             description.appendChild(each_description);
           }else if ((regexWithS.test(list_description[i].slice(0,5)))&&(regexWithS.test(list_description[i].slice(6,11)))){
     //YYYYs-YYYYs
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = list_description[i].slice(0,4) + 's - ' + list_description[i].slice(6,10) + 's  ' + list_description[i].slice(12);
             description.appendChild(each_description);
           }else if ((regexWithS.test(list_description[i].slice(0,5)))&&(regex.test(list_description[i].slice(6,10)))){
     //YYYYs-YYYY
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = list_description[i].slice(0,4) + 's - ' + list_description[i].slice(6,10) + '    ' + list_description[i].slice(11);
             description.appendChild(each_description);
           }else if ((regex.test(list_description[i].slice(0,4)))&&(regex.test(list_description[i].slice(5,9)))){
     //YYYY-YYYY
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = list_description[i].slice(0,4) + '   - ' + list_description[i].slice(5,9) + '    ' + list_description[i].slice(11);
             description.appendChild(each_description);
           }else if (regexUntilS.test(list_description[i].slice(0,6))) {
     //-YYYYs
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = '       -' + list_description[i].slice(1,5) + 's        ' + list_description[i].slice(8);
             description.appendChild(each_description);
           }else if (regexSinceS.test(list_description[i].slice(0,6))) {
     //YYYYs-
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = '         ' + list_description[i].slice(1,5) + 's-      ' + list_description[i].slice(8);
             description.appendChild(each_description);
           }else if (regexUntil.test(list_description[i].slice(0,5))) {
     //-YYYY
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = '       -' + list_description[i].slice(1,5) + '         ' + list_description[i].slice(7);
             description.appendChild(each_description);
           }else if (regexSince.test(list_description[i].slice(0,5))) {
     //YYYY-
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = '        ' + list_description[i].slice(0,4) + '-        ' + list_description[i].slice(7);
             description.appendChild(each_description);
           }else if (regexWithS.test(list_description[i].slice(0,5))) {
     //YYYYs
-            const each_description = document.createElement('h6');
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
             each_description.textContent = '        ' + list_description[i].slice(0,4) + 's        ' + list_description[i].slice(7);
             description.appendChild(each_description);
           }else if (regex.test(list_description[i].slice(0,4))){
     //YYYY
-              const each_description = document.createElement('h6');
+              const each_description = document.createElement('li');
               each_description.className = 'each_discrpt';
               each_description.textContent = '        ' + list_description[i].slice(0,4) + '         ' + list_description[i].slice(6);
               description.appendChild(each_description);
