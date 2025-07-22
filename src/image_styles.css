@@ -35,8 +35,10 @@
   font-size: 20px;
 }
 .image_right, .image_left{
-  height:100%;
+  height:20%;
   transform: scale(1, 5);
+  border:  solid orange 1;
+
 }
 .large-image-close-icon{
   height: 100%;
@@ -90,4 +92,7 @@
     filter: invert(1);
     background-color: rgba(0, 0, 0, 0);
   }  
+  .image_right, .image_left{
+  border:  solid black 1;
+}
 }

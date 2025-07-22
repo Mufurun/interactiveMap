@@ -140,6 +140,9 @@
           marker.bindPopup(() => {
             const popupContent = createPopupContent(point);
             return popupContent;
+          }, {
+              maxWidth: 500,
+              minWidth: 300 // optional, for fixed width
           }) 
           marker.addTo(map);
           //set up the scrollbar at the bottom.

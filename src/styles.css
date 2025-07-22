@@ -15,18 +15,20 @@
 ####  Marker Popup Styles  ####
 */
 
+/* inside the popup */
   .popup-content {
     /* width: 284px; */
-    width: 350px;
+    width: 100%;
   }
   .leaflet-popup-content-wrapper{
     background-color: rgba(255, 245, 238, 0.9);
     opacity: 1;
   }
 
+  /* outside the popup */
   .leaflet-popup-content {
-    max-width: 320px; /* Default is 300px */
-    max-height: 425px; /* Default is 300px */
+    max-width: 400px; /* Default is 300px up to 300px*/
+    max-height: 425px; /* Default is 300px up to 600px*/
     overflow: auto;
     overflow-x: hidden;
 
@@ -58,16 +60,16 @@
     margin: 0 0 0 0;
     padding: 0 0 0 0;
     list-style-position: inside;
-    width: 100%;
+    /* width: 100%; */
   }
   .each_discrpt{
     font-size: 12.5px;
     margin: 0 0 0 0px;
     padding: 0 0 0.4em 7em;
-    width: 17em;
-    text-indent: -7em; 
+    /* width: 17em; */
+    text-indent: -7em;
     list-style-type: none;
-    white-space: pre-wrap; 
+    white-space: pre-wrap;
 
   }
   .each_discrpt_li{
@@ -75,7 +77,7 @@
     margin: 0 0 0 0px;
     padding: 0 0 0.4em 7em;
     text-indent: -1.3em;
-    width: 17em;
+    /* width: 17em; */
 
   }
 
@@ -130,11 +132,11 @@ a:hover {
 ######################
 */
 
-/* 
+/*
 ********************************
 ****    Regional Control    ****
 ********************************
-  Open up when the carsol hovers on 
+  Open up when the carsol hovers on
 */
     .custom-control {
       position: relative;
@@ -142,7 +144,7 @@ a:hover {
     .custom-control label {
       display: block;
       margin: 3px 0;
-    } 
+    }
     .custom-control-hover {
       background: rgb(255, 255, 255);
       border-radius: 4px;
@@ -160,7 +162,7 @@ a:hover {
       margin-top: 5px;
       height: 465px;
     }
-  
+
     .custom-control:hover .custom-content {
       display: block;
       background: rgb(177, 165, 155);
