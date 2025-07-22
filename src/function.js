@@ -126,32 +126,42 @@
         const list_images = [{
           image: point.image1,
           imageText: point.imageText1,
-          imageLink: point.imageLink1
+          imageLink: point.imageLink1,
+          imageId:'img1'
         }, {
           image: point.image2,
           imageText: point.imageText2,
-          imageLink: point.imageLink2
+          imageLink: point.imageLink2,
+          imageId:'img2'
         }, {
           image: point.image3,
           imageText: point.imageText3,
-          imageLink: point.imageLink3
+          imageLink: point.imageLink3,
+          imageId:'img3'
         }, {
           image: point.image4,
           imageText: point.imageText4,
-          imageLink: point.imageLink4
+          imageLink: point.imageLink4,
+          imageId:'img4'
         }, {
           image: point.image5,
           imageText: point.imageText5,
-          imageLink: point.imageLink5
+          imageLink: point.imageLink5,
+          imageId:'img5'
         }];
 
         for (let i = 0; ((i<5) && list_images[i].image); i++){
           const each_image_button = document.createElement('button');
           each_image_button.type = "button";
-          each_image_button.className = "image-button"
+          each_image_button.className = "image-button";
+          each_image_button.id = list_images[i].imageId;
+          let next = i;
+          if ((i<4)&&(!list_images[i+1].image)){
+            next = 4;
+          }
 
           //Image Popup
-          each_image_button.onclick = () => image_popup(list_images[i]);
+          each_image_button.onclick = () => image_popup(list_images[i], next);
 
           const each_image = document.createElement('img');
           each_image.src= list_images[i].image;
@@ -160,7 +170,6 @@
           each_image_button.appendChild(each_image);
           imageSection.appendChild(each_image_button);
         }
-
         container.appendChild(imageSection);
         
     //Year
@@ -289,14 +298,13 @@
 ****************************
 */
  
-        function image_popup(image_in_list){
+        function image_popup(image_in_list, next){
         // Check if the section already exists
         let existing = document.getElementById('popupSection');
         if (existing) {
           existing.style.display = 'block';
           return;
         }
-
           // Create the section
             const section = document.createElement('div');
             section.id = 'popupSection';
@@ -315,6 +323,16 @@
           //Div for the image alignment
             const large_image = document.createElement("div");
             large_image.className = 'large-image-div';
+            if (next > 0){
+          //Image < 
+            const change_img_left = document.createElement('button');
+            change_img_left.className = 'image_left';
+            change_img_left.id = 'image_left';
+            change_img_left.textContent = '<';
+            section_without_close2.appendChild(change_img_left);
+            } 
+
+
           //Image
             const each_large_image = document.createElement('img');
             each_large_image.src = image_in_list.image;
@@ -322,7 +340,16 @@
 
             large_image.appendChild(each_large_image);
             section_without_close2.appendChild(large_image);
+            if(next < 4){
+           //Image < 
+            const change_img_right = document.createElement('button');
+            change_img_right.className = 'image_right';
+            change_img_right.id = 'image_right';
+            change_img_right.textContent = '>';
+            section_without_close2.appendChild(change_img_right);
+            }
             section_without_close.appendChild(section_without_close2);
+
 
           //Text with/without link
             if (image_in_list.imageLink == ''){
@@ -347,16 +374,42 @@
             mapContainer.appendChild(section);
             L.DomEvent.disableClickPropagation(section);
             L.DomEvent.disableScrollPropagation(section);
-
+            change_image(image_in_list);
           }
 
-          
           function closeSection() {
             const section = document.getElementById('popupSection');
             if (section) {
               section.remove();
             }
           }
+
+          function change_image(image_in_list){
+            setTimeout(()=>{
+            const imageleft = document.getElementById('image_left');
+            if(imageleft){
+              imageleft.addEventListener('click', () => {
+                const image_button = document.getElementById(image_in_list.imageId);              
+                imageleft.parentElement.parentElement.parentElement.remove();
+                image_button.previousElementSibling.onclick();
+              });
+
+            }
+
+            const imageright = document.getElementById('image_right');
+            if(!imageright){
+              return;
+            }
+            imageright.addEventListener('click', () => {
+              const image_button = document.getElementById(image_in_list.imageId);              
+              imageright.parentElement.parentElement.parentElement.remove();
+              image_button.nextElementSibling.onclick();
+            });
+          },0);
+            }
+
+          
+
 
 
       /*
