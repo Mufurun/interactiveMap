@@ -203,15 +203,17 @@ ___
   - [ ] When I open the map with narrow screen (for phone), the control section covers the popup sometimes, so want to open the popup a bit lower than now. 
 - [ ] Controls
   - [x] Allow users to zoom up by the region
-    - [ ] Show the regional district   
+    - [ ] Show the regional district
+    - [ ] Only the area to be shown 
   - [x] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
 - [x] Map Setting
   - [x] Show complete sites and draft sites (blue and orange respectively)
   - [x] Satelite imagery
   - [x] Topographic Map 
+    - [ ] Attribution 
 - [ ] Succession
-  - [ ] Make instruction
+  - [ ] Make instructions
   - [x] Shell to make it easier to update
   - [x] Need a batch file for windows
   - [x] Allow programmer to select if they want coplete map or draft map. 
