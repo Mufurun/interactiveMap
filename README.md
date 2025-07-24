@@ -41,10 +41,13 @@ ___
  - Each row in the excel is assigned to hold all information about a site.
  - We want to edit the content in the "Sheet2" (click the bar at the bottom of the sheet).
     - Content in "Sheet3" is not editable. (Protection Passward: "Forest1234")
- - If you do not know, just blank the cells
+ - If you do not know, just leave the blank at the cells
  - **##IMPORTANT##**
    - When you use a single quotation mark (') in any of the fields, **PUT a backslash ('\\') behind it** so that the excel recognizes it as a single string.
      - Such as) Mann's Lumber Company --> Mann\\'s Lumber Company 
+   - ** DO NOT INSERT A ROW**
+    - <ins>Inserted Row would not turn into the Sheet3. </ins>
+    - You have to add the site on a new row and sort the entire table.
 
  - Below, explanations of each colunm
    - **Title**
@@ -73,6 +76,19 @@ ___
    - **List1 to List12**
      - Descriptions of the site
      - If you know the year, put year first (eg: yyyy: description)
+     - **Follow the format for years**
+       - *YYYY:* Start a sentence after a space.        eg) 2002: For specific year.
+       - *YYY0s:* Start a sentence after a space.       eg) 2010s: In the 2010s.
+       - *YYYY-YYYY:* Start a sentence after a space.   eg) 2002-2025: If the year has a range.
+       - *YYY0s-YYYY:* Start a sentence after a space.  eg) 2000s-2011: If the year has a range but not sure the start.
+       - *YYYY-YYY0s:* Start a sentence after a space.  eg) 2008-2020s: If the year has a range but not sure the end.
+       - *YYY0s-YYY0s:* Start a sentence after a space. eg) 2010s-2030s: If the year has a range but not sure both the start and the end.
+       - *-YYYY:* Start a sentence after a space.       eg) -2025: Until 2025.
+       - *YYYY-:* Start a sentence after a space.       eg) 2009: Since 2009.
+       - *-YYY0s:* Start a sentence after a space.      eg) -2010s: Until the 2010s.
+       - *YYY0s-:* Start a sentence after a space.      eg) 2000s-: Since the 2000s.
+       
+       
      - Trying to add information below:
        - <ins>Significant events in the chronological order (ie. when it started, how it closed ...)</ins>
        - <ins>Some statistics, such as number of workers, productions etc.</ins>
@@ -180,18 +196,20 @@ ___
   - [x] Images
     - [x] Explanation
     - [x] Link
+    - [x] Easy swap
   - [x] Texts
   - [x] Additional Sources
-    - [x] Link 
+    - [x] Link
+  - [ ] When I open the map with narrow screen (for phone), the control section covers the popup sometimes, so want to open the popup a bit lower than now. 
 - [ ] Controls
   - [x] Allow users to zoom up by the region
     - [ ] Show the regional district   
   - [x] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
-- [ ] Map Setting
+- [x] Map Setting
   - [x] Show complete sites and draft sites (blue and orange respectively)
-  - [ ] Satelite imagery
-  - [ ] Topographic Map 
+  - [x] Satelite imagery
+  - [x] Topographic Map 
 - [ ] Succession
   - [ ] Make instruction
   - [x] Shell to make it easier to update
