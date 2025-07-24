@@ -42,7 +42,7 @@
         shadowSize: [41, 41]
       });
       const sawmill_icon2 = L.icon({
-        iconUrl: './icon/saw.png',
+        iconUrl: './icon/saw2.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
         iconAnchor: [12, 41],
@@ -50,7 +50,7 @@
         shadowSize: [41, 41]
       });
       const camp_icon2 = L.icon({
-        iconUrl: './icon/camp.png',
+        iconUrl: './icon/camp2.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
         iconAnchor: [12, 41],
@@ -58,7 +58,7 @@
         shadowSize: [41, 41]
       });
       const paper_icon2 = L.icon({
-        iconUrl: './icon/paper.png',
+        iconUrl: './icon/paper2.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
         iconAnchor: [12, 41],
@@ -66,17 +66,18 @@
         shadowSize: [41, 41]
       });
       const community_icon2 = L.icon({
-        iconUrl: './icon/community.png',
+        iconUrl: './icon/community2.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-      const sawmill_icon = sawmill_icon1;
-      const camp_icon = camp_icon1;
-      const paper_icon = paper_icon1;
-      const community_icon = community_icon1;
+      var sawmill_icon = sawmill_icon1;
+      var camp_icon = camp_icon1;
+      var paper_icon = paper_icon1;
+      var community_icon = community_icon1;
+
 
 
 /*
