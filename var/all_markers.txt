@@ -93,10 +93,10 @@
   
   */
     //map
-    const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([51.5, -127], 6);
+    const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([51.5, -127], 7);
   
     //attribution
-      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps" target="_blank">Leaflet</a>');
+      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank" class = ".leaflet-control-attribution">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps"  class = ".leaflet-control-attribution">Leaflet</a>');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
@@ -154,6 +154,9 @@
             rowNum++;
             const popupContent = createPopupContent(point, rowNum);
             return popupContent;
+          }, {
+              maxWidth: 500,
+              minWidth: 300 // optional, for fixed width
           }) 
           marker.addTo(map);
           //set up the scrollbar at the bottom.
@@ -319,7 +322,7 @@
             document.getElementById('showFilterYear').addEventListener("input", function () {
               this.value = this.value.replace(/\D/g, "");
               document.getElementById('filterYear').value = this.value;
-              if(1700 <= +this.value && +this.value <= 2025){
+              if(1848 <= +this.value && +this.value <= 2025){
                 filterMarker();
               }
             });
@@ -458,7 +461,7 @@
           
           const year = +document.getElementById('filterYear').value;
           let boolYear = obj.yearStart <= year && year <= obj.yearEnd;
-//          if (year<1700||2025<year){boolYear = true;}
+//          if (year<1848||2025<year){boolYear = true;}
           if (allTime){boolYear = true;}
 
           if(boolCategory && boolYear){

@@ -29,18 +29,7 @@
 </head>
 <body>
   
-<!-- Checkin Screen-->
-  <div id="entryScreen">
-    <div class="entry-box">      
-      <h1>Interactive Map Project Draft</h1>
-      <p> This is a draft of the interactive map. This program should not be publicly available at this time. See the intructions to get codes to be published</p>
-      <p>Take a look at codes here <a style = "color: greenyellow" href="http://github.com/Mufurun/interactiveMap">My github page</a></p>
-      <div class = "button-wrapper">
-        <button id="enterBtn">Continue</button>
-      </div>      
-    </div>
-  </div>
-  <script src = 'terms-conditions/terms-conditions.js'></script>
+
 
 <!-- Main Screen-->
 <div id="map"></div>
@@ -96,10 +85,10 @@
     const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([51.5, -127], 6);
   
     //attribution
-      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps" target="_blank">Leaflet</a>');
+      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank" class = ".leaflet-control-attribution">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps"  class = ".leaflet-control-attribution">Leaflet</a>');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(map);
     
   
@@ -127,17 +116,14 @@
       let markers = []
  
 
+    let count_area = {};//Disctionary donesn't need if statement
 
-    let count_area = {'all':1};
     try{
-      let rowNum = 0;
-      points.forEach(point => {//This is All Markers
-        if(point.error != 'coords'){
+
+      points.forEach(point => {
+        if(!point.error){//This is Publish
           const marker = L.marker(point.coords);
-          if(point.error){
-            marker.setIcon(greenIcon);
-          }
-          else if(point.category == 'sawmill'){
+          if(point.category == 'sawmill'){
             marker.setIcon(sawmill_icon);
           }
           else if(point.category == 'camp'){
@@ -149,11 +135,14 @@
           else if(point.category == 'community'){
             marker.setIcon(community_icon);
           }
+
           
           marker.bindPopup(() => {
-            rowNum++;
-            const popupContent = createPopupContent(point, rowNum);
+            const popupContent = createPopupContent(point);
             return popupContent;
+          }, {
+              maxWidth: 500,
+              minWidth: 300 // optional, for fixed width
           }) 
           marker.addTo(map);
           //set up the scrollbar at the bottom.
@@ -162,6 +151,11 @@
             const commentsBox = popupElement.querySelector('.comments');
           });
           if(!point.error){
+            if (!count_area.hasOwnProperty(point.area)) {
+              count_area[point.area] = 1;
+            } else{
+              count_area[point.area]  = count_area[point.area] + 1;
+            }
             markers.push({
               marker: marker,
               category: point.category,
@@ -175,14 +169,16 @@
 
         
        });
-    if (points.length == 0){
-      alert("Seems you have not updated the data.js file \n read instructions here (https://github.com/Mufurun/interactiveMap)");
-    }
+      if (points.length == 0){
+        alert("Seems you have not updated the data.js file \n Read instructions here (https://github.com/Mufurun/interactiveMap)");
+      }
 
-    }catch(error){alert("Seems to have at least an error. \nPlease check data entry. and try again");}
-  
-  
-/*
+    }catch(error){console.log(error);
+      alert("Seems to have at least an error. \nPlease check data entry. and try again");}
+
+
+
+ /*
   ##########################################
   ######     All Kinds of Controls     #####
   ##########################################
@@ -290,7 +286,6 @@
           const container = L.DomUtil.create('div', 'filter-control leaflet-bar');
           container.innerHTML = filterControlhtml()
 
-
   
           // Prevent map click propagation
           L.DomEvent.disableClickPropagation(container);
@@ -319,7 +314,7 @@
             document.getElementById('showFilterYear').addEventListener("input", function () {
               this.value = this.value.replace(/\D/g, "");
               document.getElementById('filterYear').value = this.value;
-              if(1700 <= +this.value && +this.value <= 2025){
+              if(1848 <= +this.value && +this.value <= 2025){
                 filterMarker();
               }
             });
@@ -458,7 +453,7 @@
           
           const year = +document.getElementById('filterYear').value;
           let boolYear = obj.yearStart <= year && year <= obj.yearEnd;
-//          if (year<1700||2025<year){boolYear = true;}
+//          if (year<1848||2025<year){boolYear = true;}
           if (allTime){boolYear = true;}
 
           if(boolCategory && boolYear){
@@ -472,3 +467,4 @@
 
 </body>
 </html>
+

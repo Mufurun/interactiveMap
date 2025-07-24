@@ -2,7 +2,7 @@
       align-content: end;
       background: seashell;
       height:100%;
-      width: 338px;
+      width: 100%;
       border: none;
 
     }
@@ -116,9 +116,55 @@
     .no-loc{
       font-size: 11px;
       background-color: seashell;
+      width: 100%;
       border: none;
 
     }
     
+  @media (prefers-color-scheme: dark) {
+    .rg-con-foot{
+      background: rgba(251, 236, 225, 0.018);
 
-
+    }
+    .collapsible {
+      background-color: rgba(251, 236, 225, 0.018);
+      color: seashell;
+    }    
+    .button-original-map {
+      background-color: rgba(251, 236, 225, 0.018);
+      color: seashell;
+    }    
+    .button {
+      background-color: rgba(251, 236, 225, 0.018);
+      color: seashell;
+    }
+    .active, .collapsible:hover, .button:hover, .list-button {
+      background-color: rgba(251, 236, 225, 0.018);
+    }
+    .collapsible:after {
+      color: rgb(174, 205, 182);
+    }
+    .content {
+      background-color: rgb(57, 54, 50);
+    }
+    .plain{
+      font-size: 16px;
+      background-color: rgb(57, 54, 50);
+      color: seashell;
+    }
+    .list-button{
+      background-color: rgba(20, 19, 18, 0.87);
+      color: seashell;
+    }
+    .list-button:hover{
+      background-color: rgba(251, 236, 225, 0.018);
+    }
+    .list-button:active{
+      background-color: rgb(245, 108, 11);
+    }
+    .no-loc{
+      background-color: rgba(251, 236, 225, 0.018);
+    }
+    
+  }
+  

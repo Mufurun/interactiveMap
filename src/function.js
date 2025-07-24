@@ -9,7 +9,7 @@
         shadowSize: [41, 41]
       });
 
-      const sawmill_icon = L.icon({
+      const sawmill_icon1 = L.icon({
         iconUrl: './icon/saw.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
@@ -17,7 +17,7 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-      const camp_icon = L.icon({
+      const camp_icon1 = L.icon({
         iconUrl: './icon/camp.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
@@ -25,7 +25,7 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-      const paper_icon = L.icon({
+      const paper_icon1 = L.icon({
         iconUrl: './icon/paper.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
@@ -33,7 +33,7 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-      const community_icon = L.icon({
+      const community_icon1 = L.icon({
         iconUrl: './icon/community.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
         iconSize: [30, 30],
@@ -41,6 +41,43 @@
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
+      const sawmill_icon2 = L.icon({
+        iconUrl: './icon/saw.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const camp_icon2 = L.icon({
+        iconUrl: './icon/camp.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const paper_icon2 = L.icon({
+        iconUrl: './icon/paper.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const community_icon2 = L.icon({
+        iconUrl: './icon/community.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+        iconSize: [30, 30],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      const sawmill_icon = sawmill_icon1;
+      const camp_icon = camp_icon1;
+      const paper_icon = paper_icon1;
+      const community_icon = community_icon1;
+
 
 /*
   #####################################
@@ -89,32 +126,42 @@
         const list_images = [{
           image: point.image1,
           imageText: point.imageText1,
-          imageLink: point.imageLink1
+          imageLink: point.imageLink1,
+          imageId:'img1'
         }, {
           image: point.image2,
           imageText: point.imageText2,
-          imageLink: point.imageLink2
+          imageLink: point.imageLink2,
+          imageId:'img2'
         }, {
           image: point.image3,
           imageText: point.imageText3,
-          imageLink: point.imageLink3
+          imageLink: point.imageLink3,
+          imageId:'img3'
         }, {
           image: point.image4,
           imageText: point.imageText4,
-          imageLink: point.imageLink4
+          imageLink: point.imageLink4,
+          imageId:'img4'
         }, {
           image: point.image5,
           imageText: point.imageText5,
-          imageLink: point.imageLink5
+          imageLink: point.imageLink5,
+          imageId:'img5'
         }];
 
         for (let i = 0; ((i<5) && list_images[i].image); i++){
           const each_image_button = document.createElement('button');
           each_image_button.type = "button";
-          each_image_button.className = "image-button"
+          each_image_button.className = "image-button";
+          each_image_button.id = list_images[i].imageId;
+          let next = i;
+          if ((i<4)&&(!list_images[i+1].image)){
+            next = 4;
+          }
 
           //Image Popup
-          each_image_button.onclick = () => image_popup(list_images[i]);
+          each_image_button.onclick = () => image_popup(list_images[i], next);
 
           const each_image = document.createElement('img');
           each_image.src= list_images[i].image;
@@ -123,7 +170,6 @@
           each_image_button.appendChild(each_image);
           imageSection.appendChild(each_image_button);
         }
-
         container.appendChild(imageSection);
         
     //Year
@@ -139,12 +185,72 @@
         const list_description = [point.list1, point.list2, point.list3, point.list4, point.list5, point.list6, point.list7, point.list8, point.list9, point.list10, point.list11, point.list12];
         
         for (let i = 0; ((i < 12) && (list_description[i] != '')); i++) {
-          const regex = /^\d{3}/;
-          if (regex.test(list_description[i].slice(0,4))){
-            const each_description = document.createElement('h6');
+          const regex = /^\d{4}/;
+          const regexWithS = /^\d{4}s/;
+          const regexSince = /^\d{4}-/;
+          const regexUntil = /^-\d{4}/;
+          const regexSinceS = /^\d{4}s-/;
+          const regexUntilS = /^-\d{4}s/;
+          if ((regex.test(list_description[i].slice(0,4)))&&(regexWithS.test(list_description[i].slice(5,10)))){
+    //YYYY-YYYYs
+            const each_description = document.createElement('li');
             each_description.className = 'each_discrpt';
-            each_description.textContent = list_description[i].slice(0,4) + ' - ' + list_description[i].slice(6)
+            each_description.textContent = list_description[i].slice(0,4) + '   - ' + list_description[i].slice(5,9) + 's  ' + list_description[i].slice(11);
             description.appendChild(each_description);
+          }else if ((regexWithS.test(list_description[i].slice(0,5)))&&(regexWithS.test(list_description[i].slice(6,11)))){
+    //YYYYs-YYYYs
+            const each_description = document.createElement('li');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = list_description[i].slice(0,4) + 's - ' + list_description[i].slice(6,10) + 's  ' + list_description[i].slice(12);
+            description.appendChild(each_description);
+          }else if ((regexWithS.test(list_description[i].slice(0,5)))&&(regex.test(list_description[i].slice(6,10)))){
+    //YYYYs-YYYY
+            const each_description = document.createElement('li');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = list_description[i].slice(0,4) + 's - ' + list_description[i].slice(6,10) + '    ' + list_description[i].slice(11);
+            description.appendChild(each_description);
+          }else if ((regex.test(list_description[i].slice(0,4)))&&(regex.test(list_description[i].slice(5,9)))){
+    //YYYY-YYYY
+            const each_description = document.createElement('li');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = list_description[i].slice(0,4) + '   - ' + list_description[i].slice(5,9) + '    ' + list_description[i].slice(11);
+            description.appendChild(each_description);
+          }else if (regexUntilS.test(list_description[i].slice(0,6))) {
+    //-YYYYs
+            const each_description = document.createElement('li');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = '       -' + list_description[i].slice(1,5) + 's        ' + list_description[i].slice(8);
+            description.appendChild(each_description);
+          }else if (regexSinceS.test(list_description[i].slice(0,6))) {
+    //YYYYs-
+            const each_description = document.createElement('li');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = '         ' + list_description[i].slice(1,5) + 's-      ' + list_description[i].slice(8);
+            description.appendChild(each_description);
+          }else if (regexUntil.test(list_description[i].slice(0,5))) {
+    //-YYYY
+            const each_description = document.createElement('li');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = '       -' + list_description[i].slice(1,5) + '         ' + list_description[i].slice(7);
+            description.appendChild(each_description);
+          }else if (regexSince.test(list_description[i].slice(0,5))) {
+    //YYYY-
+            const each_description = document.createElement('li');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = '        ' + list_description[i].slice(0,4) + '-        ' + list_description[i].slice(7);
+            description.appendChild(each_description);
+          }else if (regexWithS.test(list_description[i].slice(0,5))) {
+    //YYYYs
+            const each_description = document.createElement('li');
+            each_description.className = 'each_discrpt';
+            each_description.textContent = '        ' + list_description[i].slice(0,4) + 's        ' + list_description[i].slice(7);
+            description.appendChild(each_description);
+          }else if (regex.test(list_description[i].slice(0,4))){
+    //YYYY
+              const each_description = document.createElement('li');
+              each_description.className = 'each_discrpt';
+              each_description.textContent = '        ' + list_description[i].slice(0,4) + '         ' + list_description[i].slice(6);
+              description.appendChild(each_description);
           }else{
             const each_description = document.createElement('li');
             each_description.textContent = list_description[i];
@@ -192,14 +298,13 @@
 ****************************
 */
  
-        function image_popup(image_in_list){
+        function image_popup(image_in_list, next){
         // Check if the section already exists
         let existing = document.getElementById('popupSection');
         if (existing) {
           existing.style.display = 'block';
           return;
         }
-
           // Create the section
             const section = document.createElement('div');
             section.id = 'popupSection';
@@ -218,6 +323,16 @@
           //Div for the image alignment
             const large_image = document.createElement("div");
             large_image.className = 'large-image-div';
+            if (next > 0){
+          //Image < 
+            const change_img_left = document.createElement('button');
+            change_img_left.className = 'image_left';
+            change_img_left.id = 'image_left';
+            change_img_left.textContent = '<';
+            section_without_close2.appendChild(change_img_left);
+            } 
+
+
           //Image
             const each_large_image = document.createElement('img');
             each_large_image.src = image_in_list.image;
@@ -225,7 +340,16 @@
 
             large_image.appendChild(each_large_image);
             section_without_close2.appendChild(large_image);
+            if(next < 4){
+           //Image < 
+            const change_img_right = document.createElement('button');
+            change_img_right.className = 'image_right';
+            change_img_right.id = 'image_right';
+            change_img_right.textContent = '>';
+            section_without_close2.appendChild(change_img_right);
+            }
             section_without_close.appendChild(section_without_close2);
+
 
           //Text with/without link
             if (image_in_list.imageLink == ''){
@@ -250,16 +374,42 @@
             mapContainer.appendChild(section);
             L.DomEvent.disableClickPropagation(section);
             L.DomEvent.disableScrollPropagation(section);
-
+            change_image(image_in_list);
           }
 
-          
           function closeSection() {
             const section = document.getElementById('popupSection');
             if (section) {
               section.remove();
             }
           }
+
+          function change_image(image_in_list){
+            setTimeout(()=>{
+            const imageleft = document.getElementById('image_left');
+            if(imageleft){
+              imageleft.addEventListener('click', () => {
+                const image_button = document.getElementById(image_in_list.imageId);              
+                imageleft.parentElement.parentElement.parentElement.remove();
+                image_button.previousElementSibling.onclick();
+              });
+
+            }
+
+            const imageright = document.getElementById('image_right');
+            if(!imageright){
+              return;
+            }
+            imageright.addEventListener('click', () => {
+              const image_button = document.getElementById(image_in_list.imageId);              
+              imageright.parentElement.parentElement.parentElement.remove();
+              image_button.nextElementSibling.onclick();
+            });
+          },0);
+            }
+
+          
+
 
 
       /*
@@ -370,6 +520,9 @@
     ];        
     
   */
+
+
+    
       function customControlhtml(count_area){
         //check the region
         
@@ -397,7 +550,7 @@
 
         let container = `
           <div class = "custom-control-hover">
-              <strong>Region Control  </strong><button class = 'question' id = 'regcon'></button>
+              <strong>Region Control  </strong><abbr class = 'question' id = 'regcon' title="Click Plus Sign to Zoom In"></abbr>
               <div class="custom-content">
                 <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>`;
               if(count_area.hasOwnProperty('vancouverIsland')||count_area.hasOwnProperty('all')){
@@ -676,7 +829,7 @@
               <label><input type="checkbox" id="community" checked>Show Comunities</label><br>
               <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
               <button id='allTime'>Show All Time</button><br>
-              <input type = 'range' id = 'filterYear' min="1699" max="2025" value="2025"> <br>
+              <input type = 'range' id = 'filterYear' min="1848" max="2025" value="2025"> <br>
               Year: <input type='text' id = 'showFilterYear' value = 'All Time' >
             </div></div>
           </div>
@@ -701,47 +854,50 @@
             `;
       }
       function layerFunctions(map){
+
                   setTimeout(() => {
             document.getElementById('layer').addEventListener('change', function(){
               if (document.getElementById('layer').value == 'osm'){
-                map.attributionControl.removeAttribution('&copy; <a href="https://carto.com/attribution" target="_blank">CARTO</a>');
-                map.attributionControl.removeAttribution('Tiles &copy; <a href="https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm" target="_blank">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community');
-                map.attributionControl.removeAttribution('Map data: &copy; <a href="http://opentopomap.org/" target="_blank"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)');
+                map.attributionControl.removeAttribution('&copy; <a href="https://carto.com/attribution" target="_blank" class = ".leaflet-control-attribution">CARTO</a>');
+                map.attributionControl.removeAttribution('Tiles &copy; <a href="https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm" target="_blank" class = ".leaflet-control-attribution">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community');
+                map.attributionControl.removeAttribution('Map data: &copy; <a href="http://opentopomap.org/" target="_blank" class = ".leaflet-control-attribution"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)');
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                   maxZoom: 20,
-                  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+                  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank" class = ".leaflet-control-attribution">OpenStreetMap</a> contributors'
                 }).addTo(map);
               }
               else if (document.getElementById('layer').value == 'cv'){
-                map.attributionControl.removeAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors');
-                map.attributionControl.removeAttribution('Tiles &copy; <a href="https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm" target="_blank">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community');
-                map.attributionControl.removeAttribution('Map data: &copy; <a href="http://opentopomap.org/" target="_blank"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)');
+                map.attributionControl.removeAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank" class = ".leaflet-control-attribution">OpenStreetMap</a> contributors');
+                map.attributionControl.removeAttribution('Tiles &copy; <a href="https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm" target="_blank" class = ".leaflet-control-attribution">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community');
+                map.attributionControl.removeAttribution('Map data: &copy; <a href="http://opentopomap.org/" target="_blank" class = ".leaflet-control-attribution"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)');
                 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                   maxZoom: 20,
-                  attribution: '&copy; <a href="https://carto.com/attribution" target="_blank">CARTO</a>'
+                  attribution: '&copy; <a href="https://carto.com/attribution" target="_blank" class = ".leaflet-control-attribution">CARTO</a>'
                 }).addTo(map);
               }
               else if (document.getElementById('layer').value == 'esi'){
-                map.attributionControl.removeAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors');
-                map.attributionControl.removeAttribution('&copy; <a href="https://carto.com/attribution" target="_blank">CARTO</a>');
-                map.attributionControl.removeAttribution('Map data: &copy; <a href="http://opentopomap.org/" target="_blank"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)');
+                map.attributionControl.removeAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank" class = ".leaflet-control-attribution">OpenStreetMap</a> contributors');
+                map.attributionControl.removeAttribution('&copy; <a href="https://carto.com/attribution" target="_blank" class = ".leaflet-control-attribution">CARTO</a>');
+                map.attributionControl.removeAttribution('Map data: &copy; <a href="http://opentopomap.org/" target="_blank" class = ".leaflet-control-attribution"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)');
                 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                   maxZoom: 20,
-                  attribution: 'Tiles &copy; <a href="https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm" target="_blank">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+                  attribution: 'Tiles &copy; <a href="https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm" target="_blank" class = ".leaflet-control-attribution">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
                 }).addTo(map);
               }
               else if (document.getElementById('layer').value == 'otm'){
-                map.attributionControl.removeAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors');
-                map.attributionControl.removeAttribution('&copy; <a href="https://carto.com/attribution" target="_blank">CARTO</a>');
-                map.attributionControl.removeAttribution('Tiles &copy; <a href="https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm" target="_blank">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community');
+                map.attributionControl.removeAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank" class = ".leaflet-control-attribution">OpenStreetMap</a> contributors');
+                map.attributionControl.removeAttribution('&copy; <a href="https://carto.com/attribution" target="_blank" class = ".leaflet-control-attribution">CARTO</a>');
+                map.attributionControl.removeAttribution('Tiles &copy; <a href="https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm" target="_blank" class = ".leaflet-control-attribution">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community');
                 L.tileLayer('https://tile.opentopomap.org/{z}/{x}/{y}.png', {
                   maxZoom: 20,
-                  attribution: 'Map data: &copy; <a href="http://opentopomap.org/" target="_blank"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)'
+                  attribution: 'Map data: &copy; <a href="http://opentopomap.org/" target="_blank" class = ".leaflet-control-attribution"> OpenTopoMap</a> contributors, SRTM | Map style: &copy; OpenTopoMap (<a href="https://creativecommons.org/licenses/by-sa/3.0/"> CC-BY-SA</a>)'
                 }).addTo(map);
               }
-              
+
 
             }); 
           }, 0);
 
+
       }
+

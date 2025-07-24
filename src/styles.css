@@ -12,21 +12,61 @@
   }
 
 /*
+###  ATTRIBUTE   ###
+*/
+  .leaflet-control-attribution {
+    color: black;  /* Adjust text color */
+  }
+.leaflet-control-attribution a {
+    color: rgb(46, 46, 255);  /* Adjust text color */
+  }
+
+      /*
+  ###   Zoom Control   ###
+  */
+.leaflet-bar a {
+    background-color: seashell;
+    border-bottom: 1px solid #ccc;
+    color: black;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    height: 26px;
+    width: 26px;
+    line-height: 26px;
+    font-size: 18px;
+}
+.leaflet-bar a:hover {
+    background-color: rgb(193, 185, 180);
+    color: black;
+    text-decoration: none;
+}
+.leaflet-bar a.leaflet-disabled {
+    background-color: seashell;
+    color: rgb(181, 180, 180);
+    text-decoration: none;
+}
+
+
+
+/*
 ####  Marker Popup Styles  ####
 */
 
+/* inside the popup */
   .popup-content {
-    width: 284px;
-
+    /* width: 284px; */
+    width: 100%;
   }
   .leaflet-popup-content-wrapper{
     background-color: rgba(255, 245, 238, 0.9);
     opacity: 1;
   }
 
+  /* outside the popup */
   .leaflet-popup-content {
-    max-width: 300px; /* Default is 300px */
-    max-height: 425px; /* Default is 300px */
+    max-width: 400px; /* Default is 300px up to 300px*/
+    max-height: 425px; /* Default is 300px up to 600px*/
     overflow: auto;
     overflow-x: hidden;
 
@@ -58,17 +98,40 @@
     margin: 0 0 0 0;
     padding: 0 0 0 0;
     list-style-position: inside;
+    /* width: 100%; */
   }
   .each_discrpt{
     font-size: 12.5px;
     margin: 0 0 0 0px;
-    padding: 0 0 0 0;
+    padding: 0 0 0.4em 7em;
+    /* width: 17em; */
+    text-indent: -7em;
+    list-style-type: none;
+    white-space: pre-wrap;
+
   }
   .each_discrpt_li{
     font-size: 12.5px;
-    margin: 0 0 0 22px;
-    padding: 0 0 0 0;
+    margin: 0 0 0 0px;
+    padding: 0 0 0.4em 7em;
+    text-indent: -1.3em;
+    /* width: 17em; */
+
   }
+
+
+a:visited {
+  color: purple;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: blue;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 
 
   @media (prefers-color-scheme: dark) {
@@ -87,30 +150,53 @@
   .description{
   color: seashell;
   }
+  a:link {
+    color: rgb(255, 221, 154);
+  }
+  a:visited {
+  color: purple;
+}
+a:hover {
+  color: orangered;
+}
+/*
+####   The Attribute   ####
+*/
+
+.leaflet-control-attribution {
+    background: rgb(83, 81, 81);       /* Background color */
+  }
+
+    /*
+  ###   Zoom Control   ###
+  */
+.leaflet-bar a {
+    background-color: rgb(117, 115, 115);
+    color: seashell;
+}
+.leaflet-bar a:hover {
+    background-color: rgb(46, 45, 45);
+    color: seashell;
+    text-decoration: none;
+}
+.leaflet-bar a.leaflet-disabled {
+    background-color: rgb(117, 115, 115);
+    color: rgb(174, 168, 163);
+    text-decoration: none;
 }
 
-  h6 {
-    display: block;
-    font-size: .67em;
-    margin-top: 2.33em;
-    margin-bottom: 2.33em;
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: normal;
-  }
+
+
+}
+
+
 
 
 /*
-######################
-####   Controls   ####
-######################
-*/
-
-/* 
 ********************************
 ****    Regional Control    ****
 ********************************
-  Open up when the carsol hovers on 
+  Open up when the carsol hovers on
 */
     .custom-control {
       position: relative;
@@ -118,7 +204,7 @@
     .custom-control label {
       display: block;
       margin: 3px 0;
-    } 
+    }
     .custom-control-hover {
       background: rgb(255, 255, 255);
       border-radius: 4px;
@@ -136,7 +222,7 @@
       margin-top: 5px;
       height: 465px;
     }
-  
+
     .custom-control:hover .custom-content {
       display: block;
       background: rgb(177, 165, 155);
@@ -147,6 +233,7 @@
       color: black;
       cursor: pointer;
       border: none;
+      text-decoration:none;
       width: 40px;
     }
     .question::after{
@@ -158,3 +245,15 @@
 
 
 
+  @media (prefers-color-scheme: dark) {
+       .custom-control-hover {
+        background-color: rgb(57, 54, 50);
+        color: seashell;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+       }
+      .custom-control:hover .custom-content {
+        background-color: rgb(57, 54, 50);
+        color: seashell;
+      }
+
+  }

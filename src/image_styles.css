@@ -12,6 +12,8 @@
   background-color: rgba(255, 245, 238, 0.9);
   padding: 20px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  cursor:auto;
+
 }
 /*Close Section*/
 .image-popup-close{
@@ -22,7 +24,7 @@
   height:5%;
   background:rgba(255, 245, 238, 0);
 }
-.large-image-close{
+.large-image-close, .image_right, .image_left{
   background-color: rgba(255, 245, 238, 0);
   color: black;
   border: none;
@@ -30,6 +32,13 @@
   display: flex;
   align-items:center;
   justify-content: right;
+  font-size: 20px;
+}
+.image_right, .image_left{
+  height:20%;
+  transform: scale(1, 5);
+  border:  solid orange 1;
+
 }
 .large-image-close-icon{
   height: 100%;
@@ -62,6 +71,8 @@
   display: block;
   margin: auto;
 }
+
+
 /*
 ####  Popup Styel (Dark Mode)  ####
 */
@@ -80,6 +91,8 @@
   .large-image-close-icon{
     filter: invert(1);
     background-color: rgba(0, 0, 0, 0);
-  }
-  
+  }  
+  .image_right, .image_left{
+  border:  solid black 1;
+}
 }
