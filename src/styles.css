@@ -245,3 +245,15 @@ a:hover {
 
 
 
+  @media (prefers-color-scheme: dark) {
+       .custom-control-hover {
+        background-color: rgb(57, 54, 50);
+        color: seashell;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+       }
+      .custom-control:hover .custom-content {
+        background-color: rgb(57, 54, 50);
+        color: seashell;
+      }
+
+  }
