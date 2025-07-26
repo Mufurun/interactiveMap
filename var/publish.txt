@@ -43,6 +43,7 @@
 
 <!-- Data for sites -->
 <script src="src/data.js"></script>
+<script src="src/solid_data.js"></script>
 
 <!-- Functions for sites -->
 <script src="src/function.js"></script>
