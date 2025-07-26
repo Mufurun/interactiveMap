@@ -745,6 +745,7 @@
           <div class = "custom-control-hover">
               <strong>Region Control  </strong><abbr class = 'question' id = 'regcon' title="Click Plus Sign to Zoom In"></abbr>
               <div class="custom-content">
+                <div class="scrollll">
                 <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>`;
               if(count_area.hasOwnProperty('CapitalRegionalDistrict')||count_area.hasOwnProperty('all')){                container +=`                <div class = 'control-button-wrapper'>                    <button class='collapsible' >Capital Regional District</button>                    <button class = 'button' id = 'CapitalRegionalDistrict'></button>                </div>                <div class='content'>`;
               if(count_area.hasOwnProperty('SaltspringIsland')||count_area.hasOwnProperty('all')){                container +=`                <div class = 'control-button-wrapper'>                    <button class='collapsible' >Saltspring Island</button>                    <button class = 'button' id = 'SaltspringIsland'></button>                </div>                <div class='content'>`;                    container += `                      <div id = 'list_SaltspringIsland'></div>                    </div>`;            }
@@ -961,8 +962,8 @@
                     container += `                      <div id = 'list_NorthernRockiesRegionalMunicipality'></div>                    </div>`;            }              if(count_area.hasOwnProperty('StikineRegion(Unincorporated)')||count_area.hasOwnProperty('all')){                container +=`                <div class = 'control-button-wrapper'>                    <button class='collapsible' >Stikine Region (Unincorporated)</button>                    <button class = 'button' id = 'StikineRegion(Unincorporated)'></button>                </div>                <div class='content'>`;
                     container += `                      <div id = 'list_StikineRegion(Unincorporated)'></div>                    </div>`;            }
                 container += `<div id = 'list_coastalBC'></div>
-                <div class = 'rg-con-foot'>
                 </div>
+                <div class = 'rg-con-foot'></div>
               </div>
           </div>
             `;
