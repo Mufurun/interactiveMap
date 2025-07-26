@@ -27,6 +27,7 @@
     .scrollll{
       overflow: auto;
       height: inherit;
+      scrollbar-width: thin;
       }
     .collapsible {
       background-color: seashell;
