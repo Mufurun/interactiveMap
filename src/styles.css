@@ -11,7 +11,7 @@
     margin: 0;
   }
 
-@media (max-width: 600px) and (orientation: landscape) {
+@media (max-width: 600px) and (orientation:portrait) {
   /* Adjust styles for better readability in landscape mode */
   #map {
       height: 90vh;
