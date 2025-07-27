@@ -21,6 +21,7 @@
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
   <link rel = "stylesheet" href = "src/styles.css" />
   <link rel = "stylesheet" href = "src/filcon_styles.css" />
   <link rel = "stylesheet" href = "src/regcon_styles.css" />
@@ -97,7 +98,7 @@
     const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([51.5, -127], 7);
   
     //attribution
-      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank" class = ".leaflet-control-attribution">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps"  class = ".leaflet-control-attribution">Leaflet</a>');
+      map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
@@ -668,3 +669,4 @@
 
 </body>
 </html>
+

@@ -33,11 +33,12 @@
 /*
 ###  ATTRIBUTE   ###
 */
-  .leaflet-control-attribution {
-    color: black;  /* Adjust text color */
-  }
+.leaflet-control-attribution {
+  background-color: seashell!important;
+  color: black; /* Change text color for better contrast */
+}
 .leaflet-control-attribution a {
-    color: rgb(46, 46, 255);  /* Adjust text color */
+  color: rgb(46, 46, 255);  /* Adjust text color */
   }
 
       /*
@@ -173,28 +174,29 @@ a:hover {
     color: rgb(255, 221, 154);
   }
   a:visited {
-  color: purple;
+  color: orangered;
 }
 a:hover {
-  color: orangered;
+  color: yellow;
 }
 /*
 ####   The Attribute   ####
 */
 
 .leaflet-control-attribution {
-    background: rgb(83, 81, 81);       /* Background color */
+    color: seashell;
+    background: rgb(57, 54, 50)!important;       /* Background color */
   }
 
     /*
   ###   Zoom Control   ###
   */
 .leaflet-bar a {
-    background-color: rgb(117, 115, 115);
+    background-color: rgb(57, 54, 50);
     color: seashell;
 }
 .leaflet-bar a:hover {
-    background-color: rgb(46, 45, 45);
+    background-color: rgb(6, 6, 5);
     color: seashell;
     text-decoration: none;
 }
