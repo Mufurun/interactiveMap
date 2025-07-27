@@ -14,7 +14,7 @@
 @media (max-width: 600px) and (orientation:portrait) {
   /* Adjust styles for better readability in landscape mode */
   #map {
-      height: 85vh;
+      height: 80vh;
       width: 100%;
       padding: 0;
       margin: 0;
@@ -23,7 +23,7 @@
 @media (max-width: 600px) and (orientation:landscape) {
   /* Adjust styles for better readability in landscape mode */
   #map {
-      height: 95vh;
+      height: 90vh;
       width: 100%;
       padding: 0;
       margin: 0;
