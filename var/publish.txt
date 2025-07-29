@@ -307,19 +307,21 @@ Click Plus Sign to Zoom In`);
             });
             document.getElementById('filterYear').addEventListener('input',function(){
               filterMarker();
-            });
-            document.getElementById('filterYear').addEventListener('input',function(){
               document.getElementById('showFilterYear').value = this.value;
             });
             document.getElementById('allTime').addEventListener('click',function(){
               filterMarker(true);
               document.getElementById('showFilterYear').value = 'All Time';
+              document.getElementById('filterYear').value = 2025;
             });
             document.getElementById('showFilterYear').addEventListener("input", function () {
               this.value = this.value.replace(/\D/g, "");
               document.getElementById('filterYear').value = this.value;
               if(1848 <= +this.value && +this.value <= 2025){
                 filterMarker();
+              }
+              if(this.value == ""){
+                document.getElementById('filterYear').value = 0;
               }
             });
 
