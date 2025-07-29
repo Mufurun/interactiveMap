@@ -577,7 +577,7 @@ else if(region =='RiversandthePeaks'){list.innerHTML = 'List of Sites in Rivers 
 else if(region =='SunPeaksMountainResort'){list.innerHTML = 'List of Sites in Sun Peaks Mountain Resort';}
 else if(region =='ThompsonHeadwaters'){list.innerHTML = 'List of Sites in Thompson Headwaters';}
 else if(region =='WellsGrayCountry'){list.innerHTML = 'List of Sites in Wells Gray Country';}
-else if(region =='Thompson-NicolaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Kootenay ';}
+else if(region =='Thompson-NicolaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Kootenay';}
 else if(region =='RegionalDistrictofCentralKootenay'){list.innerHTML = 'List of Other Sites in Regional District of Central Kootenay';}
 else if(region =='Castlegar'){list.innerHTML = 'List of Sites in Castlegar';}
 else if(region =='Creston'){list.innerHTML = 'List of Sites in Creston';}
@@ -645,7 +645,7 @@ else if(region =='Smithers'){list.innerHTML = 'List of Sites in Smithers';}
 else if(region =='Telkwa'){list.innerHTML = 'List of Sites in Telkwa';}
 else if(region =='Vanderhoof'){list.innerHTML = 'List of Sites in Vanderhoof';}
 else if(region =='StikineRegion(Unincorporated)'){list.innerHTML = 'List of Other Sites in Stikine Region (Unincorporated)';}
-else if(region =='StikineRegion(Unincorporated)'){list.innerHTML = 'List of Other Sites in Northeast ';}
+else if(region =='StikineRegion(Unincorporated)'){list.innerHTML = 'List of Other Sites in Northeast';}
 else if(region =='NorthernRockiesRegionalMunicipality'){list.innerHTML = 'List of Other Sites in Northern Rockies Regional Municipality';}
 else if(region =='PeaceRiverRegionalDistrict'){list.innerHTML = 'List of Other Sites in Peace River Regional District';}
 else if(region =='DawsonCreek'){list.innerHTML = 'List of Sites in Dawson Creek';}
