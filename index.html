@@ -245,9 +245,11 @@
               button.addEventListener("click", function () {
                 const content = this.parentElement.nextElementSibling;
                 if (content.style.maxHeight) {
+                  content.style.maxHeight = null;
+                  this.classList.toggle("active");
                   updateChildren(content);  
                 } else {
-                this.classList.toggle("active");
+                  this.classList.toggle("active");
                   content.style.maxHeight = 350 + "px";
                   updateSibling(content);  
                   updateParentHeight(content);
@@ -265,7 +267,8 @@
             const regconbutton = document.getElementById('regcon');
             if(regconbutton){
                 regconbutton.addEventListener("click", () => {
-                  alert("Click Plus Sign to Zoom In");
+                  alert(`Click to Open the Specific Region. 
+Click Plus Sign to Zoom In`);
                 });
             }
 
@@ -279,7 +282,6 @@
         }
       });
   
-      map.addControl(new customControl({ position: 'topleft' }));
   
       
 
@@ -331,16 +333,18 @@
             const filconbutton = document.getElementById('filcon');
             if(filconbutton){
                 filconbutton.addEventListener("click", () => {
-                  alert("How to use this");
+                  alert(`Select Categories of sites.
+Change the bar or Type the year to select year.
+Or Click All Time button.`);
                 });
             }
+
 
           }, 0);
     
           return container;
         }
       });
-        map.addControl(new filterControl({ position: 'topright' }));
 
 
   /*
@@ -359,11 +363,27 @@
           L.DomEvent.disableClickPropagation(container);
           L.DomEvent.disableScrollPropagation(container);
 
+          setTimeout(()=>{
+            const layconbutton = document.getElementById('laycon');
+            if(layconbutton){
+                layconbutton.addEventListener("click", () => {
+                  alert("Change the Map Layer");
+                });
+            }
+          },0)
+
     
           return container;
         }
       });
-        map.addControl(new layerControl({ position: 'bottomleft' }));
+
+
+/*
+###########    ADD CONTROLs    ###########
+*/
+      map.addControl(new layerControl({ position: 'topleft' }));
+      map.addControl(new filterControl({ position: 'topright' }));
+      map.addControl(new customControl({ position: 'topleft' }));
 
 
 
@@ -632,7 +652,6 @@ else if(region =='FortStJohn'){list.innerHTML = 'List of Sites in Fort St John';
 else if(region =='HudsonsHope'){list.innerHTML = 'List of Sites in Hudsons Hope';}
 else if(region =='Taylor'){list.innerHTML = 'List of Sites in Taylor';}
 else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridge';}
-
 
           else{
             list.innerHTML = "List of Sites in " + region[0].toUpperCase()+ region.slice(1);

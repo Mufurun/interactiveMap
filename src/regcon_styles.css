@@ -1,11 +1,4 @@
-    .rg-con-foot{
-      align-content: end;
-      background: seashell;
-      height:100%;
-      width: 100%;
-      border: none;
 
-    }
     .rg-zoom-ex{
       font-size: 12px;
       border: none;
@@ -26,7 +19,7 @@
     }
     .scrollll{
       overflow: auto;
-      height: inherit;
+      height: 100%;
       scrollbar-width: thin;
       }
     .collapsible {
