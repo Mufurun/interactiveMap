@@ -419,7 +419,7 @@ Or Click All Time button.`);
               title.textContent = p.name;
               title.classList = 'list-button';
               title.onclick = () => {
-                map.flyTo([p.marker.getLatLng().lat+0.005,p.marker.getLatLng().lng], 15);
+                map.flyTo([p.marker.getLatLng().lat+0.005,p.marker.getLatLng().lng], 13);
                 filterMarker(true, true);
                 document.getElementById('showFilterYear').value = 'All Time';
                 p.marker.openPopup();
@@ -658,7 +658,6 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
           else{
             list.innerHTML = "List of Sites in " + region[0].toUpperCase()+ region.slice(1);
           }
-          list.classList = 'plain';
           list.appendChild(buttons);
 
         }
