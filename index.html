@@ -29,7 +29,18 @@
 </head>
 <body>
   
-
+<!-- Checkin Screen-->
+  <div id="entryScreen">
+    <div class="entry-box">      
+      <h1>Interactive Map Project Draft</h1>
+      <p> This is a draft of the interactive map. This program should not be publicly available at this time. See the intructions to get codes to be published</p>
+      <p>Take a look at codes here <a style = "color: greenyellow" href="http://github.com/Mufurun/interactiveMap">My github page</a></p>
+      <div class = "button-wrapper">
+        <button id="enterBtn">Continue</button>
+      </div>      
+    </div>
+  </div>
+  <script src = 'terms-conditions/terms-conditions.js'></script>
 
 <!-- Main Screen-->
 <div id="map"></div>
@@ -89,8 +100,13 @@
       map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank" class = ".leaflet-control-attribution">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps"  class = ".leaflet-control-attribution">Leaflet</a>');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
       }).addTo(map);
+      fetch('Address.geojson')
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data).addTo(map);
+      });
     
   
   //I don't know followings
@@ -117,14 +133,17 @@
       let markers = []
  
 
-    let count_area = {};//Disctionary donesn't need if statement
 
+    let count_area = {'all':1};
     try{
-
-      points.forEach(point => {
-        if(!point.error){//This is Publish
+      let rowNum = 0;
+      points.forEach(point => {//This is All Markers
+        if(point.error != 'coords'){
           const marker = L.marker(point.coords);
-          if(point.category == 'sawmill'){
+          if(point.error){
+            marker.setIcon(greenIcon);
+          }
+          else if(point.category == 'sawmill'){
             marker.setIcon(sawmill_icon);
           }
           else if(point.category == 'camp'){
@@ -136,10 +155,10 @@
           else if(point.category == 'community'){
             marker.setIcon(community_icon);
           }
-
           
           marker.bindPopup(() => {
-            const popupContent = createPopupContent(point);
+            rowNum++;
+            const popupContent = createPopupContent(point, rowNum);
             return popupContent;
           }, {
               maxWidth: 500,
@@ -152,11 +171,6 @@
             const commentsBox = popupElement.querySelector('.comments');
           });
           if(!point.error){
-            if (!count_area.hasOwnProperty(point.area)) {
-              count_area[point.area] = 1;
-            } else{
-              count_area[point.area]  = count_area[point.area] + 1;
-            }
             markers.push({
               marker: marker,
               category: point.category,
@@ -170,15 +184,13 @@
 
         
        });
-      if (points.length == 0){
-        alert("Seems you have not updated the data.js file \n Read instructions here (https://github.com/Mufurun/interactiveMap)");
-      }
+    if (points.length == 0){
+      alert("Seems you have not updated the data.js file \n read instructions here (https://github.com/Mufurun/interactiveMap)");
+    }
 
-    }catch(error){console.log(error);
-      alert("Seems to have at least an error. \nPlease check data entry. and try again");}
-
-
-
+    }catch(error){alert("Seems to have at least an error. \nPlease check data entry. and try again");}
+  
+  
 /*
   ##########################################
   ######     All Kinds of Controls     #####
@@ -434,10 +446,12 @@ else if(region =='CentralSaanich'){list.innerHTML = 'List of Sites in Central Sa
 else if(region =='Colwood'){list.innerHTML = 'List of Sites in Colwood';}
 else if(region =='Esquimalt'){list.innerHTML = 'List of Sites in Esquimalt';}
 else if(region =='Highlands'){list.innerHTML = 'List of Sites in Highlands';}
+else if(region =='JordanRiver'){list.innerHTML = 'List of Sites in Jordan River';}
 else if(region =='Langford'){list.innerHTML = 'List of Sites in Langford';}
 else if(region =='Metchosin'){list.innerHTML = 'List of Sites in Metchosin';}
 else if(region =='NorthSaanich'){list.innerHTML = 'List of Sites in North Saanich';}
 else if(region =='OakBay'){list.innerHTML = 'List of Sites in Oak Bay';}
+else if(region =='PortRenfrew'){list.innerHTML = 'List of Sites in Port Renfrew';}
 else if(region =='Saanich'){list.innerHTML = 'List of Sites in Saanich';}
 else if(region =='SaltspringIsland'){list.innerHTML = 'List of Sites in Saltspring Island';}
 else if(region =='Sidney'){list.innerHTML = 'List of Sites in Sidney';}
@@ -452,17 +466,22 @@ else if(region =='Courtenay'){list.innerHTML = 'List of Sites in Courtenay';}
 else if(region =='Cumberland'){list.innerHTML = 'List of Sites in Cumberland';}
 else if(region =='Puntledge/BlackCreek'){list.innerHTML = 'List of Sites in Puntledge / Black Creek';}
 else if(region =='CowichanValleyRegionalDistrict'){list.innerHTML = 'List of Other Sites in Cowichan Valley Regional District';}
+else if(region =='Chemainus'){list.innerHTML = 'List of Sites in Chemainus';}
 else if(region =='CobbleHill'){list.innerHTML = 'List of Sites in Cobble Hill';}
 else if(region =='CowichanBay'){list.innerHTML = 'List of Sites in Cowichan Bay';}
-else if(region =='CowichanStation/Sahtlam/Glenora'){list.innerHTML = 'List of Sites in Cowichan Station / Sahtlam / Glenora';}
+else if(region =='CowichanStation'){list.innerHTML = 'List of Sites in Cowichan Station';}
 else if(region =='Duncan'){list.innerHTML = 'List of Sites in Duncan';}
+else if(region =='Glenora'){list.innerHTML = 'List of Sites in Glenora';}
 else if(region =='Ladysmith'){list.innerHTML = 'List of Sites in Ladysmith';}
 else if(region =='LakeCowichan'){list.innerHTML = 'List of Sites in Lake Cowichan';}
-else if(region =='MillBay/Malahat'){list.innerHTML = 'List of Sites in Mill Bay / Malahat';}
+else if(region =='Malahat'){list.innerHTML = 'List of Sites in Malahat';}
+else if(region =='MillBay'){list.innerHTML = 'List of Sites in Mill Bay';}
 else if(region =='NorthCowichan'){list.innerHTML = 'List of Sites in North Cowichan';}
-else if(region =='NorthOyster/Diamond'){list.innerHTML = 'List of Sites in North Oyster / Diamond';}
+else if(region =='Sahtlam'){list.innerHTML = 'List of Sites in Sahtlam';}
+else if(region =='Saltair'){list.innerHTML = 'List of Sites in Saltair';}
 else if(region =='ShawniganLake'){list.innerHTML = 'List of Sites in Shawnigan Lake';}
-else if(region =='Youbou/MeadeCreek'){list.innerHTML = 'List of Sites in Youbou / Meade Creek';}
+else if(region =='SouthLlakeCowichan'){list.innerHTML = 'List of Sites in South Llake Cowichan';}
+else if(region =='Youbou'){list.innerHTML = 'List of Sites in Youbou';}
 else if(region =='RegionalDistrictofMountWaddington'){list.innerHTML = 'List of Other Sites in Regional District of Mount Waddington';}
 else if(region =='AlertBay'){list.innerHTML = 'List of Sites in Alert Bay';}
 else if(region =='PortAlice'){list.innerHTML = 'List of Sites in Port Alice';}
@@ -472,6 +491,7 @@ else if(region =='RegionalDistrictofNanaimo'){list.innerHTML = 'List of Other Si
 else if(region =='Lantzville'){list.innerHTML = 'List of Sites in Lantzville';}
 else if(region =='Nanaimo'){list.innerHTML = 'List of Sites in Nanaimo';}
 else if(region =='Parksville'){list.innerHTML = 'List of Sites in Parksville';}
+else if(region =='Cassidy'){list.innerHTML = 'List of Sites in Cassidy';}
 else if(region =='QualicumBeach'){list.innerHTML = 'List of Sites in Qualicum Beach';}
 else if(region =='qathetRegionalDistrict'){list.innerHTML = 'List of Other Sites in qathet Regional District';}
 else if(region =='PowellRiver'){list.innerHTML = 'List of Sites in Powell River';}
