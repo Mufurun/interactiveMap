@@ -25,6 +25,9 @@
     #camp{
       margin-top: 10%;
     }
+    input[type="checkbox"] {
+      accent-color: green;
+    }
     #showFilterYear{
       width:50px;
       text-align: center;
@@ -32,5 +35,6 @@
     }
     #filterYear{
       width: 100%;
+      accent-color: green;
     }
   

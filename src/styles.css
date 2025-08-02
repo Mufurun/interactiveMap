@@ -208,7 +208,7 @@ a:hover {
       margin: 3px 0;
     }
     .custom-control-hover {
-      background: rgb(255, 255, 255);
+      background: seashell;
       border-radius: 4px;
       padding: 5px;
       font-size: 10px;
@@ -227,7 +227,7 @@ a:hover {
 
     .custom-control:hover .custom-content {
       display: block;
-      background: rgb(177, 165, 155);
+      background: seashell;
     }
 
     .question {
@@ -245,6 +245,17 @@ a:hover {
     }
 
 
+    .layconContent {
+      background: seashell;
+      border-radius: 4px;
+      padding: 5px;
+      font-size: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      cursor:auto;
+      overflow: auto;
+      font-size: 15px;
+      margin: 3px 0;
+    }
 
 
   @media (prefers-color-scheme: dark) {
@@ -255,6 +266,10 @@ a:hover {
        }
       .custom-control:hover .custom-content {
         background-color: rgb(57, 54, 50);
+        color: seashell;
+      }
+      .layconContent {
+        background: rgb(57, 54, 50);
         color: seashell;
       }
 
