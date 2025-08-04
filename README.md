@@ -188,7 +188,7 @@ ___
 
 ## Methods<a name="method"></a>
  ### Map
-  I will do (check if they are done):
+  I will do followings (check if they are done):
 
 - [x] Data Management
   - [x] Organize the location
