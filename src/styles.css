@@ -89,6 +89,7 @@
     max-height: 425px; /* Default is 300px up to 600px*/
     overflow: auto;
     overflow-x: hidden;
+    scrollbar-width: thin;
 
   }
   .title{
