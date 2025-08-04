@@ -5,24 +5,33 @@
 
 ## Purpose
 - This suceeds the project from the 2024 summer at the BC Forest Discovery Centre.
-- I hope someone else continues this project to update data in the long run.
+- I hope someone else continues this project to update data in a long run.
+
+## Table of Content
+ - [Tutorial Materials](#tutorial)
+ - [Updating Instrutions](#instructions)
+ - [Methods](#method)
+ - [Distribution](#distribution)
 
 ___
 ___
 
+# Tutorial Materials<a name="tutorial"></a>
+## See What Template Program Looks Like.
+- Click [Interactive Map Example(netlify)](https://interactivemaptemp.netlify.app/).
 
-# Template Tutorial
- - Double-click upload_template.sh or uploade_template.bat and follow the instruction to learn how to modify the codes.
- - shell file works fast and clean whereas batch file is slow and messy
-   - Because I'm not familiar with batch file...
-   - Let me improve the program
+## Template Tutorial
+ 1. Download all the file in the main branch. 
+ 2. Double-click upload_template.sh (shell) or uploade_template.bat (batch) and follow the instruction to learn how to modify the codes.
+   - shell file works fast and clean whereas batch file is slow and messy
+     - Because I'm not familiar with batch file...
  
 
 ___
 ___
 
 
-# Instructions for Staffs
+# Instructions for Staffs to Upload Data.<a name="instructions"></a>
  - There are basically two operations to publish
     1. [Update Contents](#update-contents)
     2. [Upload it to the Code](#upload-codes)
@@ -177,9 +186,9 @@ ___
 ___
 
 
-## Methods
+## Methods<a name="method"></a>
  ### Map
-  I will do (check if they are done):
+  I will do followings (check if they are done):
 
 - [x] Data Management
   - [x] Organize the location
@@ -204,9 +213,12 @@ ___
 - [ ] Controls
   - [x] Allow users to zoom up by the region
     - [ ] Show the regional district
-    - [ ] Only the area to be shown 
+    - [ ] fly to the regions
+    - [x] Only the area to be shown 
   - [x] Allow users to filter points by the year
   - [x] Allow users to filter points by categories (sawmill, camp, pulp mill, town??)
+- [ ] Popup Styles
+  - [ ] Do not put behind the control sections
 - [x] Map Setting
   - [x] Show complete sites and draft sites (blue and orange respectively)
   - [x] Satelite imagery
@@ -216,8 +228,15 @@ ___
   - [ ] Make instructions
   - [x] Shell to make it easier to update
   - [x] Need a batch file for windows
-  - [x] Allow programmer to select if they want coplete map or draft map. 
+  - [x] Allow programmer to select if they want coplete map or draft map.
+- [ ] Template
+  - [x] [template website with netlify](https://interactivemaptemp.netlify.app/)
+  - [x] template shell/batch
+  - [ ] template data
+    - [x] Written data
+    - [ ] images
+  - [x] the template instruction
         
-## Distribution
+## Distribution<a name="distribution"></a>
  - All data should not be publicly available since those may include private information before revision. 
- - The repo and its codes are public.
+ - The repo and its codes can be public.
