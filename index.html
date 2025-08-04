@@ -721,8 +721,11 @@ map.on('popupopen', function(e) {
   let moveX=0;
   let moveY=0;
 
+  const regcon = document.querySelector('.custom-control');
+  const Bregcon = regcon.getBoundingClientRect();
+
   if (Tm > Tp) {
-    moveY=Tp-Tm-Hm/7;
+    moveY=Tp-Tm-Bregcon.bottom;
   }
   if(Lp<Lm+10){
     moveX=Lp-Lm-Wm/160;
