@@ -736,6 +736,7 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         var w = screen.width * ratio;
         var h = screen.height * ratio;
         if ((w>768)||((h>768))){
+          alert("large");
           if (Tm+Bregcon.bottom > Tp) {
             moveY=Tp-Tm-Bregcon.bottom;
           }
@@ -746,7 +747,7 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
             moveX=Rp-Rm+Wm/160;
           }
         }else if (w<h){
-          alert("aa");
+          alert("portrait");
           if (HpMax + Bregcon.bottom > Tp+Hp) {
             moveY=Tp+Hp-HpMax-Bregcon.bottom;
           }
