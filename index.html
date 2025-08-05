@@ -700,47 +700,50 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
           }
         })
       }
-     map.on('popupopen', function(e) {
-  const popupEl = e.popup.getElement();
-  const mapEl = map.getContainer();
+  
+      setTimeout(()=>{
+          map.on('popupopen', function(e) {
+        const popupEl = e.popup.getElement();
+        const mapEl = map.getContainer();
 
-  if (!popupEl || !mapEl) return;
+        if (!popupEl || !mapEl) return;
 
-  const popupRect = popupEl.getBoundingClientRect();
-  const mapRect = mapEl.getBoundingClientRect();
-//Tm: Top px from the base of Map
-//Tp: Top px from the base of Popup
-//S: Space px should be  
-//Hp: Height of Popup
-//Hm: Height of Map
-  const Tm = mapRect.top;
-  const Tp = popupRect.top;
-  const Hm = mapRect.height;
-  const Hp = popupRect.height;
-  const Rp = popupRect.right;
-  const Rm = mapRect.right;
-  const Lp = popupRect.left;
-  const Lm = mapRect.left;
-  const Wm = mapRect.width;
+        const popupRect = popupEl.getBoundingClientRect();
+        const mapRect = mapEl.getBoundingClientRect();
+      //Tm: Top px from the base of Map
+      //Tp: Top px from the base of Popup
+      //S: Space px should be  
+      //Hp: Height of Popup
+      //Hm: Height of Map
+        const Tm = mapRect.top;
+        const Tp = popupRect.top;
+        const Hm = mapRect.height;
+        const Hp = popupRect.height;
+        const Rp = popupRect.right;
+        const Rm = mapRect.right;
+        const Lp = popupRect.left;
+        const Lm = mapRect.left;
+        const Wm = mapRect.width;
 
-  let moveX=0;
-  let moveY=0;
+        let moveX=0;
+        let moveY=0;
 
-  const regcon = document.querySelector('.custom-control');
-  const Bregcon = regcon.getBoundingClientRect();
+        const regcon = document.querySelector('.custom-control');
+        const Bregcon = regcon.getBoundingClientRect();
 
-  if (Tm > Tp) {
-    moveY=Tp-Tm-Bregcon.bottom;
-  }
-  if(Lp<Lm+10){
-    moveX=Lp-Lm-Wm/160;
-  }
-  if(Rm<Rp+10){
-    moveX=Rp-Rm+Wm/160;
-  }
-  map.panBy([moveX, moveY], { animate: true });
-});
+        if (Tm > Tp) {
+          moveY=Tp-Tm-Bregcon.bottom;
+        }
+        if(Lp<Lm+10){
+          moveX=Lp-Lm-Wm/160;
+        }
+        if(Rm<Rp+10){
+          moveX=Rp-Rm+Wm/160;
+        }
+        map.panBy([moveX, moveY], { animate: true });
+      });
 
+      },0)
   
   </script>
 
