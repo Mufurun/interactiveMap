@@ -731,14 +731,32 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         const regcon = document.querySelector('.custom-control');
         const Bregcon = regcon.getBoundingClientRect();
 
-        if (Tm > Tp) {
-          moveY=Tp-Tm-Bregcon.bottom;
-        }
-        if(Lp<Lm+10){
-          moveX=Lp-Lm-Wm/160;
-        }
-        if(Rm<Rp+10){
-          moveX=Rp-Rm+Wm/160;
+      //Phone/Tablet or PC Screen
+        var ratio = window.devicePixelRatio || 1;
+        var w = screen.width * ratio;
+        var h = screen.height * ratio;
+        if ((w>768)||((h>768))){
+          if (Tm > Tp) {
+            moveY=Tp-Tm-Bregcon.bottom;
+          }
+          if(Lp<Lm+10){
+            moveX=Lp-Lm-Wm/160;
+          }
+          if(Rm<Rp+10){
+            moveX=Rp-Rm+Wm/160;
+          }
+        }else{
+          if (Tm > Tp) {
+            moveY=Tp-Tm-Hm/160;
+          }
+          if(Lp<Lm+Bregcon.right){
+            moveX=Lp-Lm-Bregcon.right;
+          }
+          const filcon = document.querySelector('.filter-control');
+          const Bfilcon = filcon.getBoundingClientRect();
+          if(Rm<Rp+Bfilcon.left){
+            moveX=Rp-Rm+Bfilcon.left;
+          }
         }
         map.panBy([moveX, moveY], { animate: true });
       });
