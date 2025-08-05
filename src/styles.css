@@ -294,3 +294,56 @@ a:hover {
       }
 
   }
+
+  
+  @media (max-width: 600px) and (orientation:portrait) {
+  /* Adjust styles for better readability in landscape mode */
+  #map {
+      height: 85vh;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .leaflet-popup-content {
+    overflow-x: auto;
+    max-width: 300px;
+
+  }
+  .company{
+    font-size: 14px;
+    display: block;
+  }
+  .image-button{
+    display: inline;
+  }
+
+  .year{
+    display: block;
+    font-size: 12px;
+    margin: 0px;
+    padding: 2%;
+  }
+  .each_discrpt{
+    font-size: 10px;
+
+  }
+  .each_discrpt_li{
+    font-size: 10px;
+  }
+
+}
+@media (max-width: 600px) and (orientation:landscape) {
+  /* Adjust styles for better readability in landscape mode */
+  #map {
+      height: 80vh;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+      .leaflet-popup-content {
+    overflow-x: auto;
+    max-height: 400px; /* Default is 300px up to 600px*/
+
+  }
+
+}
