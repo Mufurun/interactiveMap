@@ -735,7 +735,7 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         var w = screen.width * ratio;
         var h = screen.height * ratio;
         if ((w>768)||((h>768))){
-          if (Tm > Tp) {
+          if (Tm > Tp-Bregcon.bottom) {
             moveY=Tp-Tm-Bregcon.bottom;
           }
           if(Lp<Lm+Wm/160){
