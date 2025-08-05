@@ -313,17 +313,18 @@ a:hover {
   }
 
 }
-@media (max-width: 600px) and (orientation:landscape) {
+@media (max-height: 600px) and (orientation:landscape) {
   /* Adjust styles for better readability in landscape mode */
   #map {
-      height: 80vh;
+      height: 75vh;
       width: 100%;
       padding: 0;
       margin: 0;
     }
       .leaflet-popup-content {
     overflow-x: auto;
-    max-height: 400px; /* Default is 300px up to 600px*/
+    max-height: 200px; /* Default is 300px up to 600px*/
+    max-width: 500px; /* Default is 300px up to 600px*/
 
   }
 
