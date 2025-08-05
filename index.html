@@ -718,6 +718,7 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         const Tp = popupRect.top;
         const Hm = mapRect.height;
         const Hp = popupRect.height;
+        const HpMax = 425;
         const Rp = popupRect.right;
         const Rm = mapRect.right;
         const Lp = popupRect.left;
@@ -735,7 +736,7 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         var w = screen.width * ratio;
         var h = screen.height * ratio;
         if ((w>768)||((h>768))){
-          if (Tm > Tp-Bregcon.bottom) {
+          if (Tm+Bregcon.bottom > Tp) {
             moveY=Tp-Tm-Bregcon.bottom;
           }
           if(Lp<Lm+Wm/160){
@@ -744,7 +745,17 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
           if(Rm<Rp+Wm/160){
             moveX=Rp-Rm+Wm/160;
           }
-        }else{
+        }else if (w<h){
+          if (HpMax + Bregcon.bottom > Tp+Hp) {
+            moveY=Tp+Hp-HpMax-Bregcon.bottom;
+          }
+          if(Lp<Lm+Wm/160){
+            moveX=Lp-Lm-Wm/160;
+          }
+          if(Rm<Rp+Wm/160){
+            moveX=Rp-Rm+Wm/160;
+          }
+        }else if (h<w){
           if (Tm > Tp) {
             moveY=Tp-Tm-Hm/160;
           }
