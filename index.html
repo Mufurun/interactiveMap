@@ -718,7 +718,7 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         const Tp = popupRect.top;
         const Hm = mapRect.height;
         const Hp = popupRect.height;
-        const HpMax = 425;
+        let HpMax = 425;
         const Lp = popupRect.left;
         const Lm = mapRect.left;
         const Rp = Lp+400;
@@ -738,6 +738,10 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         var ratio = window.devicePixelRatio || 1;
         var w = screen.width * ratio;
         var h = screen.height * ratio;
+        if(w<768){
+          HpMax = 200;
+        }
+
         if (w>h){
           if (Tp+Hp < HpMax +Hm/25) {
             moveY=Tp+Hp-HpMax - Hm/25;
