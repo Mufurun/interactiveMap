@@ -721,8 +721,9 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         let HpMax = 425;
         const Lp = popupRect.left;
         const Lm = mapRect.left;
-        const Rp = Lp+400;
+        let Rp = Lp+400;
         const Rm = mapRect.right;
+        const Wp = popupRect.width;
         const Wm = mapRect.width;
         const filcon = document.querySelector('.filter-control');
         const Bfilcon = filcon.getBoundingClientRect();
@@ -738,9 +739,14 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         var ratio = window.devicePixelRatio || 1;
         let w = screen.width * ratio;
         let h = screen.height * ratio;
+        if (typeof window !== 'undefined') {
+          w=window.innerWidth
+          h=window.innerHeight
+        }
         console.log(w +" x "+h);
         if(w<768){
           HpMax = Tm+Hp;
+          Rp = Lp+w/2;
         }
 
         if (w>h){
