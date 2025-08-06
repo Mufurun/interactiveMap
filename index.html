@@ -738,10 +738,6 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         var ratio = window.devicePixelRatio || 1;
         let w = screen.width * ratio;
         let h = screen.height * ratio;
-        if (typeof window !== 'undefined') {
-        w = window.innerWidth;
-        h = wndow.innerHeight;
-        }
         console.log(w +" x "+h);
         if(w<768){
           HpMax = Tm+Hp;
