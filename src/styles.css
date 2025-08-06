@@ -335,7 +335,7 @@ a:hover {
 @media (max-width: 768px) and (orientation:landscape) {
   /* Adjust styles for better readability in landscape mode */
   #map {
-      height: 75vh;
+      height: 80vh;
       width: 100%;
       padding: 0;
       margin: 0;
@@ -343,8 +343,7 @@ a:hover {
       .leaflet-popup-content {
     overflow-x: auto;
     max-height: 200px; /* Default is 300px up to 600px*/
-    max-width: 400px; /* Default is 300px up to 600px*/
-
+    max-width: 45vw; /* Default is 300px up to 600px*/
   }  .company{
     font-size: 16px;
     display: block;
@@ -366,6 +365,12 @@ a:hover {
   .each_discrpt_li{
     font-size: 12px;
   }
+
+  .custom-content {
+      height: 60vh;
+  }
+
+
 
 
 }

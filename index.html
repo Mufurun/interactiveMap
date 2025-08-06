@@ -157,7 +157,7 @@
             return popupContent;
           }, {
               maxWidth: 500,
-              minWidth: 300 // optional, for fixed width
+              minWidth: 300, // optional, for fixed width
           }) 
           marker.addTo(map);
           //set up the scrollbar at the bottom.
@@ -700,7 +700,6 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
           }
         })
       }
-  
       setTimeout(()=>{
           map.on('popupopen', function(e) {
         const popupEl = e.popup.getElement();
@@ -719,11 +718,16 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         const Tp = popupRect.top;
         const Hm = mapRect.height;
         const Hp = popupRect.height;
-        const Rp = popupRect.right;
-        const Rm = mapRect.right;
+        let HpMax = 425;
         const Lp = popupRect.left;
         const Lm = mapRect.left;
+        let Rp = Lp+400;
+        const Rm = mapRect.right;
+        const Wp = popupRect.width;
         const Wm = mapRect.width;
+        const filcon = document.querySelector('.filter-control');
+        const Bfilcon = filcon.getBoundingClientRect();
+
 
         let moveX=0;
         let moveY=0;
@@ -733,35 +737,42 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
 
       //Phone/Tablet or PC Screen
         var ratio = window.devicePixelRatio || 1;
-        var w = screen.width * ratio;
-        var h = screen.height * ratio;
-        if ((w>768)||((h>768))){
-          if (Tm > Tp) {
-            moveY=Tp-Tm-Bregcon.bottom;
-          }
-          if(Lp<Lm+Wm/160){
-            moveX=Lp-Lm-Wm/160;
-          }
-          if(Rm<Rp+Wm/160){
-            moveX=Rp-Rm+Wm/160;
-          }
-        }else{
-          if (Tm > Tp) {
-            moveY=Tp-Tm-Hm/160;
+        let w = screen.width * ratio;
+        let h = screen.height * ratio;
+        if (typeof window !== 'undefined') {
+          w=window.innerWidth
+          h=window.innerHeight
+        }
+        console.log(w +" x "+h);
+        if(w<768){
+          HpMax = Tm+Hp;
+          Rp = Lp+w/2;
+        }
+
+        if (w>h){
+          if (Tp+Hp < HpMax +Hm/25) {
+            moveY=Tp+Hp-HpMax - Hm/25;
           }
           if(Lp<Lm+Bregcon.right){
             moveX=Lp-Lm-Bregcon.right;
           }
-          const filcon = document.querySelector('.filter-control');
-          const Bfilcon = filcon.getBoundingClientRect();
-          if(Rm<Rp+Bfilcon.left){
-            moveX=Rp-Rm+Bfilcon.left;
+          if(Lm+Bfilcon.left<Rp){
+            moveX=Rp-Lm-Bfilcon.left;
+          }          
+        }else{
+          if (Tp+Hp < HpMax+Bregcon.bottom+Hm/25) {
+            moveY=Tp+Hp-HpMax - Hm/25 - Bregcon.bottom;
+          }
+          if(Lp<Lm){
+            moveX=Lp-Lm;
+          }
+          if(Rm<Rp){
+            moveX=Rm-Rp;
           }
         }
         map.panBy([moveX, moveY], { animate: true });
       });
-
-      },0)
+      },0);
   
   </script>
 
