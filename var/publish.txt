@@ -693,47 +693,85 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
           }
         })
       }
-    map.on('popupopen', function(e) {
-  const popupEl = e.popup.getElement();
-  const mapEl = map.getContainer();
+/*
+  ***************************************
+  ******  Size for Mobile Devices  ******
+  ***************************************
 
-  if (!popupEl || !mapEl) return;
+*/
+      setTimeout(()=>{
+          map.on('popupopen', function(e) {
+        const popupEl = e.popup.getElement();
+        const mapEl = map.getContainer();
 
-  const popupRect = popupEl.getBoundingClientRect();
-  const mapRect = mapEl.getBoundingClientRect();
-//Tm: Top px from the base of Map
-//Tp: Top px from the base of Popup
-//S: Space px should be  
-//Hp: Height of Popup
-//Hm: Height of Map
-  const Tm = mapRect.top;
-  const Tp = popupRect.top;
-  const Hm = mapRect.height;
-  const Hp = popupRect.height;
-  const Rp = popupRect.right;
-  const Rm = mapRect.right;
-  const Lp = popupRect.left;
-  const Lm = mapRect.left;
-  const Wm = mapRect.width;
+        if (!popupEl || !mapEl) return;
 
-  let moveX=0;
-  let moveY=0;
+        const popupRect = popupEl.getBoundingClientRect();
+        const mapRect = mapEl.getBoundingClientRect();
+      //Tm: Top px from the base of Map
+      //Tp: Top px from the base of Popup
+      //S: Space px should be  
+      //Hp: Height of Popup
+      //Hm: Height of Map
+        const Tm = mapRect.top;
+        const Tp = popupRect.top;
+        const Hm = mapRect.height;
+        const Hp = popupRect.height;
+        let HpMax = 425;
+        const Lp = popupRect.left;
+        const Lm = mapRect.left;
+        let Rp = Lp+400;
+        const Rm = mapRect.right;
+        const Wp = popupRect.width;
+        const Wm = mapRect.width;
+        const filcon = document.querySelector('.filter-control');
+        const Bfilcon = filcon.getBoundingClientRect();
 
-  const regcon = document.querySelector('.custom-control');
-  const Bregcon = regcon.getBoundingClientRect();
 
-  if (Tm > Tp) {
-    moveY=Tp-Tm-Bregcon.bottom;
-  }
-  if(Lp<Lm+10){
-    moveX=Lp-Lm-Wm/160;
-  }
-  if(Rm<Rp+10){
-    moveX=Rp-Rm+Wm/160;
-  }
-  map.panBy([moveX, moveY], { animate: true });
-});
+        let moveX=0;
+        let moveY=0;
 
+        const regcon = document.querySelector('.custom-control');
+        const Bregcon = regcon.getBoundingClientRect();
+
+      //Phone/Tablet or PC Screen
+        var ratio = window.devicePixelRatio || 1;
+        let w = screen.width * ratio;
+        let h = screen.height * ratio;
+        if (typeof window !== 'undefined') {
+          w=window.innerWidth
+          h=window.innerHeight
+        }
+        console.log(w +" x "+h);
+        if(w<768){
+          HpMax = Tm+Hp;
+          Rp = Lp+w/2;
+        }
+
+        if (w>h){
+          if (Tp+Hp < HpMax +Hm/25) {
+            moveY=Tp+Hp-HpMax - Hm/25;
+          }
+          if(Lp<Lm+Bregcon.right){
+            moveX=Lp-Lm-Bregcon.right;
+          }
+          if(Lm+Bfilcon.left<Rp){
+            moveX=Rp-Lm-Bfilcon.left;
+          }          
+        }else{
+          if (Tp+Hp < HpMax+Bregcon.bottom+Hm/25) {
+            moveY=Tp+Hp-HpMax - Hm/25 - Bregcon.bottom;
+          }
+          if(Lp<Lm){
+            moveX=Lp-Lm;
+          }
+          if(Rm<Rp){
+            moveX=Rm-Rp;
+          }
+        }
+        map.panBy([moveX, moveY], { animate: true });
+      });
+      },0);
   
   </script>
 
