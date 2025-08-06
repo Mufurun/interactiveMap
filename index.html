@@ -745,8 +745,11 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         }
         console.log(w +" x "+h);
         if(w<768){
+          Rp = Lp+w/1.5;
+        }
+        if(h<768){
           HpMax = Tm+Hp;
-          Rp = Lp+w/2;
+          Rp = Lp+w/1.5;
         }
 
         if (w>h){
@@ -767,9 +770,10 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
             moveX=Lp-Lm;
           }
           if(Rm<Rp){
-            moveX=Rm-Rp;
+            moveX=Rp-Rm;
           }
         }
+        console.log(Wp);
         map.panBy([moveX, moveY], { animate: true });
       });
       },0);
