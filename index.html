@@ -717,14 +717,16 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         const Tm = mapRect.top;
         const Tp = popupRect.top;
         const Hm = mapRect.height;
-        const Hmarker = 10;
-        const Hp = popupRect.height+Hmarker;
-        const HpMax = 425+Hmarker;
-        const Rp = popupRect.right;
-        const Rm = mapRect.right;
+        const Hp = popupRect.height;
+        const HpMax = 425;
         const Lp = popupRect.left;
         const Lm = mapRect.left;
+        const Rp = Lp+400;
+        const Rm = mapRect.right;
         const Wm = mapRect.width;
+        const filcon = document.querySelector('.filter-control');
+        const Bfilcon = filcon.getBoundingClientRect();
+
 
         let moveX=0;
         let moveY=0;
@@ -736,39 +738,25 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
         var ratio = window.devicePixelRatio || 1;
         var w = screen.width * ratio;
         var h = screen.height * ratio;
-        if ((w>768)||((h>768))){
-//          alert("large");
-          if (Tp+Hp < HpMax + Bregcon.bottom +Hm/25) {
-            moveY=Tp+Hp-HpMax-Bregcon.bottom - Hm/25;
-          }
-          if(Lp<Lm+Wm/160){
-            moveX=Lp-Lm-Wm/160;
-          }
-          if(Rm<Rp+Wm/160){
-            moveX=Rp-Rm+Wm/160;
-          }          
-        }else if (w<h){
-          alert("portrait");
-          if (Tp+Hp < HpMax + Bregcon.bottom +Hm/25) {
-            moveY=Tp+Hp-HpMax-Bregcon.bottom - Hm/25;
-          }
-          if(Lp<Lm+Wm/160){
-            moveX=Lp-Lm-Wm/160;
-          }
-          if(Rm<Rp+Wm/160){
-            moveX=Rp-Rm+Wm/160;
-          }
-        }else if (h<w){
-          if (Tm > Tp) {
-            moveY=Tp-Tm-Hm/160;
+        if (w>h){
+          if (Tp+Hp < HpMax +Hm/25) {
+            moveY=Tp+Hp-HpMax - Hm/25;
           }
           if(Lp<Lm+Bregcon.right){
             moveX=Lp-Lm-Bregcon.right;
           }
-          const filcon = document.querySelector('.filter-control');
-          const Bfilcon = filcon.getBoundingClientRect();
-          if(Rm<Rp+Bfilcon.left){
-            moveX=Rp-Rm+Bfilcon.left;
+          if(Lm+Bfilcon.left<Rp){
+            moveX=Rp-Lm-Bfilcon.left;
+          }          
+        }else{
+          if (Tp+Hp < HpMax+Bregcon.bottom+Hm/25) {
+            moveY=Tp+Hp-HpMax - Hm/25 - Bregcon.bottom;
+          }
+          if(Lp<Lm){
+            moveX=Lp-Lm;
+          }
+          if(Rm<Rp){
+            moveX=Rp-Rm;
           }
         }
         map.panBy([moveX, moveY], { animate: true });
