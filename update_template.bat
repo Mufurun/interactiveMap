@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 REM Set file paths
 set "target_file=src\data.js"
-set "snippet_file=template\template.txt"
+set "snippet_file=template.txt"
 set "tmp_file=tmp_data.js"
 
 REM Initialize counter

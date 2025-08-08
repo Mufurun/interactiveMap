@@ -8,20 +8,20 @@ counter=1
 while IFS= read -r line; do
      # Process the line here
     if [[ "$line" =~ .+:\ \'[^\\\']+\'[^\\\']+\',.* ]]; then 
-        printf "There is at least an error in the line $counter of template\template.txt file. \n\nThe error is because of the single quote (') in a string, which supposed to have backslash (\) before the single qupte('). \nPlease fix the row #$counter in the template file and try again\n\n\nThis message will disappear in 30 seconds \n (You can close the window anyway even if the program counts 30 seconds)"
+        printf "There is at least an error in the line $counter of template.txt file. \n\nThe error is because of the single quote (') in a string, which supposed to have backslash (\) before the single qupte('). \nPlease fix the row #$counter in the template file and try again\n\n\nThis message will disappear in 30 seconds \n (You can close the window anyway even if the program counts 30 seconds)"
         time sleep 30
         exit
 
 
     fi
     ((counter++))
-done < template/template.txt
+done < template.txt
 
 echo "Valid template.txt"
 
 # Files
 target_file="src/data.js"
-snippet_file="template/template.txt"
+snippet_file="template.txt"
 placeholder="//Replace This Line (and Delete)"
 start_marker="*************************************/ "
 end_marker="/************************************ "
