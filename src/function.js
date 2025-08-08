@@ -764,7 +764,7 @@ if(count_area.hasOwnProperty('RegionalDistrictofAlberni-Clayoquot')){count_area[
 
         let container = `
           <div class = "custom-control-hover">
-              <strong>Region Control  </strong><abbr class = 'question' id = 'regcon' title="Click Plus Sign to Zoom In"></abbr>
+              <strong>Regions</strong><abbr class = 'question' id = 'regcon' title="Click Plus Sign to Zoom In"></abbr>
               <div class="custom-content">
                 <div class="scrollll">
                 <button class = 'button-original-map' id = 'coastalBC'><i>Go Back to Coastal BC</i></button>`;
@@ -1009,7 +1009,7 @@ container += `<div id = 'list_PeaceRiverRegionalDistrict' class = 'list-region'>
       function filterControlhtml(){
         return `
           <div class = "custom-control-hover">
-            <strong>Filter  Control</strong> <button class = 'question' id = 'filcon'></button>
+            <strong>Filters</strong><button class = 'question' id = 'filcon'></button>
             <div class="filter-content"><div class="plain">
               <label><input type="checkbox" id="camp" checked>Show camps</label><br>
               <label><input type="checkbox" id="sawmill" checked>Show Sawmills</label><br>
@@ -1027,8 +1027,8 @@ container += `<div id = 'list_PeaceRiverRegionalDistrict' class = 'list-region'>
       function layerControlhtml(){
         return `
           <div class = "layconContent">
-            <strong>Layer  Control</strong> <button class = 'question' id = 'laycon'></button>
-            <div class="plain">
+            <div class="plain"><strong>Layers</strong><button class = 'question' id = 'laycon'></button>
+            
               <select id="layer">
                 <option value="osm">Street View 1</option>
                 <option value="cv">Street View 2</option>
