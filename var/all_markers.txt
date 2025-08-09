@@ -740,6 +740,9 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
 
         const regcon = document.querySelector('.custom-control');
         const Bregcon = regcon.getBoundingClientRect();
+        const laycon = document.querySelector('.layconContent');
+        const Blaycon = laycon.getBoundingClientRect();
+        
 
       //Phone/Tablet or PC Screen
         var ratio = window.devicePixelRatio || 1;
@@ -762,8 +765,8 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
           if (Tp+Hp < HpMax +Hm/25) {
             moveY=Tp+Hp-HpMax - Hm/25;
           }
-          if(Lp<Lm+Bregcon.right){
-            moveX=Lp-Lm-Bregcon.right;
+          if(Lp<Lm+Blaycon.right){
+            moveX=Lp-Lm-Blaycon.right;
           }
           if(Lm+Bfilcon.left<Rp){
             moveX=Rp-Lm-Bfilcon.left;
