@@ -1027,8 +1027,8 @@ container += `<div id = 'list_PeaceRiverRegionalDistrict' class = 'list-region'>
       function layerControlhtml(){
         return `
           <div class = "layconContent">
-            <div class="plain"><strong>Layers</strong><button class = 'question' id = 'laycon'></button>
-            
+            <strong>Layers</strong><button class = 'question' id = 'laycon'></button>
+            <div class="plain">
               <select id="layer">
                 <option value="osm">Street View 1</option>
                 <option value="cv">Street View 2</option>
