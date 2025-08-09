@@ -12,6 +12,9 @@
  - [Updating Instrutions](#instructions)
  - [Methods](#method)
  - [Distribution](#distribution)
+ - [Code Explanation](#code-explanation)
+
+
 
 ___
 ___
@@ -43,7 +46,7 @@ ___
    - Everything is in the Heritage_Map_Project folder (S:\Curatorial\Heritage_Map_Project)
    - Below, the Heritage_Map_Project folder refers to S:\Curatorial\Heritage_Map_Project
  - The program uses both the interactiveMap folder (contents) and the HeritageMap folder (photos)
-### 1 Update Contents<a name="update-contents"></a>
+## 1 Update Contents<a name="update-contents"></a>
  - All numbers and contents are in the excel file (at Heritage_Map_Project\HeritageMap.xlsx) and photos are in the HeritageMap folder ("Heritage_Map_Project\HeritageMap").
    - For the data management, we want to use a few files.
  - Each row in the excel is assigned to hold all information about a site.
@@ -142,7 +145,7 @@ ___
  - **DO NOT FORGET TO SAVE WHEN YOU UPDATE THE FILE**
    
 
-### 2 Upload Codes <a name="upload-codes"></a>
+## 2 Upload Codes <a name="upload-codes"></a>
  - All info must be ready on the "Sheet3" of the Excel file at Heritage_Map_Project\HeritageMap.xlsx.
     - "Sheet3" is not editable.
     - Backup: S:\Curatorial\Heritage Map\HeritageMap.xlsx
@@ -163,7 +166,7 @@ ___
 
 
 =======
-### Common Error and Debugging <a name="common-error-and-debugging"></a>
+## Common Error and Debugging <a name="common-error-and-debugging"></a>
  - With the steps above, if you face some problem, check those followings:
   - **Run update_template.sh and Follow the instruction**
     - This program will use data from template.txt, which has already an error.
@@ -171,7 +174,14 @@ ___
   - **Excel Data**
     - Is there any error in Excel file, especially "Sheet3"?
   - **export.txt File**
-    - Are all the lines starting with "{" and ending with "}," (the ending can be "}") 
+    - Are all the lines starting with "{" and ending with "}," (the ending can be "}")
+  - **Run the modify_codes.bat**
+    - If there is crucial problem to run html program (backslash-before-quotation-mark problem), it will let you know which row to be checked. 
+  - **Run the index.html**
+    - If program does not read any data of sites, it will show "Seems you have not updated the data.js file."
+      - Upload the data by [Upload it to the Code](#upload-codes).
+    - If program breaks during reading data, it will show "Seems to have at least an error."
+      - Check the excel file to find a problem (Cooked, since it's too hard to find single error...).
 
 ___
 ___
@@ -231,3 +241,35 @@ ___
 ## Distribution<a name="distribution"></a>
  - All data should not be publicly available since those may include private information before revision. 
  - The repo and its codes can be public.
+
+
+___
+___
+
+# Codes Explanation<a name="code-explanation"></a>
+
+## Dependancies
+### Main Program
+  - index.html
+    - src/function.js
+    - src/data.js
+    - src/static_data.js
+    - src/styles.css
+    - src/image_styles.css
+    - src/regcon_styles.css
+    - src/filcon_styles.css
+    - ../HeritageMap/
+      - images
+(For all_markers, additionally;)
+    - terms-conditions/terms-conditions.js 
+    - terms-conditions/terms-conditions.css 
+
+### Uploading Program    
+  - update_template.sh/update_template.bat/modify_codes.bat
+    - src/data.js
+    - var/all_markers.txt
+    - var/publish.txt
+
+## variables and functions in main programming
+
+
