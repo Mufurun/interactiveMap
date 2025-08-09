@@ -94,7 +94,7 @@
   
   */
     //map
-    const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:6}).setView([51.5, -127], 7);
+    const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:5}).setView([51.5, -127], 7);
   
     //attribution
       map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank" class = ".leaflet-control-attribution">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps"  class = ".leaflet-control-attribution">Leaflet</a>');
