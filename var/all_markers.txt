@@ -15,7 +15,6 @@
 
 <head>
   <title>Interactive Map Example</title>
-  <link rel="icon" href="images/mufurun.ico" type="image/x-icon">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -28,12 +27,14 @@
   <link rel = "stylesheet" href = "terms-conditions/terms-conditions.css" />
 </head>
 <body>
-  
+
+
 <!-- Checkin Screen-->
   <div id="entryScreen">
     <div class="entry-box">      
       <h1>Interactive Map Project Draft</h1>
-      <p> This is a draft of the interactive map. This program should not be publicly available at this time. See the intructions to get codes to be published</p>
+      <p> This is a draft of the interactive map. This program should not be publicly available at this time. The Region here shows all location in the list, which is not the case in the other version. </p>
+      <p>See the intructions to get codes to be published</p>
       <p>Take a look at codes here <a style = "color: greenyellow" href="http://github.com/Mufurun/interactiveMap">My github page</a></p>
       <div class = "button-wrapper">
         <button id="enterBtn">Continue</button>
@@ -42,12 +43,11 @@
   </div>
   <script src = 'terms-conditions/terms-conditions.js'></script>
 
+
+
 <!-- Main Screen-->
 <div id="map"></div>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -283,13 +283,10 @@ Click Plus Sign to Zoom In`);
       });
   
   
-      
-
-  /*
+    /*
   *********************************
   ******   Filter Control    ******
-  *********************************
-  
+  *********************************  
   */
       const filterControl = L.Control.extend({
         onAdd: function (map) {
@@ -313,11 +310,11 @@ Click Plus Sign to Zoom In`);
               });
             });
             document.getElementById('filterYear').addEventListener('input',function(){
-              filterMarker(map. markers);
+              filterMarker(map, markers);
               document.getElementById('showFilterYear').value = this.value;
             });
             document.getElementById('allTime').addEventListener('click',function(){
-              filterMarker(map, markers, truee);
+              filterMarker(map, markers, true);
               document.getElementById('showFilterYear').value = 'All Time';
               document.getElementById('filterYear').value = 2025;
             });
@@ -347,6 +344,9 @@ Or Click All Time button.`);
           return container;
         }
       });
+
+
+
   /*
   ********************************
   ******   Layer Control    ******

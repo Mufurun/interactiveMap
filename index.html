@@ -14,8 +14,7 @@
         -->
 
 <head>
-  <title>Interactive Map Example</title>
-  <link rel="icon" href="images/mufurun.ico" type="image/x-icon">
+  <title>Heritage Map Project</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,7 +24,6 @@
   <link rel = "stylesheet" href = "src/filcon_styles.css" />
   <link rel = "stylesheet" href = "src/regcon_styles.css" />
   <link rel = "stylesheet" href = "src/image_styles.css" />
-  <link rel = "stylesheet" href = "terms-conditions/terms-conditions.css" />
 </head>
 <body>
   
@@ -34,9 +32,6 @@
 <!-- Main Screen-->
 <div id="map"></div>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -281,8 +276,7 @@ Click Plus Sign to Zoom In`);
   /*
   *********************************
   ******   Filter Control    ******
-  *********************************
-  
+  *********************************  
   */
       const filterControl = L.Control.extend({
         onAdd: function (map) {
@@ -306,11 +300,11 @@ Click Plus Sign to Zoom In`);
               });
             });
             document.getElementById('filterYear').addEventListener('input',function(){
-              filterMarker(map. markers);
+              filterMarker(map, markers);
               document.getElementById('showFilterYear').value = this.value;
             });
             document.getElementById('allTime').addEventListener('click',function(){
-              filterMarker(map, markers, truee);
+              filterMarker(map, markers, true);
               document.getElementById('showFilterYear').value = 'All Time';
               document.getElementById('filterYear').value = 2025;
             });
