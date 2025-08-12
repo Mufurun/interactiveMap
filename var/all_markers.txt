@@ -78,11 +78,6 @@
   ######   Map initialization   #######
   #####################################
   
-  /*
-  #####################################
-  ######   Map initialization   #######
-  #####################################
-  
       continuousWorld: false
       worldCopyJump: true
       zoomControl: custom -> later

@@ -1,5 +1,20 @@
- 
-      //Icon to make them visibly identifiable
+/*
+#####################
+####    Icons    ####
+#####################
+
+      Icons to make them visibly identifiable
+        greenIcon: error
+        sawmill_icon
+        camp_icon
+        paper_icon
+        community_icon
+
+
+      I don't know how but it would be great if it change the colour accordingly to the layer change
+
+    */
+      
       const greenIcon = L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
         shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
@@ -52,16 +67,81 @@
   #####################################
   #####     Functions for Map     #####
   #####################################
+
+
+      createPopupContent(point, rowNum = 0);
+      image_popup(image_in_list, next);
+      closeSection()
+      Change_image()
+      updateParentHeight(element);
+      updateSibling(element);
+      updateChildren(element);
+      customControlhtml(count_area);
+      size_for_phone(map);
+      filterMarker(map, markers, allTime = false, allSite = false);
+      listMarkers(map, markers, region);
+
   */
       
 
 
-    /*
+/*
+#######################################################
+######     Functions for  createPopupContent     ######
+#######################################################
+
+
+   createPopupContent()
+      image_popup(image_in_list, next)
+        closeSection()
+        Change_image()
+      
+
+
   **********************************************
   *******  FUNCTION createPopupContent()  ******
   **********************************************
   
-  Create popup content and listeners
+    Create popup content and listeners with rowNum if all_markers
+    HTML: 
+      container: div (popup-content)
+          (row: h6 (year))
+          title: strong (title)
+          company: strong (company)
+          imageSection: span 
+              each_image_button: button (image-button) *1
+                  each_image: img (image)
+          year: h6 (year)
+          description: ul (description)
+              each_description: li (each_descript) for lines begging with yeas as *2, or 
+              each_description: li (each_descript_li) for other lines
+          addSrc: H6 (year)
+          additionalSource: ul (description)
+              each_addSrc: li (each_discrpt_li) *3
+             
+        *1: 
+            Up to five photos right now:
+            This runs image_popup(image_in_list, next)
+              next is 
+                0 if the image is the first one
+                1, 2, or 3 if the image is middle
+                4 if the image is the last one
+
+        *2: 
+            The list of  examples:
+                  YYYY: 
+                  YYYY-:
+                  -YYYY:
+                  YYY0s: 
+                  YYY0s-:
+                  -YYY0s:
+                  YYYY-YYYY: 
+                  YYY0s-YYYY:
+                  YYYY-YYY0s:
+                  YYY0s-YYY0s:
+
+        *3:
+            The list can have a url link if it is supplied.
       
   
   */
@@ -261,10 +341,41 @@
       }
 
   
+
+
 /*
-****************************
-*******  Image Popup  ******
-****************************
+
+
+  
+***************************************
+*******  FUNCTION image_popup()  ******
+***************************************
+
+      HTML:
+        section: div (popupSection)
+            div (image-popup-close)
+                button (large-image-close) *1
+                    image (large-image-close-icon)
+            section_without_close: div (section-wo-close)
+                section_without_close2: div (section-wo-close2)
+                    change_img_left:button (image_left) *2
+                    large_image: div (large-image-div)
+                        each_large_image: img (large-image)
+                    change_img_right:button (image_right) *2
+                text_for_image: p (year), or
+                linked_text: a (year)
+        
+        Then run Change_image() *3
+
+        *1: 
+            runs closeSection(). 
+              close the image popup
+        *2:
+            If there is lower sibling (next>0) >>> show the left button
+            If there is upper sibling (next<4) >>> show the right button
+        *3:
+            Change the image as the user click the right/left image button.
+
 */
  
         function image_popup(image_in_list, next){
@@ -346,6 +457,13 @@
             change_image(image_in_list);
           }
 
+/*
+  ****************************************
+  ******  Function closeSection()  ******
+  ****************************************
+  
+        close the image popup when the user click the button
+  */
           function closeSection() {
             const section = document.getElementById('popupSection');
             if (section) {
@@ -353,6 +471,13 @@
             }
           }
 
+/*
+  ****************************************
+  ******  Function change_image()  ******
+  ****************************************
+  
+          Change the image as the user click right/left image button
+  */
           function change_image(image_in_list){
             setTimeout(()=>{
             const imageleft = document.getElementById('image_left');
@@ -381,7 +506,7 @@
 
 
 
-      /*
+/*
   ##################################################
   ######     Functions for Region Control     ######
   ##################################################
@@ -392,9 +517,7 @@
         updateChildren();
       For the button of the list in each region
         listMarkers()
-  */
   
-  /*
   *********************************************
   ******  Function updateParentHeight()  ******
   *********************************************
@@ -421,7 +544,6 @@
     Unfold the other sibling sections
       This is necessary since the map will zoom up the region where you open the section with
   */
-  
 
       function updateSibling(element) {
           let sibling = element.parentElement.firstElementChild;
@@ -442,7 +564,7 @@
     Unfold the children sections
       This is necessary since the map will zoom up the region where you open the section with
   */
-  
+
       function updateChildren(element) {
           let child = element.firstElementChild;
           while (child) {
@@ -489,7 +611,6 @@
     ];        
     
   */
-
 
     
       function customControlhtml(count_area){
@@ -1056,14 +1177,13 @@ container += `<div id = 'list_PeaceRiverRegionalDistrict' class = 'list-region'>
       }
 
 
-      function size_for_phone(map){
-
 /*
   ***************************************
   ******  Size for Mobile Devices  ******
   ***************************************
 
 */
+    function size_for_phone(map){
       setTimeout(()=>{
           map.on('popupopen', function(e) {
         const popupEl = e.popup.getElement();
@@ -1186,6 +1306,8 @@ container += `<div id = 'list_PeaceRiverRegionalDistrict' class = 'list-region'>
       Create button to direct the location
     
   */
+
+
       function listMarkers(map, markers, region){
         const list = document.getElementById("list_"+region);
         if(list){
