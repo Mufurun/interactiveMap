@@ -35,6 +35,8 @@
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Leaflet Hash plugin -->
+<script src="https://unpkg.com/leaflet-hash"></script>
 
 <!-- Data for sites -->
 <script src="src/data.js"></script>
@@ -59,26 +61,22 @@
   ######   Map initialization   #######
   #####################################
   
-      continuousWorld: true
+      continuousWorld: false
       worldCopyJump: true
       zoomControl: custom -> later
       maxZoom: 18
       minZoom: 6
   
       attribution:  
-        https://github.com/tomchadwin/qgis2web
+        https://bcforestdiscoverycentre.com/
         https://leafletjs.com
-        https://qgis.org
-        http://www.openstreetmap.org/copyright
-      
-      Buttons:
-        ->after the markers
-        
-  
+        +
+        map attribution: details in function (layerControl)
+          
   
   */
     //map
-    const map = L.map('map',{continuousWorld: true, worldCopyJump: true, zoomControl:false, maxZoom:18, minZoom:5}).setView([51.5, -127], 7);
+    const map = L.map('map',{zoomControl:false, maxZoom:18, minZoom:5}).setView([51.5, -127], 6);
   
     //attribution
       map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank" class = ".leaflet-control-attribution">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps"  class = ".leaflet-control-attribution">Leaflet</a>');
@@ -87,26 +85,44 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(map);
     
-  
-  //I don't know followings
-      //var hash = new L.Hash(map);
+
+    //Show the hash tag for the screen location on the url. Leaflet extension
+      var hash = new L.Hash(map);
+     //Set the restriction to move the screen. 
+      function setBounds() {
+           map.setMaxBounds(map.getBounds());
+      }
+      setBounds();
+    //So that the restriction larger and initial view closer.
+      map.setView([51.5, -127], 7)
+ 
+      //I don't know the following.
       //     var bounds_group = new L.featureGroup([]);
-      // function setBounds() {
-      //     map.setMaxBounds(map.getBounds());
-      //}
-  //    var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
       
-    
+      
   
   
   /*
   #########################
   ######   Markers   ######
   #########################
-  
+
+
+      Debug by checking if data.js is updated and if it operates this part of program. 
+      Check each point has error or not
+        >> Yes: Show it on map
+        >> No: Do nothing 
       Add every points on the map using createPopupContent()
-      Group them to filter
-      Store all info in an array
+      Group them to assign icon and filter
+      Store all info in markers, which stores: 
+        marker,
+        category (point.category), 
+        yearStart.
+        yearEnd,
+        name (point.title + point.company),
+        area
+      
+
   */
       //An array to store them (exclusively good points)
       let markers = []
@@ -141,11 +157,6 @@
               minWidth: 300 // optional, for fixed width
           }) 
           marker.addTo(map);
-          //set up the scrollbar at the bottom.
-          map.on('popupopen', (e) => {
-            const popupElement = e.popup.getElement();
-            const commentsBox = popupElement.querySelector('.comments');
-          });
           if(!point.error){
             if (!count_area.hasOwnProperty(point.area)) {
               count_area[point.area] = 1;
@@ -179,15 +190,16 @@
   ######     All Kinds of Controls     #####
   ##########################################
        Zoom control:
+       Region Control:
        Current Position:
        Layer Control:
-       Region COntrol:
   */
   
   /*
   ******************************
   ******   zoomControl    ******
   ******************************
+      See styles.css
   */
   
       var zoomControl = L.control.zoom({
@@ -202,7 +214,18 @@
   ******   Regional Control    ******
   ***********************************
   
-  
+      Hover to open.
+      Click the button to zoom up the region.
+      Click the bar to open the lower categories/close those siblings.
+      Click to zoom up the region.
+      Click to see how to use.
+
+      customControlhtml(count_area);
+          Show regions due to the area of the data.js. 
+      listMarkers(map, markers, region) to set up the html styles 
+          Add list buttons to fly to and open the popup.
+
+      
   */
        const customControl = L.Control.extend({
         onAdd: function (map) {
@@ -213,11 +236,9 @@
           L.DomEvent.disableClickPropagation(container);
           L.DomEvent.disableScrollPropagation(container);
   
-
-  
-          // Delay attaching the event until the DOM is ready
+          // Delay attaching the event until the DOM is ready.
           setTimeout(() => {
-            //Zoom into the area
+            //Click the list to fly to and open the popup.
             regions.forEach(region =>{
               const btn = document.getElementById(region.id);
               if(btn){
@@ -227,7 +248,7 @@
               }
             })
             
-
+            //Click the bar to open the lower categories/close those siblings, and Add Zoomup Button
             const collapsibles = document.querySelectorAll(".collapsible");
             collapsibles.forEach(button => {
               button.addEventListener("click", function () {
@@ -244,6 +265,8 @@
                 }
               });
             });
+
+            //Original Map Zoomup
             const world = document.querySelectorAll(".button-original-map");
             world.forEach(button => {
               button.addEventListener("click", function () {
@@ -277,19 +300,33 @@ Click Plus Sign to Zoom In`);
   *********************************
   ******   Filter Control    ******
   *********************************  
+
+      Hover to open.
+      Select the categories.
+      Pick the year/type the year.
+      Click to see how to use.
+
+
+      filterControlhtml()
+        Style the innerHTML
+
+      filterMarker(map, markers, allTime = false, allSite = false) 
+        Add/Remove each marker on the map as the filters selected.
+
+
+
   */
       const filterControl = L.Control.extend({
         onAdd: function (map) {
           const container = L.DomUtil.create('div', 'filter-control leaflet-bar');
-          container.innerHTML = filterControlhtml()
+          container.innerHTML = filterControlhtml();
 
-
-  
           // Prevent map click propagation
           L.DomEvent.disableClickPropagation(container);
           L.DomEvent.disableScrollPropagation(container);
 
           setTimeout(() => {
+            //Change the categories: camp, sawmill, p&p, community, BCFS
             category_list.forEach(obj =>{
               document.getElementById(obj).addEventListener('change', function(){
                 let bool = false;
@@ -299,6 +336,8 @@ Click Plus Sign to Zoom In`);
                 filterMarker(map, markers, bool);
               });
             });
+
+            //Change the year.
             document.getElementById('filterYear').addEventListener('input',function(){
               filterMarker(map, markers);
               document.getElementById('showFilterYear').value = this.value;
@@ -340,11 +379,22 @@ Or Click All Time button.`);
   ********************************
   ******   Layer Control    ******
   ********************************
+
+      Select the Layer
+      Change the tile of the map
+
+
+      layerControlhtml()
+        Style the inner HTML
+
+      layerFunctions(map)
+        Change the tile as the layer selected.
+
   */
       const layerControl = L.Control.extend({
         onAdd: function (map) {
           const container = L.DomUtil.create('div');
-          container.innerHTML = layerControlhtml()
+          container.innerHTML = layerControlhtml();
           layerFunctions(map);
 
   
@@ -368,7 +418,11 @@ Or Click All Time button.`);
 
 
 /*
+##########################################
 ###########    ADD CONTROLs    ###########
+##########################################
+
+      Do not add it bottom. Bottom will be covered by the map attribution for narrow screen. 
 */
       map.addControl(new layerControl({ position: 'topleft' }));
       map.addControl(new filterControl({ position: 'topright' }));
@@ -377,17 +431,13 @@ Or Click All Time button.`);
 
 
   /*
-  ###################################
-  ###################################
-  ##########  FUNCTIONS   ###########
-  ###################################
-  ###################################
-  */
-  
+*********************************************
+******   Specific Style for Phone User ******
+*********************************************
 
-  
-
-      size_for_phone(map);  
+      When click the popup. open the popup with full content shown; in the other word, the content is insize the screen view and not covered by the controls. 
+*/
+        size_for_phone(map);  
   </script>
 
 </body>
