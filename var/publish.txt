@@ -226,6 +226,11 @@
           Show regions due to the area of the data.js. 
       listMarkers(map, markers, region) to set up the html styles 
           Add list buttons to fly to and open the popup.
+      updateParentHeight()
+      updateSibling()
+      updateChildren()
+          Maintain the collapsible buttons for the regional categories.
+
 
       
   */
