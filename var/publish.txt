@@ -2,16 +2,18 @@
 <html lang="en">
 
 
-<!--
-        Thank you for reading this source :))
-        Wanna get this code improved??
-        Contact: 
+<!-- 
+===========================================================
+Thank you for reading this source! :))
+Want to improve this code??
+Feel free to contact me: ovis1gmelini@gmail.com
 
-        お疲れ様です！
-        ソースをご確認いただきありがとうございます！(/ω＼*)
-        問題がある部分や御意見等ございましたら、ご連絡いただければ幸いです。
-        連絡先: 
-        -->
+お疲れ様です！
+ソースをご確認いただきありがとうございます！(/ω＼*)
+問題がある部分やご意見等ございましたら、ご連絡いただければ幸いです。
+連絡先: ovis1gmelini@gmail.com
+===========================================================
+-->
 
 <head>
   <title>Heritage Map Project</title>
@@ -76,7 +78,7 @@
   
   */
     //map
-    const map = L.map('map',{zoomControl:false, maxZoom:18, minZoom:5}).setView([51.5, -127], 6);
+    const map = L.map('map',{zoomControl:false, maxZoom:18, minZoom:5}).setView([51.5, -127], 7);
   
     //attribution
       map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank" class = ".leaflet-control-attribution">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps"  class = ".leaflet-control-attribution">Leaflet</a>');
@@ -88,13 +90,17 @@
 
     //Show the hash tag for the screen location on the url. Leaflet extension
       var hash = new L.Hash(map);
-     //Set the restriction to move the screen. 
+
+    //Set the restriction to move the screen. 
+     var fixedBounds = L.latLngBounds(
+        [47.80, -140.56], // Southwest corner (southmost + westmost combined)
+        [60.50, -113.55]  // Northeast corner (northmost + eastmost combined)
+      );
+
       function setBounds() {
-           map.setMaxBounds(map.getBounds());
+           map.setMaxBounds(fixedBounds);
       }
       setBounds();
-    //So that the restriction larger and initial view closer.
-      map.setView([51.5, -127], 7)
  
       //I don't know the following.
       //     var bounds_group = new L.featureGroup([]);

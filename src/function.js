@@ -596,43 +596,50 @@
       Show the area categories that is coded at the area in the point in the data.js file, including upper categories. 
         For example, if it has Victoria, this program includes the CapitalRegionalDistrict and the VancouverIsland. 
 
-          The count_area dictionary is used to store the area category in the index.html. 
-          The section of a number of if-statements adds the upper categories if the lower area is chosen. 
-              >> Change here if you update area category
-          HTML
-              container: div (custom-control-hover)
-                  strong 
-                  abbr (question) *1
-                  div (custom-content)
-                      div (scrollll)
-                      button (button-original-map)
-              // Depending on the count_area dictionary 
+
+        customControlhtml()
+            The count_area dictionary is used to store the area category in the index.html. 
+            The section of a number of if-statements adds the upper categories if the lower area is chosen. 
                 >> Change here if you update area category
-                      div (control-button-wrapper)
-                          button (collapsible) button (button)
-                      div (content)
-                          div (control-button-wrapper)
-                              button (collapsible) button (button)
-                          div (content)
-                              div (control-button-wrapper)
-                                  button (collapsible) button (button)
-                              div (content)
-                              div (list_<<NAME_OF_AREA>>) *2
-                          div (list_<<NAME_OF_AREA>>) *2
-                      div (list_<<NAME_OF_AREA>>) *2
+            HTML
+                container: div (custom-control-hover)
+                    strong 
+                    abbr (question) *1
+                    div (custom-content)
+                        div (scrollll)
+                        button (button-original-map)
+                // Depending on the count_area dictionary 
+                  >> Change here if you update area category
+                        div (control-button-wrapper)
+                            button (collapsible) button (button)
+                        div (content)
+                            div (control-button-wrapper)
+                                button (collapsible) button (button)
+                            div (content)
+                                div (control-button-wrapper)
+                                    button (collapsible) button (button)
+                                div (content)
+                                div (list_<<NAME_OF_AREA>>) *2
+                            div (list_<<NAME_OF_AREA>>) *2
+                        div (list_<<NAME_OF_AREA>>) *2
 
-            *1: 
-                Button to show how to use this control
+              *1: 
+                  Button to show how to use this control
 
-            *2: 
-                For example: list_Victoria
-      
-             For the area categories, please refer to the region_categories in the solid_data.js file.
+              *2: 
+                  For example: list_Victoria
+        
+              For the area categories, please refer to the region_categories in the solid_data.js file.
 
+      listMarkers()
+          Add list of sites in the region to the div, IDed as list_<<REGION>> (<<REGION>> is the name of region in the category)
+          The list contains markers.name in the index.html
+              point.title + '(' + point.company + ')'
+          This list is the button, directing to the site to open the popup. 
 
 
   ***************************************
-  ******  Function filterMarker()  ******
+  ******  Function customControlhtml()  ******
   ***************************************
 
         Style the HTML.
@@ -878,12 +885,7 @@ if(!count_area.hasOwnProperty('all')){
 /*
 (((((((((((  UPDATE ABOVE  )))))))))))
 */
-
 }
-
-
-
-
 
 
         let container = `
@@ -1135,6 +1137,292 @@ if(!count_area.hasOwnProperty('all')){
             `;
             return container;
       }
+
+
+/*
+  *************************************
+  ******  Function listMarkers()  ******
+  *************************************
+  
+      Make the list of sites shown on the region control
+      Create button to direct the location
+    
+  */
+
+
+      function listMarkers(map, markers, region){
+        const list = document.getElementById("list_"+region);
+        if(list){
+          let counter = 0;
+          const buttons = document.createElement('div');
+          markers.forEach(p =>{  
+            if(p.area == region){
+              const title = document.createElement('button');
+              title.textContent = p.name;
+              title.classList = 'list-button';
+              title.onclick = () => {
+                map.flyTo([p.marker.getLatLng().lat+0.005,p.marker.getLatLng().lng], 13);
+                filterMarker(map, markers, true, true);
+                document.getElementById('showFilterYear').value = 'All Time';
+                p.marker.openPopup();
+              }
+              buttons.appendChild(title);
+              buttons.appendChild(document.createElement('br'));
+              counter++;
+            }
+          });
+        if(counter){
+          if(region == 'coastalBC'){
+            list.innerHTML = "List of Other Sites on Coastal BC";
+          }
+/*
+(((((((((((  UPDATE BELOW  )))))))))))
+*/
+else if(region =='VancouverIsland/Coast'){list.innerHTML = 'List of Other Sites in Vancouver Island/Coast';}
+else if(region =='RegionalDistrictofAlberni-Clayoquot'){list.innerHTML = 'List of Other Sites in Regional District of Alberni-Clayoquot';}
+else if(region =='PortAlberni'){list.innerHTML = 'List of Sites in Port Alberni';}
+else if(region =='CapitalRegionalDistrict'){list.innerHTML = 'List of Other Sites in Capital Regional District';}
+else if(region =='CentralSaanich'){list.innerHTML = 'List of Sites in Central Saanich';}
+else if(region =='Colwood'){list.innerHTML = 'List of Sites in Colwood';}
+else if(region =='Esquimalt'){list.innerHTML = 'List of Sites in Esquimalt';}
+else if(region =='Highlands'){list.innerHTML = 'List of Sites in Highlands';}
+else if(region =='JordanRiver'){list.innerHTML = 'List of Sites in Jordan River';}
+else if(region =='Langford'){list.innerHTML = 'List of Sites in Langford';}
+else if(region =='Metchosin'){list.innerHTML = 'List of Sites in Metchosin';}
+else if(region =='NorthSaanich'){list.innerHTML = 'List of Sites in North Saanich';}
+else if(region =='OakBay'){list.innerHTML = 'List of Sites in Oak Bay';}
+else if(region =='PortRenfrew'){list.innerHTML = 'List of Sites in Port Renfrew';}
+else if(region =='Saanich'){list.innerHTML = 'List of Sites in Saanich';}
+else if(region =='SaltspringIsland'){list.innerHTML = 'List of Sites in Saltspring Island';}
+else if(region =='Sidney'){list.innerHTML = 'List of Sites in Sidney';}
+else if(region =='Sooke'){list.innerHTML = 'List of Sites in Sooke';}
+else if(region =='Victoria'){list.innerHTML = 'List of Sites in Victoria';}
+else if(region =='ViewRoyal'){list.innerHTML = 'List of Sites in View Royal';}
+else if(region =='CentralCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in Central Coast Regional District';}
+else if(region =='ComoxValleyRegionalDistrict'){list.innerHTML = 'List of Other Sites in Comox Valley Regional District';}
+else if(region =='BaynesSound-Denman/HornbyIslands'){list.innerHTML = 'List of Sites in Baynes Sound - Denman/Hornby Islands';}
+else if(region =='Comox'){list.innerHTML = 'List of Sites in Comox';}
+else if(region =='Courtenay'){list.innerHTML = 'List of Sites in Courtenay';}
+else if(region =='Cumberland'){list.innerHTML = 'List of Sites in Cumberland';}
+else if(region =='Puntledge/BlackCreek'){list.innerHTML = 'List of Sites in Puntledge / Black Creek';}
+else if(region =='CowichanValleyRegionalDistrict'){list.innerHTML = 'List of Other Sites in Cowichan Valley Regional District';}
+else if(region =='Chemainus'){list.innerHTML = 'List of Sites in Chemainus';}
+else if(region =='CobbleHill'){list.innerHTML = 'List of Sites in Cobble Hill';}
+else if(region =='CowichanBay'){list.innerHTML = 'List of Sites in Cowichan Bay';}
+else if(region =='CowichanStation'){list.innerHTML = 'List of Sites in Cowichan Station';}
+else if(region =='Duncan'){list.innerHTML = 'List of Sites in Duncan';}
+else if(region =='Glenora'){list.innerHTML = 'List of Sites in Glenora';}
+else if(region =='Ladysmith'){list.innerHTML = 'List of Sites in Ladysmith';}
+else if(region =='LakeCowichan'){list.innerHTML = 'List of Sites in Lake Cowichan';}
+else if(region =='Malahat'){list.innerHTML = 'List of Sites in Malahat';}
+else if(region =='MillBay'){list.innerHTML = 'List of Sites in Mill Bay';}
+else if(region =='NorthCowichan'){list.innerHTML = 'List of Sites in North Cowichan';}
+else if(region =='Sahtlam'){list.innerHTML = 'List of Sites in Sahtlam';}
+else if(region =='Saltair'){list.innerHTML = 'List of Sites in Saltair';}
+else if(region =='ShawniganLake'){list.innerHTML = 'List of Sites in Shawnigan Lake';}
+else if(region =='SouthLlakeCowichan'){list.innerHTML = 'List of Sites in South Llake Cowichan';}
+else if(region =='Youbou'){list.innerHTML = 'List of Sites in Youbou';}
+else if(region =='RegionalDistrictofMountWaddington'){list.innerHTML = 'List of Other Sites in Regional District of Mount Waddington';}
+else if(region =='AlertBay'){list.innerHTML = 'List of Sites in Alert Bay';}
+else if(region =='PortAlice'){list.innerHTML = 'List of Sites in Port Alice';}
+else if(region =='PortHardy'){list.innerHTML = 'List of Sites in Port Hardy';}
+else if(region =='PortMcNeill'){list.innerHTML = 'List of Sites in Port McNeill';}
+else if(region =='RegionalDistrictofNanaimo'){list.innerHTML = 'List of Other Sites in Regional District of Nanaimo';}
+else if(region =='Lantzville'){list.innerHTML = 'List of Sites in Lantzville';}
+else if(region =='Nanaimo'){list.innerHTML = 'List of Sites in Nanaimo';}
+else if(region =='Parksville'){list.innerHTML = 'List of Sites in Parksville';}
+else if(region =='Cassidy'){list.innerHTML = 'List of Sites in Cassidy';}
+else if(region =='QualicumBeach'){list.innerHTML = 'List of Sites in Qualicum Beach';}
+else if(region =='qathetRegionalDistrict'){list.innerHTML = 'List of Other Sites in qathet Regional District';}
+else if(region =='PowellRiver'){list.innerHTML = 'List of Sites in Powell River';}
+else if(region =='StrathconaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Strathcona Regional District';}
+else if(region =='CampbellRiver'){list.innerHTML = 'List of Sites in Campbell River';}
+else if(region =='Cortes'){list.innerHTML = 'List of Sites in Cortes';}
+else if(region =='DiscoveryIslands/MainlandInlets'){list.innerHTML = 'List of Sites in Discovery Islands / Mainland Inlets';}
+else if(region =='GoldRiver'){list.innerHTML = 'List of Sites in Gold River';}
+else if(region =='Kyuquot/Nootka-Sayward'){list.innerHTML = 'List of Sites in Kyuquot / Nootka-Sayward';}
+else if(region =='OysterBay/ButtleLake'){list.innerHTML = 'List of Sites in Oyster Bay / Buttle Lake';}
+else if(region =='StrathconaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Mainland/Southwest';}
+else if(region =='FraserValleyRegionalDistrict'){list.innerHTML = 'List of Other Sites in Fraser Valley Regional District';}
+else if(region =='Abbotsford'){list.innerHTML = 'List of Sites in Abbotsford';}
+else if(region =='Chilliwack'){list.innerHTML = 'List of Sites in Chilliwack';}
+else if(region =='HarrisonHotSprings'){list.innerHTML = 'List of Sites in Harrison Hot Springs';}
+else if(region =='Hope'){list.innerHTML = 'List of Sites in Hope';}
+else if(region =='Kent'){list.innerHTML = 'List of Sites in Kent';}
+else if(region =='Mission'){list.innerHTML = 'List of Sites in Mission';}
+else if(region =='MetroVancouverRegionalDistrict'){list.innerHTML = 'List of Other Sites in Metro Vancouver Regional District';}
+else if(region =='Anmore'){list.innerHTML = 'List of Sites in Anmore';}
+else if(region =='Belcarra'){list.innerHTML = 'List of Sites in Belcarra';}
+else if(region =='BowenIsland'){list.innerHTML = 'List of Sites in Bowen Island';}
+else if(region =='Burnaby'){list.innerHTML = 'List of Sites in Burnaby';}
+else if(region =='Coquitlam'){list.innerHTML = 'List of Sites in Coquitlam';}
+else if(region =='Delta'){list.innerHTML = 'List of Sites in Delta';}
+else if(region =='Langley'){list.innerHTML = 'List of Sites in Langley';}
+else if(region =='LionsBay'){list.innerHTML = 'List of Sites in Lions Bay';}
+else if(region =='MapleRidge'){list.innerHTML = 'List of Sites in Maple Ridge';}
+else if(region =='NewWestminster'){list.innerHTML = 'List of Sites in New Westminster';}
+else if(region =='NorthVancouver'){list.innerHTML = 'List of Sites in North Vancouver';}
+else if(region =='PittMeadows'){list.innerHTML = 'List of Sites in Pitt Meadows';}
+else if(region =='PortCoquitlam'){list.innerHTML = 'List of Sites in Port Coquitlam';}
+else if(region =='PortMoody'){list.innerHTML = 'List of Sites in Port Moody';}
+else if(region =='Richmond'){list.innerHTML = 'List of Sites in Richmond';}
+else if(region =='Surrey'){list.innerHTML = 'List of Sites in Surrey';}
+else if(region =='Vancouver'){list.innerHTML = 'List of Sites in Vancouver';}
+else if(region =='WestVancouver'){list.innerHTML = 'List of Sites in West Vancouver';}
+else if(region =='WhiteRock'){list.innerHTML = 'List of Sites in White Rock';}
+else if(region =='Squamish-LillooetRegionalDistrict'){list.innerHTML = 'List of Other Sites in Squamish-Lillooet Regional District';}
+else if(region =='Lillooet'){list.innerHTML = 'List of Sites in Lillooet';}
+else if(region =='Pemberton'){list.innerHTML = 'List of Sites in Pemberton';}
+else if(region =='Squamish'){list.innerHTML = 'List of Sites in Squamish';}
+else if(region =='Whistler'){list.innerHTML = 'List of Sites in Whistler';}
+else if(region =='SunshineCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in Sunshine Coast Regional District';}
+else if(region =='Egmont/PenderHarbour'){list.innerHTML = 'List of Sites in Egmont / Pender Harbour';}
+else if(region =='Elphinstone'){list.innerHTML = 'List of Sites in Elphinstone';}
+else if(region =='Gibsons'){list.innerHTML = 'List of Sites in Gibsons';}
+else if(region =='HalfmoonBay'){list.innerHTML = 'List of Sites in Halfmoon Bay';}
+else if(region =='RobertsCreek'){list.innerHTML = 'List of Sites in Roberts Creek';}
+else if(region =='Sechelt'){list.innerHTML = 'List of Sites in Sechelt';}
+else if(region =='WestHoweSound'){list.innerHTML = 'List of Sites in West Howe Sound';}
+else if(region =='SunshineCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in Thompson-Okanagan';}
+else if(region =='RegionalDistrictofCentralOkanagan'){list.innerHTML = 'List of Other Sites in Regional District of Central Okanagan';}
+else if(region =='Kelowna'){list.innerHTML = 'List of Sites in Kelowna';}
+else if(region =='LakeCountry'){list.innerHTML = 'List of Sites in Lake Country';}
+else if(region =='Peachland'){list.innerHTML = 'List of Sites in Peachland';}
+else if(region =='WestKelowna'){list.innerHTML = 'List of Sites in West Kelowna';}
+else if(region =='ColumbiaShuswapRegionalDistrict'){list.innerHTML = 'List of Other Sites in Columbia Shuswap Regional District';}
+else if(region =='Golden'){list.innerHTML = 'List of Sites in Golden';}
+else if(region =='Revelstoke'){list.innerHTML = 'List of Sites in Revelstoke';}
+else if(region =='SalmonArm'){list.innerHTML = 'List of Sites in Salmon Arm';}
+else if(region =='Sicamous'){list.innerHTML = 'List of Sites in Sicamous';}
+else if(region =='RegionalDistrictofNorthOkanagan'){list.innerHTML = 'List of Other Sites in Regional District of North Okanagan';}
+else if(region =='Armstrong'){list.innerHTML = 'List of Sites in Armstrong';}
+else if(region =='Coldstream'){list.innerHTML = 'List of Sites in Coldstream';}
+else if(region =='Enderby'){list.innerHTML = 'List of Sites in Enderby';}
+else if(region =='Lumby'){list.innerHTML = 'List of Sites in Lumby';}
+else if(region =='Spallumcheen'){list.innerHTML = 'List of Sites in Spallumcheen';}
+else if(region =='Vernon'){list.innerHTML = 'List of Sites in Vernon';}
+else if(region =='RegionalDistrictofOkanagan-Similkameen'){list.innerHTML = 'List of Other Sites in Regional District of Okanagan-Similkameen';}
+else if(region =='Keremeos'){list.innerHTML = 'List of Sites in Keremeos';}
+else if(region =='Oliver'){list.innerHTML = 'List of Sites in Oliver';}
+else if(region =='Osoyoos'){list.innerHTML = 'List of Sites in Osoyoos';}
+else if(region =='Penticton'){list.innerHTML = 'List of Sites in Penticton';}
+else if(region =='Princeton'){list.innerHTML = 'List of Sites in Princeton';}
+else if(region =='Summerland'){list.innerHTML = 'List of Sites in Summerland';}
+else if(region =='Thompson-NicolaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Thompson-Nicola Regional District';}
+else if(region =='Ashcroft'){list.innerHTML = 'List of Sites in Ashcroft';}
+else if(region =='Barriere'){list.innerHTML = 'List of Sites in Barriere';}
+else if(region =='BeautifulNicolaValley-North'){list.innerHTML = 'List of Sites in Beautiful Nicola Valley - North';}
+else if(region =='BeautifulNicolaValley-South'){list.innerHTML = 'List of Sites in Beautiful Nicola Valley - South';}
+else if(region =='BlueSkyCountry'){list.innerHTML = 'List of Sites in Blue Sky Country';}
+else if(region =='BonapartePlateau'){list.innerHTML = 'List of Sites in Bonaparte Plateau';}
+else if(region =='CacheCreek'){list.innerHTML = 'List of Sites in Cache Creek';}
+else if(region =='Chase'){list.innerHTML = 'List of Sites in Chase';}
+else if(region =='Clearwater'){list.innerHTML = 'List of Sites in Clearwater';}
+else if(region =='Clinton'){list.innerHTML = 'List of Sites in Clinton';}
+else if(region =='CopperDesertCountry'){list.innerHTML = 'List of Sites in Copper Desert Country';}
+else if(region =='Grasslands'){list.innerHTML = 'List of Sites in Grasslands';}
+else if(region =='Kamloops'){list.innerHTML = 'List of Sites in Kamloops';}
+else if(region =='LoganLake'){list.innerHTML = 'List of Sites in Logan Lake';}
+else if(region =='LowerNorthThompson'){list.innerHTML = 'List of Sites in Lower North Thompson';}
+else if(region =='Lytton'){list.innerHTML = 'List of Sites in Lytton';}
+else if(region =='Merritt'){list.innerHTML = 'List of Sites in Merritt';}
+else if(region =='RiversandthePeaks'){list.innerHTML = 'List of Sites in Rivers and the Peaks';}
+else if(region =='SunPeaksMountainResort'){list.innerHTML = 'List of Sites in Sun Peaks Mountain Resort';}
+else if(region =='ThompsonHeadwaters'){list.innerHTML = 'List of Sites in Thompson Headwaters';}
+else if(region =='WellsGrayCountry'){list.innerHTML = 'List of Sites in Wells Gray Country';}
+else if(region =='Thompson-NicolaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Kootenay';}
+else if(region =='RegionalDistrictofCentralKootenay'){list.innerHTML = 'List of Other Sites in Regional District of Central Kootenay';}
+else if(region =='Castlegar'){list.innerHTML = 'List of Sites in Castlegar';}
+else if(region =='Creston'){list.innerHTML = 'List of Sites in Creston';}
+else if(region =='Kaslo'){list.innerHTML = 'List of Sites in Kaslo';}
+else if(region =='LowerArrow/Columbia'){list.innerHTML = 'List of Sites in Lower Arrow / Columbia';}
+else if(region =='Nakusp'){list.innerHTML = 'List of Sites in Nakusp';}
+else if(region =='Nelson'){list.innerHTML = 'List of Sites in Nelson';}
+else if(region =='NewDenver'){list.innerHTML = 'List of Sites in New Denver';}
+else if(region =='Salmo'){list.innerHTML = 'List of Sites in Salmo';}
+else if(region =='Silverton'){list.innerHTML = 'List of Sites in Silverton';}
+else if(region =='TheArrowLakes'){list.innerHTML = 'List of Sites in The Arrow Lakes';}
+else if(region =='TheSlocanValley'){list.innerHTML = 'List of Sites in The Slocan Valley';}
+else if(region =='Wynndel/EastShoreKootenayLake'){list.innerHTML = 'List of Sites in Wynndel / East Shore Kootenay Lake';}
+else if(region =='RegionalDistrictofEastKootenay'){list.innerHTML = 'List of Other Sites in Regional District of East Kootenay';}
+else if(region =='CanalFlats'){list.innerHTML = 'List of Sites in Canal Flats';}
+else if(region =='Cranbrook'){list.innerHTML = 'List of Sites in Cranbrook';}
+else if(region =='Elkford'){list.innerHTML = 'List of Sites in Elkford';}
+else if(region =='Fernie'){list.innerHTML = 'List of Sites in Fernie';}
+else if(region =='Invermere'){list.innerHTML = 'List of Sites in Invermere';}
+else if(region =='Kimberley'){list.innerHTML = 'List of Sites in Kimberley';}
+else if(region =='RadiumHotSprings'){list.innerHTML = 'List of Sites in Radium Hot Springs';}
+else if(region =='Sparwood'){list.innerHTML = 'List of Sites in Sparwood';}
+else if(region =='RegionalDistrictofKootenayBoundary'){list.innerHTML = 'List of Other Sites in Regional District of Kootenay Boundary';}
+else if(region =='ChristinaLake'){list.innerHTML = 'List of Sites in Christina Lake';}
+else if(region =='Fruitvale'){list.innerHTML = 'List of Sites in Fruitvale';}
+else if(region =='GrandForks'){list.innerHTML = 'List of Sites in Grand Forks';}
+else if(region =='Greenwood'){list.innerHTML = 'List of Sites in Greenwood';}
+else if(region =='LowerColumbia/OldGlory'){list.innerHTML = 'List of Sites in Lower Columbia / Old Glory';}
+else if(region =='Midway'){list.innerHTML = 'List of Sites in Midway';}
+else if(region =='Montrose'){list.innerHTML = 'List of Sites in Montrose';}
+else if(region =='Rossland'){list.innerHTML = 'List of Sites in Rossland';}
+else if(region =='RuralGrandForks'){list.innerHTML = 'List of Sites in Rural Grand Forks';}
+else if(region =='Trail'){list.innerHTML = 'List of Sites in Trail';}
+else if(region =='Warfield'){list.innerHTML = 'List of Sites in Warfield';}
+else if(region =='WestBoundary'){list.innerHTML = 'List of Sites in West Boundary';}
+else if(region =='RegionalDistrictofKootenayBoundary'){list.innerHTML = 'List of Other Sites in Cariboo';}
+else if(region =='CaribooRegionalDistrict'){list.innerHTML = 'List of Other Sites in Cariboo Regional District';}
+else if(region =='100MileHouse'){list.innerHTML = 'List of Sites in 100 Mile House';}
+else if(region =='Quesnel'){list.innerHTML = 'List of Sites in Quesnel';}
+else if(region =='Wells'){list.innerHTML = 'List of Sites in Wells';}
+else if(region =='WilliamsLake'){list.innerHTML = 'List of Sites in Williams Lake';}
+else if(region =='RegionalDistrictofFraser-FortGeorge'){list.innerHTML = 'List of Other Sites in Regional District of Fraser-Fort George';}
+else if(region =='Mackenzie'){list.innerHTML = 'List of Sites in Mackenzie';}
+else if(region =='McBride'){list.innerHTML = 'List of Sites in McBride';}
+else if(region =='PrinceGeorge'){list.innerHTML = 'List of Sites in Prince George';}
+else if(region =='Valemount'){list.innerHTML = 'List of Sites in Valemount';}
+else if(region =='RegionalDistrictofFraser-FortGeorge'){list.innerHTML = 'List of Other Sites in North Coast';}
+else if(region =='RegionalDistrictofKitimat-Stikine'){list.innerHTML = 'List of Other Sites in Regional District of Kitimat-Stikine';}
+else if(region =='Kitimat'){list.innerHTML = 'List of Sites in Kitimat';}
+else if(region =='Terrace'){list.innerHTML = 'List of Sites in Terrace';}
+else if(region =='NorthCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in North Coast Regional District';}
+else if(region =='DaajingGiids'){list.innerHTML = 'List of Sites in Daajing Giids';}
+else if(region =='Masset'){list.innerHTML = 'List of Sites in Masset';}
+else if(region =='PortClements'){list.innerHTML = 'List of Sites in Port Clements';}
+else if(region =='PortEdward'){list.innerHTML = 'List of Sites in Port Edward';}
+else if(region =='PrinceRupert'){list.innerHTML = 'List of Sites in Prince Rupert';}
+else if(region =='NorthCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in Nechako ';}
+else if(region =='RegionalDistrictofBulkley-Nechako'){list.innerHTML = 'List of Other Sites in Regional District of Bulkley-Nechako';}
+else if(region =='BurnsLake'){list.innerHTML = 'List of Sites in Burns Lake';}
+else if(region =='FortStJames'){list.innerHTML = 'List of Sites in Fort St James';}
+else if(region =='FraserLake'){list.innerHTML = 'List of Sites in Fraser Lake';}
+else if(region =='Granisle'){list.innerHTML = 'List of Sites in Granisle';}
+else if(region =='Houston'){list.innerHTML = 'List of Sites in Houston';}
+else if(region =='Smithers'){list.innerHTML = 'List of Sites in Smithers';}
+else if(region =='Telkwa'){list.innerHTML = 'List of Sites in Telkwa';}
+else if(region =='Vanderhoof'){list.innerHTML = 'List of Sites in Vanderhoof';}
+else if(region =='StikineRegion(Unincorporated)'){list.innerHTML = 'List of Other Sites in Stikine Region (Unincorporated)';}
+else if(region =='StikineRegion(Unincorporated)'){list.innerHTML = 'List of Other Sites in Northeast';}
+else if(region =='NorthernRockiesRegionalMunicipality'){list.innerHTML = 'List of Other Sites in Northern Rockies Regional Municipality';}
+else if(region =='PeaceRiverRegionalDistrict'){list.innerHTML = 'List of Other Sites in Peace River Regional District';}
+else if(region =='DawsonCreek'){list.innerHTML = 'List of Sites in Dawson Creek';}
+else if(region =='Chetwynd'){list.innerHTML = 'List of Sites in Chetwynd';}
+else if(region =='FortStJohn'){list.innerHTML = 'List of Sites in Fort St John';}
+else if(region =='HudsonsHope'){list.innerHTML = 'List of Sites in Hudsons Hope';}
+else if(region =='Taylor'){list.innerHTML = 'List of Sites in Taylor';}
+else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridge';}
+/*
+(((((((((((  UPDATE ABOVE  )))))))))))
+*/
+//Just in case something else is in the region
+          else{
+            list.innerHTML = "List of Sites in " + region[0].toUpperCase()+ region.slice(1);
+          }
+          list.appendChild(buttons);
+
+        }
+        }
+      }
+
+
+
+
 
 /*
   ##################################################
@@ -1388,16 +1676,48 @@ if(!count_area.hasOwnProperty('all')){
       Change how to open the marker popup, depending on...:
 
           Size 
-              (w or h<726)
-                   Rp = Lp+w/2+Wp/10
-
-              (h<726)
-                  HpMax = Tm+Hp
+              The popup width is 45vw (45% of screen width) when the screen width or height is smaller than 726 *1
+                  if (w or h<726), Rp is Lp + half of screen size + a bit of padding of popup
+                     >> Rp = Lp+w/2+Wp/10
+              The popup height is 60vh (60% of screen height) when the screen width or height is smaller than 726 *1
+                  if (h<726), HpMax is Tm + Hp.
+                     >> HpMax = Tm+Hp
               
-          Portrait (w<h)
           Landscape (w>h)
+              Open the marker popup the center between the controls
+              
+              if bottom of popup < bottom of max-height popup (+ padding) (Tp+Hp < HpMax +Hm/25)
+                  move vertically 
+                  >> moveY=Tp+Hp-HpMax - Hm/25;
+
+              if left of popup < right of layer control (Lp<Lm+Rl)
+                  move horizontally
+                  >> moveX=Lp-Lm-Rl
+
+              if left of filter control < right of popup (Lm+Lf<Rp)
+                  move horizontally
+                  >> moveX=Rp-Lm-Lf
+
+                  if this move make the layer control cover the popup (Lp-moveX<Lm+Rl)
+                      move horizontally back a bit
+                      >> moveX=Lp-moveX-Lm-Rl+moveX
+
+          Portrait (w<h)
+              Open the marker popup below the controls
+
+              if bottom of popup < bottom of max-height popup from the bottom of the region control (Tp+Hp < HpMax+Br+Hm/25)
+                  move versically
+                  >> moveY=Tp+Hp-HpMax - Hm/25 - Br
+              if left of popup < left of map (Lp<Lm)
+                  move horizontally 
+                  >> moveX=Lp-Lm
+              if right of map < right of popup (Rm<Rp)
+                  move horizontally 
+                  >> moveX=Rp-Rm
 
 
+          *1: 
+              See styles.css
 
 */
     function size_for_phone(map){
@@ -1442,15 +1762,12 @@ if(!count_area.hasOwnProperty('all')){
           w=window.innerWidth
           h=window.innerHeight
         }
-//        console.log(w +" x "+h);
-        if(w<768){
-          Rp = Lp+w/2+Wp/10;
-        }
-        if(h<768){
+        if((w<768)||(h<768)){
           HpMax = Tm+Hp;
           Rp = Lp+w/2+Wp/10;
         }
-
+      
+      //landscape
         if (w>h){
           if (Tp+Hp < HpMax +Hm/25) {
             moveY=Tp+Hp-HpMax - Hm/25;
@@ -1460,7 +1777,11 @@ if(!count_area.hasOwnProperty('all')){
           }
           if(Lm+Lf<Rp){
             moveX=Rp-Lm-Lf;
-          }          
+            if(Lp-moveX<Lm+Rl){
+              moveX=Lp-moveX-Lm-Rl+moveX;
+            }
+          }
+      //portrait
         }else{
           if (Tp+Hp < HpMax+Br+Hm/25) {
             moveY=Tp+Hp-HpMax - Hm/25 - Br;
@@ -1479,280 +1800,4 @@ if(!count_area.hasOwnProperty('all')){
 
       }
 
-
-        /*
-  ***************************************
-  ******  Function listMarker()()  ******
-  ***************************************
-  
-      Make the list of sites on the map
-      Create button to direct the location
-    
-  */
-
-
-      function listMarkers(map, markers, region){
-        const list = document.getElementById("list_"+region);
-        if(list){
-          let counter = 0;
-          const buttons = document.createElement('div');
-          markers.forEach(p =>{  
-            if(p.area == region){
-              const title = document.createElement('button');
-              title.textContent = p.name;
-              title.classList = 'list-button';
-              title.onclick = () => {
-                map.flyTo([p.marker.getLatLng().lat+0.005,p.marker.getLatLng().lng], 13);
-                filterMarker(map, markers, true, true);
-                document.getElementById('showFilterYear').value = 'All Time';
-                p.marker.openPopup();
-              }
-              buttons.appendChild(title);
-              buttons.appendChild(document.createElement('br'));
-              counter++;
-            }
-          });
-        if(counter){
-          if(region == 'coastalBC'){
-            list.innerHTML = "List of Other Sites on Coastal BC";
-          }
-else if(region =='VancouverIsland/Coast'){list.innerHTML = 'List of Other Sites in Vancouver Island/Coast';}
-else if(region =='RegionalDistrictofAlberni-Clayoquot'){list.innerHTML = 'List of Other Sites in Regional District of Alberni-Clayoquot';}
-else if(region =='PortAlberni'){list.innerHTML = 'List of Sites in Port Alberni';}
-else if(region =='CapitalRegionalDistrict'){list.innerHTML = 'List of Other Sites in Capital Regional District';}
-else if(region =='CentralSaanich'){list.innerHTML = 'List of Sites in Central Saanich';}
-else if(region =='Colwood'){list.innerHTML = 'List of Sites in Colwood';}
-else if(region =='Esquimalt'){list.innerHTML = 'List of Sites in Esquimalt';}
-else if(region =='Highlands'){list.innerHTML = 'List of Sites in Highlands';}
-else if(region =='JordanRiver'){list.innerHTML = 'List of Sites in Jordan River';}
-else if(region =='Langford'){list.innerHTML = 'List of Sites in Langford';}
-else if(region =='Metchosin'){list.innerHTML = 'List of Sites in Metchosin';}
-else if(region =='NorthSaanich'){list.innerHTML = 'List of Sites in North Saanich';}
-else if(region =='OakBay'){list.innerHTML = 'List of Sites in Oak Bay';}
-else if(region =='PortRenfrew'){list.innerHTML = 'List of Sites in Port Renfrew';}
-else if(region =='Saanich'){list.innerHTML = 'List of Sites in Saanich';}
-else if(region =='SaltspringIsland'){list.innerHTML = 'List of Sites in Saltspring Island';}
-else if(region =='Sidney'){list.innerHTML = 'List of Sites in Sidney';}
-else if(region =='Sooke'){list.innerHTML = 'List of Sites in Sooke';}
-else if(region =='Victoria'){list.innerHTML = 'List of Sites in Victoria';}
-else if(region =='ViewRoyal'){list.innerHTML = 'List of Sites in View Royal';}
-else if(region =='CentralCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in Central Coast Regional District';}
-else if(region =='ComoxValleyRegionalDistrict'){list.innerHTML = 'List of Other Sites in Comox Valley Regional District';}
-else if(region =='BaynesSound-Denman/HornbyIslands'){list.innerHTML = 'List of Sites in Baynes Sound - Denman/Hornby Islands';}
-else if(region =='Comox'){list.innerHTML = 'List of Sites in Comox';}
-else if(region =='Courtenay'){list.innerHTML = 'List of Sites in Courtenay';}
-else if(region =='Cumberland'){list.innerHTML = 'List of Sites in Cumberland';}
-else if(region =='Puntledge/BlackCreek'){list.innerHTML = 'List of Sites in Puntledge / Black Creek';}
-else if(region =='CowichanValleyRegionalDistrict'){list.innerHTML = 'List of Other Sites in Cowichan Valley Regional District';}
-else if(region =='Chemainus'){list.innerHTML = 'List of Sites in Chemainus';}
-else if(region =='CobbleHill'){list.innerHTML = 'List of Sites in Cobble Hill';}
-else if(region =='CowichanBay'){list.innerHTML = 'List of Sites in Cowichan Bay';}
-else if(region =='CowichanStation'){list.innerHTML = 'List of Sites in Cowichan Station';}
-else if(region =='Duncan'){list.innerHTML = 'List of Sites in Duncan';}
-else if(region =='Glenora'){list.innerHTML = 'List of Sites in Glenora';}
-else if(region =='Ladysmith'){list.innerHTML = 'List of Sites in Ladysmith';}
-else if(region =='LakeCowichan'){list.innerHTML = 'List of Sites in Lake Cowichan';}
-else if(region =='Malahat'){list.innerHTML = 'List of Sites in Malahat';}
-else if(region =='MillBay'){list.innerHTML = 'List of Sites in Mill Bay';}
-else if(region =='NorthCowichan'){list.innerHTML = 'List of Sites in North Cowichan';}
-else if(region =='Sahtlam'){list.innerHTML = 'List of Sites in Sahtlam';}
-else if(region =='Saltair'){list.innerHTML = 'List of Sites in Saltair';}
-else if(region =='ShawniganLake'){list.innerHTML = 'List of Sites in Shawnigan Lake';}
-else if(region =='SouthLlakeCowichan'){list.innerHTML = 'List of Sites in South Llake Cowichan';}
-else if(region =='Youbou'){list.innerHTML = 'List of Sites in Youbou';}
-else if(region =='RegionalDistrictofMountWaddington'){list.innerHTML = 'List of Other Sites in Regional District of Mount Waddington';}
-else if(region =='AlertBay'){list.innerHTML = 'List of Sites in Alert Bay';}
-else if(region =='PortAlice'){list.innerHTML = 'List of Sites in Port Alice';}
-else if(region =='PortHardy'){list.innerHTML = 'List of Sites in Port Hardy';}
-else if(region =='PortMcNeill'){list.innerHTML = 'List of Sites in Port McNeill';}
-else if(region =='RegionalDistrictofNanaimo'){list.innerHTML = 'List of Other Sites in Regional District of Nanaimo';}
-else if(region =='Lantzville'){list.innerHTML = 'List of Sites in Lantzville';}
-else if(region =='Nanaimo'){list.innerHTML = 'List of Sites in Nanaimo';}
-else if(region =='Parksville'){list.innerHTML = 'List of Sites in Parksville';}
-else if(region =='Cassidy'){list.innerHTML = 'List of Sites in Cassidy';}
-else if(region =='QualicumBeach'){list.innerHTML = 'List of Sites in Qualicum Beach';}
-else if(region =='qathetRegionalDistrict'){list.innerHTML = 'List of Other Sites in qathet Regional District';}
-else if(region =='PowellRiver'){list.innerHTML = 'List of Sites in Powell River';}
-else if(region =='StrathconaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Strathcona Regional District';}
-else if(region =='CampbellRiver'){list.innerHTML = 'List of Sites in Campbell River';}
-else if(region =='Cortes'){list.innerHTML = 'List of Sites in Cortes';}
-else if(region =='DiscoveryIslands/MainlandInlets'){list.innerHTML = 'List of Sites in Discovery Islands / Mainland Inlets';}
-else if(region =='GoldRiver'){list.innerHTML = 'List of Sites in Gold River';}
-else if(region =='Kyuquot/Nootka-Sayward'){list.innerHTML = 'List of Sites in Kyuquot / Nootka-Sayward';}
-else if(region =='OysterBay/ButtleLake'){list.innerHTML = 'List of Sites in Oyster Bay / Buttle Lake';}
-else if(region =='StrathconaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Mainland/Southwest';}
-else if(region =='FraserValleyRegionalDistrict'){list.innerHTML = 'List of Other Sites in Fraser Valley Regional District';}
-else if(region =='Abbotsford'){list.innerHTML = 'List of Sites in Abbotsford';}
-else if(region =='Chilliwack'){list.innerHTML = 'List of Sites in Chilliwack';}
-else if(region =='HarrisonHotSprings'){list.innerHTML = 'List of Sites in Harrison Hot Springs';}
-else if(region =='Hope'){list.innerHTML = 'List of Sites in Hope';}
-else if(region =='Kent'){list.innerHTML = 'List of Sites in Kent';}
-else if(region =='Mission'){list.innerHTML = 'List of Sites in Mission';}
-else if(region =='MetroVancouverRegionalDistrict'){list.innerHTML = 'List of Other Sites in Metro Vancouver Regional District';}
-else if(region =='Anmore'){list.innerHTML = 'List of Sites in Anmore';}
-else if(region =='Belcarra'){list.innerHTML = 'List of Sites in Belcarra';}
-else if(region =='BowenIsland'){list.innerHTML = 'List of Sites in Bowen Island';}
-else if(region =='Burnaby'){list.innerHTML = 'List of Sites in Burnaby';}
-else if(region =='Coquitlam'){list.innerHTML = 'List of Sites in Coquitlam';}
-else if(region =='Delta'){list.innerHTML = 'List of Sites in Delta';}
-else if(region =='Langley'){list.innerHTML = 'List of Sites in Langley';}
-else if(region =='LionsBay'){list.innerHTML = 'List of Sites in Lions Bay';}
-else if(region =='MapleRidge'){list.innerHTML = 'List of Sites in Maple Ridge';}
-else if(region =='NewWestminster'){list.innerHTML = 'List of Sites in New Westminster';}
-else if(region =='NorthVancouver'){list.innerHTML = 'List of Sites in North Vancouver';}
-else if(region =='PittMeadows'){list.innerHTML = 'List of Sites in Pitt Meadows';}
-else if(region =='PortCoquitlam'){list.innerHTML = 'List of Sites in Port Coquitlam';}
-else if(region =='PortMoody'){list.innerHTML = 'List of Sites in Port Moody';}
-else if(region =='Richmond'){list.innerHTML = 'List of Sites in Richmond';}
-else if(region =='Surrey'){list.innerHTML = 'List of Sites in Surrey';}
-else if(region =='Vancouver'){list.innerHTML = 'List of Sites in Vancouver';}
-else if(region =='WestVancouver'){list.innerHTML = 'List of Sites in West Vancouver';}
-else if(region =='WhiteRock'){list.innerHTML = 'List of Sites in White Rock';}
-else if(region =='Squamish-LillooetRegionalDistrict'){list.innerHTML = 'List of Other Sites in Squamish-Lillooet Regional District';}
-else if(region =='Lillooet'){list.innerHTML = 'List of Sites in Lillooet';}
-else if(region =='Pemberton'){list.innerHTML = 'List of Sites in Pemberton';}
-else if(region =='Squamish'){list.innerHTML = 'List of Sites in Squamish';}
-else if(region =='Whistler'){list.innerHTML = 'List of Sites in Whistler';}
-else if(region =='SunshineCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in Sunshine Coast Regional District';}
-else if(region =='Egmont/PenderHarbour'){list.innerHTML = 'List of Sites in Egmont / Pender Harbour';}
-else if(region =='Elphinstone'){list.innerHTML = 'List of Sites in Elphinstone';}
-else if(region =='Gibsons'){list.innerHTML = 'List of Sites in Gibsons';}
-else if(region =='HalfmoonBay'){list.innerHTML = 'List of Sites in Halfmoon Bay';}
-else if(region =='RobertsCreek'){list.innerHTML = 'List of Sites in Roberts Creek';}
-else if(region =='Sechelt'){list.innerHTML = 'List of Sites in Sechelt';}
-else if(region =='WestHoweSound'){list.innerHTML = 'List of Sites in West Howe Sound';}
-else if(region =='SunshineCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in Thompson-Okanagan';}
-else if(region =='RegionalDistrictofCentralOkanagan'){list.innerHTML = 'List of Other Sites in Regional District of Central Okanagan';}
-else if(region =='Kelowna'){list.innerHTML = 'List of Sites in Kelowna';}
-else if(region =='LakeCountry'){list.innerHTML = 'List of Sites in Lake Country';}
-else if(region =='Peachland'){list.innerHTML = 'List of Sites in Peachland';}
-else if(region =='WestKelowna'){list.innerHTML = 'List of Sites in West Kelowna';}
-else if(region =='ColumbiaShuswapRegionalDistrict'){list.innerHTML = 'List of Other Sites in Columbia Shuswap Regional District';}
-else if(region =='Golden'){list.innerHTML = 'List of Sites in Golden';}
-else if(region =='Revelstoke'){list.innerHTML = 'List of Sites in Revelstoke';}
-else if(region =='SalmonArm'){list.innerHTML = 'List of Sites in Salmon Arm';}
-else if(region =='Sicamous'){list.innerHTML = 'List of Sites in Sicamous';}
-else if(region =='RegionalDistrictofNorthOkanagan'){list.innerHTML = 'List of Other Sites in Regional District of North Okanagan';}
-else if(region =='Armstrong'){list.innerHTML = 'List of Sites in Armstrong';}
-else if(region =='Coldstream'){list.innerHTML = 'List of Sites in Coldstream';}
-else if(region =='Enderby'){list.innerHTML = 'List of Sites in Enderby';}
-else if(region =='Lumby'){list.innerHTML = 'List of Sites in Lumby';}
-else if(region =='Spallumcheen'){list.innerHTML = 'List of Sites in Spallumcheen';}
-else if(region =='Vernon'){list.innerHTML = 'List of Sites in Vernon';}
-else if(region =='RegionalDistrictofOkanagan-Similkameen'){list.innerHTML = 'List of Other Sites in Regional District of Okanagan-Similkameen';}
-else if(region =='Keremeos'){list.innerHTML = 'List of Sites in Keremeos';}
-else if(region =='Oliver'){list.innerHTML = 'List of Sites in Oliver';}
-else if(region =='Osoyoos'){list.innerHTML = 'List of Sites in Osoyoos';}
-else if(region =='Penticton'){list.innerHTML = 'List of Sites in Penticton';}
-else if(region =='Princeton'){list.innerHTML = 'List of Sites in Princeton';}
-else if(region =='Summerland'){list.innerHTML = 'List of Sites in Summerland';}
-else if(region =='Thompson-NicolaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Thompson-Nicola Regional District';}
-else if(region =='Ashcroft'){list.innerHTML = 'List of Sites in Ashcroft';}
-else if(region =='Barriere'){list.innerHTML = 'List of Sites in Barriere';}
-else if(region =='BeautifulNicolaValley-North'){list.innerHTML = 'List of Sites in Beautiful Nicola Valley - North';}
-else if(region =='BeautifulNicolaValley-South'){list.innerHTML = 'List of Sites in Beautiful Nicola Valley - South';}
-else if(region =='BlueSkyCountry'){list.innerHTML = 'List of Sites in Blue Sky Country';}
-else if(region =='BonapartePlateau'){list.innerHTML = 'List of Sites in Bonaparte Plateau';}
-else if(region =='CacheCreek'){list.innerHTML = 'List of Sites in Cache Creek';}
-else if(region =='Chase'){list.innerHTML = 'List of Sites in Chase';}
-else if(region =='Clearwater'){list.innerHTML = 'List of Sites in Clearwater';}
-else if(region =='Clinton'){list.innerHTML = 'List of Sites in Clinton';}
-else if(region =='CopperDesertCountry'){list.innerHTML = 'List of Sites in Copper Desert Country';}
-else if(region =='Grasslands'){list.innerHTML = 'List of Sites in Grasslands';}
-else if(region =='Kamloops'){list.innerHTML = 'List of Sites in Kamloops';}
-else if(region =='LoganLake'){list.innerHTML = 'List of Sites in Logan Lake';}
-else if(region =='LowerNorthThompson'){list.innerHTML = 'List of Sites in Lower North Thompson';}
-else if(region =='Lytton'){list.innerHTML = 'List of Sites in Lytton';}
-else if(region =='Merritt'){list.innerHTML = 'List of Sites in Merritt';}
-else if(region =='RiversandthePeaks'){list.innerHTML = 'List of Sites in Rivers and the Peaks';}
-else if(region =='SunPeaksMountainResort'){list.innerHTML = 'List of Sites in Sun Peaks Mountain Resort';}
-else if(region =='ThompsonHeadwaters'){list.innerHTML = 'List of Sites in Thompson Headwaters';}
-else if(region =='WellsGrayCountry'){list.innerHTML = 'List of Sites in Wells Gray Country';}
-else if(region =='Thompson-NicolaRegionalDistrict'){list.innerHTML = 'List of Other Sites in Kootenay';}
-else if(region =='RegionalDistrictofCentralKootenay'){list.innerHTML = 'List of Other Sites in Regional District of Central Kootenay';}
-else if(region =='Castlegar'){list.innerHTML = 'List of Sites in Castlegar';}
-else if(region =='Creston'){list.innerHTML = 'List of Sites in Creston';}
-else if(region =='Kaslo'){list.innerHTML = 'List of Sites in Kaslo';}
-else if(region =='LowerArrow/Columbia'){list.innerHTML = 'List of Sites in Lower Arrow / Columbia';}
-else if(region =='Nakusp'){list.innerHTML = 'List of Sites in Nakusp';}
-else if(region =='Nelson'){list.innerHTML = 'List of Sites in Nelson';}
-else if(region =='NewDenver'){list.innerHTML = 'List of Sites in New Denver';}
-else if(region =='Salmo'){list.innerHTML = 'List of Sites in Salmo';}
-else if(region =='Silverton'){list.innerHTML = 'List of Sites in Silverton';}
-else if(region =='TheArrowLakes'){list.innerHTML = 'List of Sites in The Arrow Lakes';}
-else if(region =='TheSlocanValley'){list.innerHTML = 'List of Sites in The Slocan Valley';}
-else if(region =='Wynndel/EastShoreKootenayLake'){list.innerHTML = 'List of Sites in Wynndel / East Shore Kootenay Lake';}
-else if(region =='RegionalDistrictofEastKootenay'){list.innerHTML = 'List of Other Sites in Regional District of East Kootenay';}
-else if(region =='CanalFlats'){list.innerHTML = 'List of Sites in Canal Flats';}
-else if(region =='Cranbrook'){list.innerHTML = 'List of Sites in Cranbrook';}
-else if(region =='Elkford'){list.innerHTML = 'List of Sites in Elkford';}
-else if(region =='Fernie'){list.innerHTML = 'List of Sites in Fernie';}
-else if(region =='Invermere'){list.innerHTML = 'List of Sites in Invermere';}
-else if(region =='Kimberley'){list.innerHTML = 'List of Sites in Kimberley';}
-else if(region =='RadiumHotSprings'){list.innerHTML = 'List of Sites in Radium Hot Springs';}
-else if(region =='Sparwood'){list.innerHTML = 'List of Sites in Sparwood';}
-else if(region =='RegionalDistrictofKootenayBoundary'){list.innerHTML = 'List of Other Sites in Regional District of Kootenay Boundary';}
-else if(region =='ChristinaLake'){list.innerHTML = 'List of Sites in Christina Lake';}
-else if(region =='Fruitvale'){list.innerHTML = 'List of Sites in Fruitvale';}
-else if(region =='GrandForks'){list.innerHTML = 'List of Sites in Grand Forks';}
-else if(region =='Greenwood'){list.innerHTML = 'List of Sites in Greenwood';}
-else if(region =='LowerColumbia/OldGlory'){list.innerHTML = 'List of Sites in Lower Columbia / Old Glory';}
-else if(region =='Midway'){list.innerHTML = 'List of Sites in Midway';}
-else if(region =='Montrose'){list.innerHTML = 'List of Sites in Montrose';}
-else if(region =='Rossland'){list.innerHTML = 'List of Sites in Rossland';}
-else if(region =='RuralGrandForks'){list.innerHTML = 'List of Sites in Rural Grand Forks';}
-else if(region =='Trail'){list.innerHTML = 'List of Sites in Trail';}
-else if(region =='Warfield'){list.innerHTML = 'List of Sites in Warfield';}
-else if(region =='WestBoundary'){list.innerHTML = 'List of Sites in West Boundary';}
-else if(region =='RegionalDistrictofKootenayBoundary'){list.innerHTML = 'List of Other Sites in Cariboo';}
-else if(region =='CaribooRegionalDistrict'){list.innerHTML = 'List of Other Sites in Cariboo Regional District';}
-else if(region =='100MileHouse'){list.innerHTML = 'List of Sites in 100 Mile House';}
-else if(region =='Quesnel'){list.innerHTML = 'List of Sites in Quesnel';}
-else if(region =='Wells'){list.innerHTML = 'List of Sites in Wells';}
-else if(region =='WilliamsLake'){list.innerHTML = 'List of Sites in Williams Lake';}
-else if(region =='RegionalDistrictofFraser-FortGeorge'){list.innerHTML = 'List of Other Sites in Regional District of Fraser-Fort George';}
-else if(region =='Mackenzie'){list.innerHTML = 'List of Sites in Mackenzie';}
-else if(region =='McBride'){list.innerHTML = 'List of Sites in McBride';}
-else if(region =='PrinceGeorge'){list.innerHTML = 'List of Sites in Prince George';}
-else if(region =='Valemount'){list.innerHTML = 'List of Sites in Valemount';}
-else if(region =='RegionalDistrictofFraser-FortGeorge'){list.innerHTML = 'List of Other Sites in North Coast';}
-else if(region =='RegionalDistrictofKitimat-Stikine'){list.innerHTML = 'List of Other Sites in Regional District of Kitimat-Stikine';}
-else if(region =='Kitimat'){list.innerHTML = 'List of Sites in Kitimat';}
-else if(region =='Terrace'){list.innerHTML = 'List of Sites in Terrace';}
-else if(region =='NorthCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in North Coast Regional District';}
-else if(region =='DaajingGiids'){list.innerHTML = 'List of Sites in Daajing Giids';}
-else if(region =='Masset'){list.innerHTML = 'List of Sites in Masset';}
-else if(region =='PortClements'){list.innerHTML = 'List of Sites in Port Clements';}
-else if(region =='PortEdward'){list.innerHTML = 'List of Sites in Port Edward';}
-else if(region =='PrinceRupert'){list.innerHTML = 'List of Sites in Prince Rupert';}
-else if(region =='NorthCoastRegionalDistrict'){list.innerHTML = 'List of Other Sites in Nechako ';}
-else if(region =='RegionalDistrictofBulkley-Nechako'){list.innerHTML = 'List of Other Sites in Regional District of Bulkley-Nechako';}
-else if(region =='BurnsLake'){list.innerHTML = 'List of Sites in Burns Lake';}
-else if(region =='FortStJames'){list.innerHTML = 'List of Sites in Fort St James';}
-else if(region =='FraserLake'){list.innerHTML = 'List of Sites in Fraser Lake';}
-else if(region =='Granisle'){list.innerHTML = 'List of Sites in Granisle';}
-else if(region =='Houston'){list.innerHTML = 'List of Sites in Houston';}
-else if(region =='Smithers'){list.innerHTML = 'List of Sites in Smithers';}
-else if(region =='Telkwa'){list.innerHTML = 'List of Sites in Telkwa';}
-else if(region =='Vanderhoof'){list.innerHTML = 'List of Sites in Vanderhoof';}
-else if(region =='StikineRegion(Unincorporated)'){list.innerHTML = 'List of Other Sites in Stikine Region (Unincorporated)';}
-else if(region =='StikineRegion(Unincorporated)'){list.innerHTML = 'List of Other Sites in Northeast';}
-else if(region =='NorthernRockiesRegionalMunicipality'){list.innerHTML = 'List of Other Sites in Northern Rockies Regional Municipality';}
-else if(region =='PeaceRiverRegionalDistrict'){list.innerHTML = 'List of Other Sites in Peace River Regional District';}
-else if(region =='DawsonCreek'){list.innerHTML = 'List of Sites in Dawson Creek';}
-else if(region =='Chetwynd'){list.innerHTML = 'List of Sites in Chetwynd';}
-else if(region =='FortStJohn'){list.innerHTML = 'List of Sites in Fort St John';}
-else if(region =='HudsonsHope'){list.innerHTML = 'List of Sites in Hudsons Hope';}
-else if(region =='Taylor'){list.innerHTML = 'List of Sites in Taylor';}
-else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridge';}
-
-
-          else{
-            list.innerHTML = "List of Sites in " + region[0].toUpperCase()+ region.slice(1);
-          }
-          list.appendChild(buttons);
-
-        }
-        }
-      }
 
