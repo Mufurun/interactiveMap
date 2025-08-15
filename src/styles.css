@@ -2,17 +2,42 @@
 ######################
 ####  Map Styles  ####
 ######################
-*/
 
+    map
+    attribution
+    leaflet 
+    popup
+    custom control general
+
+*/
+/*
+*********    map setting    *********
+
+  map >> landscape (height < 768px), portrait (width < 768px)
+*/
 #map {
     height: 98.4vh;
     width: 99.5vw;
     padding: 0;
     margin: 0;
+}
+@media (max-height: 768px) and (orientation:landscape) {
+  #map {
+      height: 80vh;
+      width: 99.5Vw;
   }
+}
+@media (max-width: 768px) and (orientation:portrait) {
+  #map {
+      height: 85vh;
+      width: 99.5Vw;
+  }
+}
 
 /*
-###  ATTRIBUTE   ###
+###  ATTRIBUTOPM   ###
+
+  leaflet-control-attribution >> Dark mode
 */
 .leaflet-control-attribution {
   background-color: seashell!important;
@@ -21,10 +46,17 @@
 .leaflet-control-attribution a {
   color: rgb(46, 46, 255);  /* Adjust text color */
   }
+@media (prefers-color-scheme: dark) {
+    .leaflet-control-attribution {
+      color: seashell;
+      background: rgb(57, 54, 50)!important;
+    }
+}
 
-      /*
+/*
   ###   Zoom Control   ###
-  */
+    leaflet-bar >> Dark mode
+*/
 .leaflet-bar a {
     background-color: seashell;
     border-bottom: 1px solid #ccc;
@@ -48,17 +80,40 @@
     text-decoration: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  .leaflet-bar a {
+      background-color: rgb(57, 54, 50);
+      color: seashell;
+  }
+  .leaflet-bar a:hover {
+      background-color: rgb(6, 6, 5);
+      color: seashell;
+  }
+  .leaflet-bar a.leaflet-disabled {
+      background-color: rgb(117, 115, 115);
+      color: rgb(174, 168, 163);
+  }
+}
+
 
 
 /*
 ####  Marker Popup Styles  ####
+    leaflet-popup-content-wrapper     >> Dark mode
+    leaflet-popup-content             >> landscape (height < 768px), portrait (width < 768px)
+    popup-content
+    title                             >> Dark mode
+    company                           >> Dark mode, landscape (height < 768px), portrait (width < 768px)
+    image-button                      >> landscape (height < 768px), portrait (width < 768px)
+    image 
+    year                              >> Dark mode, landscape (height < 768px), portrait (width < 768px)
+    description                       >> Dark mode
+    each_descript                     >> landscape (height < 768px), portrait (width < 768px)
+    each_descrpt_li                   >> landscape (height < 768px), portrait (width < 768px)
+    a (link)                          >> Dark mode
+
 */
 
-/* inside the popup */
-  .popup-content {
-    /* width: 284px; */
-    width: 100%;
-  }
   .leaflet-popup-content-wrapper{
     background-color: rgba(255, 245, 238, 0.9);
     opacity: 1;
@@ -72,6 +127,10 @@
     overflow-x: hidden;
     scrollbar-width: thin;
 
+  }
+/* inside the popup */
+  .popup-content {
+    width: 100%;
   }
   .title{
     font-size: 20px;
@@ -89,7 +148,6 @@
     display: inline;
     margin: auto;
   }
-
   .year{
     display: block;
     font-size: 14px;
@@ -102,7 +160,7 @@
     list-style-position: inside;
     /* width: 100%; */
   }
-  .each_discrpt{
+  .each_descrpt{
     font-size: 12.5px;
     margin: 0 0 0 0px;
     padding: 0 0 0.4em 7em;
@@ -112,94 +170,121 @@
     white-space: pre-wrap;
 
   }
-  .each_discrpt_li{
+  .each_descrpt_li{
     font-size: 12.5px;
     margin: 0 0 0 0px;
     padding: 0 0 0.4em 7em;
     text-indent: -1.3em;
-    /* width: 17em; */
 
+  }
+/* Links*/
+  a:visited {
+    color: purple;
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: blue;
+    background-color: transparent;
+    text-decoration: underline;
   }
 
 
-a:visited {
-  color: purple;
-  background-color: transparent;
-  text-decoration: none;
-}
 
-a:hover {
-  color: blue;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-
-
-  @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     .leaflet-popup-content-wrapper{
       background-color: rgb(83, 81, 81, 0.9);
     }
     .title{
       color: seashell;
     }
-  .company{
+    .company{
+      color: seashell;
+    }
+    .year{
     color: seashell;
     }
-  .year{
-  color: seashell;
-  }
-  .description{
-  color: seashell;
-  }
-  a:link {
-    color: rgb(255, 221, 154);
-  }
-  a:visited {
-  color: orangered;
+    .description{
+    color: seashell;
+    }
+    a:link {
+      color: rgb(255, 221, 154);
+    }
+    a:visited {
+      color: orangered;
+    }
+    a:hover {
+      color: yellow;
+    }
 }
-a:hover {
-  color: yellow;
+@media (max-height: 768px) and (orientation:landscape) {
+  /* Adjust styles for better readability in landscape mode */
+    .leaflet-popup-content {
+      overflow-x: auto;
+      max-height: 45vh; /* Default is 300px up to 600px*/
+      max-width: 45vw; /* Default is 300px up to 600px*/
+    }  
+    .company{
+      font-size: 16px;
+      display: block;
+    }
+    .image-button{
+      display: inline;
+    }
+    .year{
+      display: block;
+      font-size: 14px;
+      margin: 0px;
+      padding: 2%;
+    }
+    .each_descrpt{
+      font-size: 12px;
+    }
+    .each_descrpt_li{
+      font-size: 12px;
+    }
 }
+@media (max-width: 768px) and (orientation:portrait) {
+  /* Adjust styles for better readability in landscape mode */
+    .leaflet-popup-content {
+      overflow-x: auto;
+      max-height: 45vh; /* Default is 300px up to 600px*/
+      max-width: 45vw;
+    }
+    .company{
+      font-size: 16px;
+      display: block;
+    }
+    .image-button{
+      display: inline;
+    }
+    .year{
+      display: block;
+      font-size: 14px;
+      margin: 0px;
+      padding: 2%;
+    }
+    .each_descrpt{
+      font-size: 12px;
+    }
+    .each_descrpt_li{
+      font-size: 12px;
+    }
+}
+
+
+
+
 /*
-####   The Attribute   ####
-*/
-
-.leaflet-control-attribution {
-    color: seashell;
-    background: rgb(57, 54, 50)!important;       /* Background color */
-  }
-
-    /*
-  ###   Zoom Control   ###
-  */
-.leaflet-bar a {
-    background-color: rgb(57, 54, 50);
-    color: seashell;
-}
-.leaflet-bar a:hover {
-    background-color: rgb(6, 6, 5);
-    color: seashell;
-    text-decoration: none;
-}
-.leaflet-bar a.leaflet-disabled {
-    background-color: rgb(117, 115, 115);
-    color: rgb(174, 168, 163);
-    text-decoration: none;
-}
-
-
-
-}
-
-
-
-
-/*
-********************************
-****    Regional Control    ****
-********************************
+******************************
+****   Custom Controls    ****
+******************************
   Open up when the carsol hovers on
+      custom-cotrol       >> Dark mode
+      custom-content      >> Dark mode, landscape (height<768px)
+      question
+      layconContent       >> Dark mode
 */
     .custom-control {
       position: relative;
@@ -245,7 +330,6 @@ a:hover {
       margin-left: 4px;
     }
 
-
     .layconContent {
       background: seashell;
       border-radius: 4px;
@@ -259,107 +343,25 @@ a:hover {
     }
 
 
-  @media (prefers-color-scheme: dark) {
-       .custom-control-hover {
-        background-color: rgb(57, 54, 50);
-        color: seashell;
-        box-shadow: 0 0 5px rgba(0,0,0,0.3);
-       }
-      .custom-control:hover .custom-content {
-        background-color: rgb(57, 54, 50);
-        color: seashell;
+@media (prefers-color-scheme: dark) {
+      .custom-control-hover {
+      background-color: rgb(57, 54, 50);
+      color: seashell;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
       }
-      .layconContent {
-        background: rgb(57, 54, 50);
-        color: seashell;
-      }
-
-  }
-
-  
-  @media (max-width: 768px){
-    #map {
-      width: 99.5Vw;
-      padding: 0;
-      margin: 0;
-
+    .custom-control:hover .custom-content {
+      background-color: rgb(57, 54, 50);
+      color: seashell;
     }
-
-  }
-
-  @media (max-width: 768px) and (orientation:portrait) {
-  /* Adjust styles for better readability in landscape mode */
-  #map {
-      height: 85vh;
+    .layconContent {
+      background: rgb(57, 54, 50);
+      color: seashell;
     }
-    .leaflet-popup-content {
-    overflow-x: auto;
-    max-height: 45vh; /* Default is 300px up to 600px*/
-    max-width: 45vw;
-
-  }
-  .company{
-    font-size: 16px;
-    display: block;
-  }
-  .image-button{
-    display: inline;
-  }
-
-  .year{
-    display: block;
-    font-size: 14px;
-    margin: 0px;
-    padding: 2%;
-  }
-  .each_discrpt{
-    font-size: 12px;
-
-  }
-  .each_discrpt_li{
-    font-size: 12px;
-  }
 
 }
+
 @media (max-height: 768px) and (orientation:landscape) {
-  /* Adjust styles for better readability in landscape mode */
-  #map {
-      height: 80vh;
-      width: 99.5vw;
-      padding: 0;
-      margin: 0;
-    }
-      .leaflet-popup-content {
-    overflow-x: auto;
-    max-height: 45vh; /* Default is 300px up to 600px*/
-    max-width: 45vw; /* Default is 300px up to 600px*/
-  }  .company{
-    font-size: 16px;
-    display: block;
-  }
-  .image-button{
-    display: inline;
-  }
-
-  .year{
-    display: block;
-    font-size: 14px;
-    margin: 0px;
-    padding: 2%;
-  }
-  .each_discrpt{
-    font-size: 12px;
-
-  }
-  .each_discrpt_li{
-    font-size: 12px;
-  }
-
   .custom-content {
       height: 30vh;
   }
-
-
-
-
 }

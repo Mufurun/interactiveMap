@@ -1,5 +1,15 @@
 /*
 ####  Image Popup  ####
+    popupSection              >> Dark mode
+    image-popup-close         >> Dark mode
+    large-image-close         >> Dark mode
+    image_right               >> Dark mode
+    image_left                >> Dark mode
+    large-image-close-icon    >> Dark mode
+    section=wo-close
+    section-wo-close2
+    large-image-div
+    large-image
 */  
 
   #popupSection {
@@ -88,11 +98,11 @@
   .large-image-close{
     background-color: rgba(0, 0, 0, 0);
   }
+  .image_right, .image_left{
+  border:  solid black 1;
+  }
   .large-image-close-icon{
     filter: invert(1);
     background-color: rgba(0, 0, 0, 0);
   }  
-  .image_right, .image_left{
-  border:  solid black 1;
-}
 }
