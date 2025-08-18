@@ -8,7 +8,7 @@
 - I hope someone else continues this project to update data in a long run.
 
 ## Table of Content
- - [Tutorial Materials](#tutorial)
+ - [Resources](#resources)
  - [Updating Instrutions](#instructions)
  - [Methods](#method)
  - [Distribution](#distribution)
@@ -19,12 +19,26 @@
 ___
 ___
 
-# Tutorial Materials<a name="tutorial"></a>
-## See What Template Program Looks Like.
+# Resources<a name="resources"></a>
+
+## Branches
+ - main
+   - This branch DOES NOT include the template txt, batch, nor shell files, which is used for the tutorial below. 
+   - [Download the main branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/main.zip)
+ - student 
+   - This branch includes the template txt, batch, nor shell files, which is used for the tutorial below. 
+   - [Download the student branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/student.zip)
+ - netlify
+   - This branch is used for deploying netlify app.
+   - This is the web app: [Interactive Map Example (netlify)](https://interactivemaptemp.netlify.app/).
+   - [Download the netlify branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/netlify.zip)
+
+## Tutorial Materials
+### See What Template Program Looks Like.
 - Click [Interactive Map Example (netlify)](https://interactivemaptemp.netlify.app/).
 
-## Template Tutorial
- 1. Download all the file in the main branch. 
+### Template Tutorial
+ 1. [Download the student branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/student.zip). 
  2. Double-click upload_template.sh (shell) or uploade_template.bat (batch) and follow the instruction to learn how to modify the data.js codes.
    - shell file works fast and clean whereas batch file is slow and messy
      - Because I'm not familiar with batch file...
