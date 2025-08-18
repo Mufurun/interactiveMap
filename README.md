@@ -31,7 +31,8 @@ ___
  - netlify
    - This branch is used for deploying netlify app.
    - This is the web app: [Interactive Map Example (netlify)](https://interactivemaptemp.netlify.app/).
-   - [Download the netlify branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/netlify.zip)
+   - [Download the netlify branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/netlify.zip).
+     - Run the program after extracting all the files.
 
 ## Tutorial Materials
 ### See What Template Program Looks Like.
