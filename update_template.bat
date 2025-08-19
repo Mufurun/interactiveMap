@@ -38,7 +38,8 @@ for /f "usebackq delims=" %%A in ("%snippet_file%") do (
         echo:
         echo:
         echo There is an error in line !counter! of template.txt.
-        echo Please escape single quotes with a backslash like: '\'
+        echo Please escape single quotes with a backslash like: \'
+        echo For example: Munn's Sawmill  ==> Munn\'s Sawmill
         echo This message will close in 30 seconds.
         timeout 30
         exit /b 1
