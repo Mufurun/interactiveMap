@@ -1,27 +1,29 @@
-
-    .rg-zoom-ex{
-      font-size: 12px;
-      border: none;
-
-    }
-    
-  
-  
 /* 
 
-    the button that is used to open and close the collapsible content
+#########################
+####  Regcon Styles  ####
+#########################
+
+
+    control-button-wrapper
+    collapsible          >> hover, after, Dark mode
+
+    scrollll
+    content              >> Dark mode
+    button-original-map  >> Dark mode
+    button               >> hover, after, Dark mode
+    plain                >> Dark mode
+    list-button          >> hover, active, Dark mode
+    list-region
+  
 */
+
     
     .control-button-wrapper{
       display: flex;
       border: none;
 
     }
-    .scrollll{
-      overflow: auto;
-      height: 100%;
-      scrollbar-width: thin;
-      }
     .collapsible {
       background-color: seashell;
       color: black;
@@ -32,6 +34,31 @@
       text-align: left;
       outline: rgb(164, 163, 163) solid 1px;
       font-size: 14px;
+    }
+    .collapsible:after {
+      content: '\25BC';
+      color: rgb(45, 70, 51);
+      font-weight: bold;
+      float: left;
+      margin-left: 5px;
+    }
+    .active:after {
+      content: "\25B2";
+    }
+    .scrollll{
+      overflow: auto;
+      height: 100%;
+      scrollbar-width: thin;
+      }
+    .content {
+      padding: 0 10px;
+      max-height: 0;
+      overflow: auto;
+      transition: max-height 0.2s ease-out;
+      background-color: rgba(251, 236, 225, 0.018);
+      scrollbar-width: thin ;
+      border: none;
+
     }
     .button-original-map {
       background-color: seashell;
@@ -56,37 +83,13 @@
       outline: none;
       font-size: 14px;
     }
+    .active, .collapsible:hover, .button:hover {
+      background-color: rgb(237, 225, 220);
+    }
     .button::after{
       content: "\2795";
       font-size: 15px;
       margin-left: 4px;
-    }
-    
-    .active, .collapsible:hover, .button:hover, .list-button {
-      background-color: rgb(237, 225, 220);
-    }
-  
-    .collapsible:after {
-      content: '\25BC';
-      color: rgb(45, 70, 51);
-      font-weight: bold;
-      float: left;
-      margin-left: 5px;
-    }
-    
-    .active:after {
-      content: "\25B2";
-    }
-    
-    .content {
-      padding: 0 10px;
-      max-height: 0;
-      overflow: auto;
-      transition: max-height 0.2s ease-out;
-      background-color: rgba(251, 236, 225, 0.018);
-      scrollbar-width: thin ;
-      border: none;
-
     }
     .plain{
       font-size: 16px;
@@ -111,27 +114,23 @@
     .list-button:active{
       background-color: rgb(245, 108, 11);
     }
-    .no-loc{
-      font-size: 11px;
-      background-color: seashell;
-      width: 100%;
-      border: none;
-
-    }
     .list-region{
       font-size: 14px;
       margin: 5px 0px 0px 10px;  
     }
     
   @media (prefers-color-scheme: dark) {
-    .rg-con-foot{
-      background: rgba(251, 236, 225, 0.018);
 
-    }
     .collapsible {
       background-color: rgba(251, 236, 225, 0.018);
       color: seashell;
     }    
+    .collapsible:after {
+      color: rgb(174, 205, 182);
+    }
+    .content {
+      background-color: rgb(57, 54, 50);
+    }
     .button-original-map {
       background-color: rgba(251, 236, 225, 0.018);
       color: seashell;
@@ -140,14 +139,8 @@
       background-color: rgba(251, 236, 225, 0.018);
       color: seashell;
     }
-    .active, .collapsible:hover, .button:hover, .list-button {
+    .active, .collapsible:hover, .button:hover{
       background-color: rgba(251, 236, 225, 0.018);
-    }
-    .collapsible:after {
-      color: rgb(174, 205, 182);
-    }
-    .content {
-      background-color: rgb(57, 54, 50);
     }
     .plain{
       font-size: 16px;
@@ -163,10 +156,6 @@
     }
     .list-button:active{
       background-color: rgb(245, 108, 11);
-    }
-    .no-loc{
-      background-color: rgba(251, 236, 225, 0.018);
-    }
-    
+    }    
   }
   
