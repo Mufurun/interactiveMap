@@ -23,10 +23,10 @@ ___
 
 ## Branches
  - main
-   - This branch DOES NOT include the template txt, batch, nor shell files, which is used for the tutorial below. 
+   - This branch includes the template txt, batch, and shell files, which is used for the tutorial below. 
    - [Download the main branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/main.zip)
  - student 
-   - This branch includes the template txt, batch, nor shell files, which is used for the tutorial below. 
+   - This branch DOES NOT include the template txt, batch, nor shell files, which is used for the tutorial below. 
    - [Download the student branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/student.zip)
  - netlify
    - This branch is used for deploying netlify app.
@@ -39,7 +39,7 @@ ___
 - Click [Interactive Map Example (netlify)](https://interactivemaptemp.netlify.app/).
 
 ### Template Tutorial
- 1. [Download the student branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/student.zip). 
+ 1. [Download the main branch](https://github.com/Mufurun/interactiveMap/archive/refs/heads/main.zip). 
  2. Double-click upload_template.sh (shell) or uploade_template.bat (batch) and follow the instruction to learn how to modify the data.js codes.
    - shell file works fast and clean whereas batch file is slow and messy
      - Because I'm not familiar with batch file...
