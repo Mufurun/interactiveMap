@@ -49,7 +49,7 @@ ___
 ___
 
 
-# Instructions for Staffs to Upload Data.<a name="instructions"></a>
+# Uploading Instructions<a name="instructions"></a>
  - Two operations to publish
     1. [Update Contents](#update-contents)
     2. [Upload it to the Code](#upload-codes)
