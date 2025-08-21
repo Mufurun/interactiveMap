@@ -8,6 +8,10 @@
     ]           
     //List of groups above           
     const region_categories = [   
+/*
+(((  CHANGE BELOW   )))
+*/
+
 'VancouverIsland/Coast',
 'RegionalDistrictofAlberni-Clayoquot',
 'PortAlberni',
@@ -70,7 +74,8 @@
 'Cortes',
 'DiscoveryIslands/MainlandInlets',
 'GoldRiver',
-'Kyuquot/Nootka-Sayward',
+'Kyuquot/Nootka',
+'Sayward',
 'OysterBay/ButtleLake',
 'Mainland/Southwest',
 'FraserValleyRegionalDistrict',
@@ -237,12 +242,21 @@
 'HudsonsHope',
 'Taylor',
 'TumblerRidge',
-    ];           
-//         
-    const regions = [           
-        {//Coastal BC           
-            id: 'coastalBC',  zoom:[51.5, -127], size:6           
-        },  
+
+
+/*
+(((  CHANGE ABOVE   )))
+*/
+    ];
+
+    const regions = [
+        {//Coastal BC
+            id: 'coastalBC',  zoom:[51.5, -127], size:6
+        },
+/*
+(((  CHANGE BELOW  )))
+*/
+
 {id: 'VancouverIsland/Coast', zoom: [49.87483, -125.36314],  size: 7 },
 {id: 'RegionalDistrictofAlberni-Clayoquot', zoom: [49.221, -125.3375],  size: 10 },
 {id: 'PortAlberni', zoom: [49.2485, -124.801],  size: 12 },
@@ -305,7 +319,8 @@
 {id: 'Cortes', zoom: [50.0982, -124.975],  size: 12 },
 {id: 'DiscoveryIslands/MainlandInlets', zoom: [50.712, -124.962],  size: 12 },
 {id: 'GoldRiver', zoom: [49.7353, -126.082],  size: 12 },
-{id: 'Kyuquot/Nootka-Sayward', zoom: [50.003, -125.973],  size: 12 },
+{id: 'Kyuquot/Nootka', zoom: [49.9283688466629, -126.85012815411],  size: 12 },
+{id: 'Sayward', zoom: [50.0904384925575, -125.987701093136],  size: 12 },
 {id: 'OysterBay/ButtleLake', zoom: [49.8173, -125.546],  size: 12 },
 {id: 'Mainland/Southwest', zoom: [49.3559334892442, -122.825246701729],  size: 7 },
 {id: 'FraserValleyRegionalDistrict', zoom: [49.5508, -121.8713],  size: 10 },
@@ -472,4 +487,9 @@
 {id: 'HudsonsHope', zoom: [56.024, -122.0205],  size: 12 },
 {id: 'Taylor', zoom: [56.1557, -120.6816],  size: 12 },
 {id: 'TumblerRidge', zoom: [55.0668, -121.1416],  size: 12 },
-    ];           
+
+
+/*
+(((  CHANGE ABOVE   )))
+*/
+    ];
