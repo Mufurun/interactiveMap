@@ -303,7 +303,7 @@
           }else{
             const each_description = document.createElement('li');
             each_description.textContent = list_description[i];
-            each_description.className = 'each_descrpt';
+            each_description.className = 'each_descrpt_li';
             description.appendChild(each_description);
           }
         }
