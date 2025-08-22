@@ -154,7 +154,7 @@
     //Row Number
         if (rowNum>0){
           const row = document.createElement('h6');
-          row.textContent = "#"+ rowNum + " in the data.js/the data file";
+          row.textContent = "#"+ point.rn + " in the data.js/the data file";
           row.className = 'year';
           container.appendChild(row);
         }

@@ -14,9 +14,8 @@ Feel free to contact me: ovis1gmelini@gmail.com
 連絡先: ovis1gmelini@gmail.com
 ===========================================================
 -->
-
 <head>
-  <title>Heritage Map Project</title>
+  <title>Interactive Map Example</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -26,9 +25,26 @@ Feel free to contact me: ovis1gmelini@gmail.com
   <link rel = "stylesheet" href = "src/filcon_styles.css" />
   <link rel = "stylesheet" href = "src/regcon_styles.css" />
   <link rel = "stylesheet" href = "src/image_styles.css" />
+  <link rel = "stylesheet" href = "terms-conditions/terms-conditions.css" />
 </head>
 <body>
-  
+
+
+<!-- Checkin Screen-->
+  <div id="entryScreen">
+    <div class="entry-box">      
+      <h1>Interactive Map Project Draft</h1>
+      <p> This is a draft of the interactive map. This program itself should not be publicly available at this time. </p>
+      <p>The Region here shows all location in the list, which is not the case in the other version. </p>
+      <p>The Popup shows the line number of the site in the excel file, which is not the case in the other version. </p>
+      <p>See the intructions to get codes to be published: <a style = "color: greenyellow" href="http://github.com/Mufurun/interactiveMap">My github page</a></p>
+      <div class = "button-wrapper">
+        <button id="enterBtn">Continue</button>
+      </div>      
+    </div>
+  </div>
+  <script src = 'terms-conditions/terms-conditions.js'></script>
+
 
 
 <!-- Main Screen-->
@@ -39,6 +55,7 @@ Feel free to contact me: ovis1gmelini@gmail.com
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <!-- Leaflet Hash plugin -->
 <script src="https://unpkg.com/leaflet-hash"></script>
+
 
 <!-- Data for sites -->
 <script src="src/data.js"></script>
@@ -84,11 +101,11 @@ Feel free to contact me: ovis1gmelini@gmail.com
       map.attributionControl.setPrefix('<a href="https://bcforestdiscoverycentre.com/" target="_blank" class = ".leaflet-control-attribution">BCFDC</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps"  class = ".leaflet-control-attribution">Leaflet</a>');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
       }).addTo(map);
     
-
-    //Show the hash tag for the screen location on the url. Leaflet extension
+  
+     //Show the hash tag for the screen location on the url. Leaflet extension
       var hash = new L.Hash(map);
 
     //Set the restriction to move the screen. 
@@ -101,18 +118,15 @@ Feel free to contact me: ovis1gmelini@gmail.com
            map.setMaxBounds(fixedBounds);
       }
       setBounds();
- 
+
       //I don't know the following.
-      //     var bounds_group = new L.featureGroup([]);
-      
-      
-  
+      //     var bounds_group = new L.featureGroup([]); 
   
   /*
   #########################
   ######   Markers   ######
   #########################
-
+  
 
       Debug by checking if data.js is updated and if it operates this part of program. 
       Check each point has error or not
@@ -128,20 +142,23 @@ Feel free to contact me: ovis1gmelini@gmail.com
         name (point.title + point.company),
         area
       
-
   */
       //An array to store them (exclusively good points)
       let markers = []
  
 
-    let count_area = {};//Disctionary donesn't need if statement
 
+    let count_area = {'all':1};
     try{
-
-      points.forEach(point => {
-        if(!point.error){//This is Publish
+      let rowNum = 1;
+      points.forEach(point => {//This is All Markers
+	point["rn"] = ++rowNum; 
+        if(point.error != 'coords'){
           const marker = L.marker(point.coords);
-          if(point.category == 'sawmill'){
+          if(point.error){
+            marker.setIcon(greenIcon);
+          }
+          else if(point.category == 'sawmill'){
             marker.setIcon(sawmill_icon);
           }
           else if(point.category == 'camp'){
@@ -153,22 +170,17 @@ Feel free to contact me: ovis1gmelini@gmail.com
           else if(point.category == 'community'){
             marker.setIcon(community_icon);
           }
-
-          
+	
           marker.bindPopup(() => {
-            const popupContent = createPopupContent(point);
+            
+            const popupContent = createPopupContent(point, rowNum);
             return popupContent;
           }, {
               maxWidth: 500,
-              minWidth: 300 // optional, for fixed width
+              minWidth: 300, // optional, for fixed width
           }) 
           marker.addTo(map);
           if(!point.error){
-            if (!count_area.hasOwnProperty(point.area)) {
-              count_area[point.area] = 1;
-            } else{
-              count_area[point.area]  = count_area[point.area] + 1;
-            }
             markers.push({
               marker: marker,
               category: point.category,
@@ -182,15 +194,13 @@ Feel free to contact me: ovis1gmelini@gmail.com
 
         
        });
-      if (points.length == 0){
-        alert("Seems you have not updated the data.js file \n Read instructions here (https://github.com/Mufurun/interactiveMap)");
-      }
+    if (points.length == 0){
+      alert("Seems you have not updated the data.js file \n read instructions here (https://github.com/Mufurun/interactiveMap)");
+    }
 
-    }catch(error){console.log(error);
-      alert("Seems to have at least an error. \nPlease check data entry. and try again");}
-
-
-
+    }catch(error){alert("Seems to have at least an error. \nPlease check data entry. and try again");}
+  
+  
 /*
   ##########################################
   ######     All Kinds of Controls     #####
@@ -230,6 +240,11 @@ Feel free to contact me: ovis1gmelini@gmail.com
           Show regions due to the area of the data.js. 
       listMarkers(map, markers, region) to set up the html styles 
           Add list buttons to fly to and open the popup.
+      updateParentHeight()
+      updateSibling()
+      updateChildren()
+          Maintain the collapsible buttons for the regional categories.
+
 
       
   */

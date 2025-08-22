@@ -150,8 +150,9 @@ Feel free to contact me: ovis1gmelini@gmail.com
 
     let count_area = {'all':1};
     try{
-      let rowNum = 0;
+      let rowNum = 1;
       points.forEach(point => {//This is All Markers
+	point["rn"] = ++rowNum; 
         if(point.error != 'coords'){
           const marker = L.marker(point.coords);
           if(point.error){
@@ -169,9 +170,9 @@ Feel free to contact me: ovis1gmelini@gmail.com
           else if(point.category == 'community'){
             marker.setIcon(community_icon);
           }
-          
+	
           marker.bindPopup(() => {
-            rowNum++;
+            
             const popupContent = createPopupContent(point, rowNum);
             return popupContent;
           }, {
