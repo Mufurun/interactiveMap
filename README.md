@@ -49,10 +49,11 @@ ___
 ___
 
 
-# Instructions for Staffs to Upload Data.<a name="instructions"></a>
+# Instructions to Upload Data.<a name="instructions"></a>
  - Two operations to publish
     1. [Update Contents](#update-contents)
     2. [Upload it to the Code](#upload-codes)
+    3. [Files and Folders](#file_folder)
  - Useful Info
     - [Common Error and Debugging](#common-error-and-debugging)
 
@@ -158,6 +159,8 @@ ___
      - Otherwise, Clear the cell.
     
  - **DO NOT FORGET TO SAVE WHEN YOU UPDATE THE FILE**
+
+
    
 
 ## 2 Upload Codes <a name="upload-codes"></a>
@@ -180,7 +183,27 @@ ___
           - This rewrites the codes in the folder "interactiveMap" from the github 
 
 
-=======
+## 3 Files and Folders for the Web <a name="file_folder"></a>
+- Those below are the files to function the web app.
+- It is the easiest to submit two folders (Heritage_Map and interactiveMap) although the interactiveMap folder includes something unneccessary for it.
+-  See [Code Explanation](#code-explanation) for the farther information
+
+   - Photos:            Heritage_Map_Project/Heritage_Map
+   - Other Program:     Heritage_Map_Project/interactiveMap
+     - HTML:            Heritage_Map_Project/interactiveMap/index.html
+     - JavaScript:      Heritage_Map_Project/interactiveMap/data.js
+     - JavaScript:      Heritage_Map_Project/interactiveMap/static_data.js
+     - JavaScript:      Heritage_Map_Project/interactiveMap/function.js
+     - CSS Style:       Heritage_Map_Project/interactiveMap/styles.css
+     - CSS Style:       Heritage_Map_Project/interactiveMap/image_styles.css
+     - CSS Style:       Heritage_Map_Project/interactiveMap/regcon.css
+     - CSS Style:       Heritage_Map_Project/interactiveMap/filcon.css
+
+
+
+
+===============================================================================
+
 ## Common Error and Debugging <a name="common-error-and-debugging"></a>
  - With the steps above, if you face some problem, check those followings:
   - **Run update_template.sh and Follow the instruction**
@@ -284,7 +307,5 @@ ___
     - src/data.js
     - var/all_markers.txt
     - var/publish.txt
-
-## variables and functions in main programming
 
 
