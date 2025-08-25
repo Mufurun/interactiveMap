@@ -278,7 +278,9 @@ ___
         
 ## Distribution<a name="distribution"></a>
  - All data should not be publicly available since those may include private information before revision. 
- - The repo and its codes can be public.
+ - The repo and its codes are public.
+ - The Regions in the map are refered to [Interactive Local Government Maps](http://www2.gov.bc.ca/gov/content/governments/local-governments/facts-framework/local-government-maps)
+   - Plus detailed regions in Cowichan Valley District.
 
 
 ___
