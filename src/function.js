@@ -1497,13 +1497,13 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
               <label><input type="checkbox" id="sawmill" checked>Show Sawmills</label><br>
               <label><input type="checkbox" id="p&p" checked>Show Paper and Pulp Mills</label><br>
               <label><input type="checkbox" id="community" checked>Show Comunities</label><br>
-              <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
               <button id='allTime'>Show All Time</button><br>
               <input type = 'range' id = 'filterYear' min="1848" max="2025" value="2025"> <br>
               Year: <input type='text' id = 'showFilterYear' value = 'All Time' >
             </div></div>
           </div>
-            `;
+            `;//              <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
+
       }
 /*
   ***************************************
