@@ -4,7 +4,7 @@
         'sawmill',           
         'p&p',           
         'community',           
-//        'BCFS'           
+        'BCFS'           
     ]           
     //List of groups above           
     const region_categories = [   
