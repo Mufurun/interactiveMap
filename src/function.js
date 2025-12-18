@@ -1503,6 +1503,7 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
             </div></div>
           </div>
             `;//              <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
+            // if you uncomment this, do so in solid_data.js ('BCFS')
 
       }
 /*
