@@ -1503,7 +1503,9 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
               Year: <input type='text' id = 'showFilterYear' value = 'All Time' >
             </div></div>
           </div>
-            `;//              <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
+            `;
+//              <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
+//  Also Uncomment the "BCFS" in solid_data.js
 
       }
 /*
