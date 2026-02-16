@@ -34,11 +34,10 @@ Feel free to contact me: ovis1gmelini@gmail.com
   <div id="entryScreen">
     <div class="entry-box">      
       <h1>Interactive Map Project Draft</h1>
-      <p>This is a draft of the interactive map.</p>
+      <p> This is a draft of the interactive map. This program itself should not be publicly available at this time. </p>
       <p>The Region here shows all location in the list, which is not the case in the other version. </p>
-      <p>The Popup here shows line number in the template.txt, which is not the case in the other version. </p>
-      <p>See the intructions to get codes to be published</p>
-      <p>Take a look at codes here <a style = "color: greenyellow" href="http://github.com/Mufurun/interactiveMap">My github page</a></p>
+      <p>The Popup shows the line number of the site in the excel file, which is not the case in the other version. </p>
+      <p>See the intructions to get codes to be published: <a style = "color: greenyellow" href="http://github.com/Mufurun/interactiveMap">My github page</a></p>
       <div class = "button-wrapper">
         <button id="enterBtn">Continue</button>
       </div>      
@@ -151,8 +150,9 @@ Feel free to contact me: ovis1gmelini@gmail.com
 
     let count_area = {'all':1};
     try{
-      let rowNum = 0;
+      let rowNum = 1;
       points.forEach(point => {//This is All Markers
+	point["rn"] = ++rowNum; 
         if(point.error != 'coords'){
           const marker = L.marker(point.coords);
           if(point.error){
@@ -170,9 +170,9 @@ Feel free to contact me: ovis1gmelini@gmail.com
           else if(point.category == 'community'){
             marker.setIcon(community_icon);
           }
-          
+	
           marker.bindPopup(() => {
-            rowNum++;
+            
             const popupContent = createPopupContent(point, rowNum);
             return popupContent;
           }, {
