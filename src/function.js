@@ -1,3 +1,4 @@
+
 /*
 #####################
 ####    Icons    ####
@@ -1504,6 +1505,7 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
           </div>
             `;//              <label><input type="checkbox" id="BCFS" checked>Show BCFS</label><br>
             // if you uncomment this, do so in solid_data.js ('BCFS')
+//  if you uncomment any of the categories, uncomment the one in solid_data.js
 
       }
 /*
@@ -1812,5 +1814,3 @@ else if(region =='TumblerRidge'){list.innerHTML = 'List of Sites in Tumbler Ridg
       },0);
 
       }
-
-
